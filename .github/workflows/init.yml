@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       target_environment:
-        type: string
+        type: environment
         description: Choose the environment
         required: true
 
