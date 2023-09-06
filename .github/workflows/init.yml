@@ -15,19 +15,22 @@ jobs:
 
     steps:
       - name: Setup SSH
-        run: ./.github/scripts/setupSSH.sh
+        run: ./setupSSH.sh
         shell: bash
+        working_directory: .github/scripts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_CONSUL_STAGING_KEY }}
           SSH_PUBLIC_KEY: ${{ vars.PUBLIC_SERVER_KEY }}
 
       - name: Prepare Remote
-        run: ./.github/scripts/prepareRemote.sh
+        run: ./prepareRemote.sh
+        working_directory: .github/scripts
         shell: bash
 
       - name: Execute installer
-        run: ./.github/scripts/executeInstaller.sh
+        run: ./executeInstaller.sh
         shell: bash
+        working_directory: .github/scripts
         env:
           HOST: ${{ vars.REMOTE_IP }}
           ANSIBLE_USER: ${{ vars.ANSIBLE_USER }}
