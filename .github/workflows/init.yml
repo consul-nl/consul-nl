@@ -19,6 +19,7 @@ jobs:
       ANSIBLE_USER: ${{ vars.ANSIBLE_USER }}
       DOMAIN: ${{ vars.PRODUCTION_DOMAIN }}
       CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+      INSTALLER_REPO: ${{ vars.INSTALLER_REPO }}
 
     defaults:
       run:
