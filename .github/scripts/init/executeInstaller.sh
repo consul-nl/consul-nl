@@ -3,7 +3,7 @@
 # Required environment variables: $HOST, $ANSIBLE_USER, $DOMAIN, $CONTACT_EMAIL
 
 # Install ansible
-apt install ansible
+sudo apt install ansible
 
 # Checkout installer
 git clone $INSTALLER_REPO ~/installer
