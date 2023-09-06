@@ -17,7 +17,7 @@ jobs:
       - name: Setup SSH
         run: ./setupSSH.sh
         shell: bash
-        working-directory: .github/scripts
+        working-directory: .github
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_CONSUL_STAGING_KEY }}
           SSH_PUBLIC_KEY: ${{ vars.PUBLIC_SERVER_KEY }}
