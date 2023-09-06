@@ -2,7 +2,7 @@
 # Run this 'locally' (on the machine created by Github Actions)
 
 # Install ansible
-# sudo apt install ansible
+sudo apt install ansible
 
 # Checkout installer
 git clone $INSTALLER_REPO ~/installer
