@@ -8,37 +8,36 @@ on:
         required: true
 
 jobs:
-  deploy:
+  init:
     runs-on: ubuntu-20.04
+
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/.github/scripts
+
     environment:
       name: ${{ inputs.target_environment }}
 
     steps:
-      - name: List
-        run: tree -aI .git
-        working-directory: .
+      - uses: actions/checkout@v2
 
       - name: List
         run: tree -aI .git
-        working-directory: ./.github
 
       - name: Setup SSH
         run: ./setupSSH.sh
         shell: bash
-        working-directory: ../.github/scripts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_CONSUL_STAGING_KEY }}
           SSH_PUBLIC_KEY: ${{ vars.PUBLIC_SERVER_KEY }}
 
       - name: Prepare Remote
         run: ./prepareRemote.sh
-        working-directory: .github/scripts
         shell: bash
 
       - name: Execute installer
         run: ./executeInstaller.sh
         shell: bash
-        working-directory: .github/scripts
         env:
           HOST: ${{ vars.REMOTE_IP }}
           ANSIBLE_USER: ${{ vars.ANSIBLE_USER }}
