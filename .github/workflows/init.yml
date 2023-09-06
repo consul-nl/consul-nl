@@ -25,18 +25,18 @@ jobs:
         run: tree -aI .git
 
       - name: Setup SSH
-        run: ./setupSSH.sh
+        run: ./init/setupSSH.sh
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_CONSUL_STAGING_KEY }}
           SSH_PUBLIC_KEY: ${{ vars.PUBLIC_SERVER_KEY }}
 
       - name: Prepare Remote
-        run: ./prepareRemote.sh
+        run: ./init/prepareRemote.sh
         shell: bash
 
       - name: Execute installer
-        run: ./executeInstaller.sh
+        run: ./init/executeInstaller.sh
         shell: bash
         env:
           HOST: ${{ vars.REMOTE_IP }}
