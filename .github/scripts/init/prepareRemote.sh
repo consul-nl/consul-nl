@@ -1,5 +1,5 @@
 #!/bin/bash
-ssh $USER@$HOST
+ssh -o "StrictHostKeyChecking accept-new" $USER@$HOST
 
 apt-get update
 
