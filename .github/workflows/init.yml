@@ -14,10 +14,18 @@ jobs:
       name: ${{ inputs.target_environment }}
 
     steps:
+      - name: List
+        run: tree -aI .git
+        working-directory: .
+
+      - name: List
+        run: tree -aI .git
+        working-directory: ./.github
+
       - name: Setup SSH
         run: ./setupSSH.sh
         shell: bash
-        working-directory: .github
+        working-directory: ../.github/scripts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_CONSUL_STAGING_KEY }}
           SSH_PUBLIC_KEY: ${{ vars.PUBLIC_SERVER_KEY }}
