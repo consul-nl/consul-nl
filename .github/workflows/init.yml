@@ -11,6 +11,15 @@ jobs:
   init:
     runs-on: ubuntu-20.04
 
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_CONSUL_STAGING_KEY }}
+      SSH_PUBLIC_KEY: ${{ vars.PUBLIC_SERVER_KEY }}
+      HOST: ${{ vars.REMOTE_IP }}
+      USER: ${{ vars.ANSIBLE_USER }}
+      ANSIBLE_USER: ${{ vars.ANSIBLE_USER }}
+      DOMAIN: ${{ vars.PRODUCTION_DOMAIN }}
+      CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+
     defaults:
       run:
         working-directory: ${{ github.workspace }}/.github/scripts
@@ -21,15 +30,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: List
-        run: tree -aI .git
-
       - name: Setup SSH
         run: ./init/setupSSH.sh
         shell: bash
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_CONSUL_STAGING_KEY }}
-          SSH_PUBLIC_KEY: ${{ vars.PUBLIC_SERVER_KEY }}
 
       - name: Prepare Remote
         run: ./init/prepareRemote.sh
@@ -38,8 +41,3 @@ jobs:
       - name: Execute installer
         run: ./init/executeInstaller.sh
         shell: bash
-        env:
-          HOST: ${{ vars.REMOTE_IP }}
-          ANSIBLE_USER: ${{ vars.ANSIBLE_USER }}
-          DOMAIN: ${{ vars.PRODUCTION_DOMAIN }}
-          CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
