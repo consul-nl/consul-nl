@@ -27,7 +27,7 @@ jobs:
 
       - name: Install capistrano
         working-directory: .
-        run: sudo gem install capistrano
+        run: sudo bundle install
 
       - name: Apply current tenant
         working-directory: .
