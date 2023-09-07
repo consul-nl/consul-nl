@@ -25,9 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install capistrano
-        working-directory: .
-        run: sudo bundle install
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+        with:
+          ruby-version: "3.0.6"
+      - name: Install dependencies
+        run: bundle install
 
       - name: Apply current tenant
         working-directory: .
