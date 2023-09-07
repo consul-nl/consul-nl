@@ -1,20 +1,38 @@
 name: Deploy consul
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_environment:
+        type: environment
+        description: Choose the environment to deploy
+        required: true
+
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-    
-    steps:
-    - name: Install Ansible
-      run: sudo apt install ansible
 
-    - name: Clone installer repository
-      uses: actions/checkout@v2
-      with:
-        repository: consul/installer
-        path: installer
-        
-    - name: Create hosts
-      working-directory: ./installer
-      run: sed -e "s/remote-server-ip-address/$REMOTE_IP/" -e "s/root/$ANSIBLE_USER/" hosts.example > hosts
-    
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_CONSUL_STAGING_KEY }}
+      SSH_PUBLIC_KEY: ${{ vars.PUBLIC_SERVER_KEY }}
+      HOST: ${{ vars.REMOTE_IP }}
+      USER: ${{ vars.ANSIBLE_USER }}
+      ANSIBLE_USER: ${{ vars.ANSIBLE_USER }}
+      DOMAIN: ${{ vars.PRODUCTION_DOMAIN }}
+      CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+      INSTALLER_REPO: ${{ vars.INSTALLER_REPO }}
+      REPO: ${{ github.repositoryUrl }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Apply current tenant
+        working-directory: .
+        run: bin/tenant -a ${{ inputs.deploy_environment }}
+
+      - name: Create deploy secrets
+        working-directory: ./config
+        run: sed -e "s/xxx.xxx.xxx.xxx/$HOST/" -e "s/user: \"deploy\"/user: \"$ANSIBLE_USER\"/" deploy-secrets.yml.example > deploy-secrets.yml
+
+      - name: Run deploy
+        working-directory: .
+        run: cap production deploy
