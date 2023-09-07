@@ -31,7 +31,8 @@ jobs:
 
       - name: Create deploy secrets
         working-directory: ./config
-        run: sed -e "s/xxx.xxx.xxx.xxx/$HOST/" -e "s/user: \"deploy\"/user: \"$ANSIBLE_USER\"/" deploy-secrets.yml.example > deploy-secrets.yml
+        run: >-
+          sed -e "s/xxx.xxx.xxx.xxx/$HOST/" -e "s/user: "deploy"/user: "$ANSIBLE_USER"/" deploy-secrets.yml.example > deploy-secrets.yml
 
       - name: Run deploy
         working-directory: .
