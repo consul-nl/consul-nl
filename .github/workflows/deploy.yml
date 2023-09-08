@@ -29,7 +29,7 @@ jobs:
 
       - name: Set REPO variable
         shell: bash
-        run: echo "REPO=$(sed "s/git:/https:/" ${{ github.repositoryUrl }})" >> $GITHUB_ENV
+        run: echo "REPO=$(echo ${{ github.repositoryUrl }} | sed "s/git:/https:/")" >> $GITHUB_ENV
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
