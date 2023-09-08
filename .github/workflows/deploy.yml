@@ -28,6 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set correct Repo Url
+        run: git config --global url."https://".insteadOf git://
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
