@@ -41,6 +41,10 @@ jobs:
         run: >-
           sed -e "s/xxx.xxx.xxx.xxx/$HOST/" -e "s/user: "deploy"/user: "$ANSIBLE_USER"/" deploy-secrets.yml.example > deploy-secrets.yml
 
+      - name: Setup SSH
+        run: ./init/setupSSH.sh
+        shell: bash
+
       - name: Run deploy
         working-directory: .
         run: cap production deploy
