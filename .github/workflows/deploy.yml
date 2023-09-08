@@ -48,4 +48,4 @@ jobs:
 
       - name: Run deploy
         working-directory: .
-        run: cap production deploy
+        run: cap production deploy --trace
