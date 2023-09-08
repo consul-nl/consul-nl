@@ -23,13 +23,13 @@ jobs:
       DOMAIN: ${{ vars.PRODUCTION_DOMAIN }}
       CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
       INSTALLER_REPO: ${{ vars.INSTALLER_REPO }}
-      REPO: ${{ github.repositoryUrl }}
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set correct Repo Url
-        run: git config --global url."https://".insteadOf git://
+      - name: Set REPO variable
+        shell: bash
+        run: echo "REPO=$(sed "s/git:/https:/" ${{ github.repositoryUrl }})" >> $GITHUB_ENV
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
