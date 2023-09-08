@@ -23,6 +23,7 @@ jobs:
       DOMAIN: ${{ vars.PRODUCTION_DOMAIN }}
       CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
       INSTALLER_REPO: ${{ vars.INSTALLER_REPO }}
+      branch: main
 
     steps:
       - uses: actions/checkout@v2
