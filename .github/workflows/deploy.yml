@@ -43,6 +43,7 @@ jobs:
 
       - name: Setup SSH
         run: ./init/setupSSH.sh
+        working-directory: ${{ github.workspace }}/.github/scripts
         shell: bash
 
       - name: Run deploy
