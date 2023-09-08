@@ -8,8 +8,10 @@ end
 
 def main_deploy_server
   if deploysecret(:server1) && !deploysecret(:server1).empty?
+    echo deploysecret(:server1)
     deploysecret(:server1)
   else
+    echo deploysecret(:server)
     deploysecret(:server)
   end
 end
