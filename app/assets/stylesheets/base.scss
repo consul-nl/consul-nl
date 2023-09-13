@@ -547,7 +547,6 @@ body > header,
 }
 
 .top-bar-title {
-  background: var(--brand);
   margin: 0;
   position: relative;
 
@@ -556,7 +555,6 @@ body > header,
     padding-top: $line-height;
 
     &::before {
-      background: var(--brand);
       content: "";
       height: 100%;
       left: -999%;
@@ -1115,21 +1113,20 @@ body > header,
 // --------------------
 
 footer {
-  color: #fff;
+  color: $footer-color;
 
   a,
   a:active,
   a:focus {
-    color: #fff;
+    color: $footer-color;
     text-decoration: none;
 
     &:hover {
-      color: #fff;
+      color: $footer-color;
     }
   }
 
   p {
-
     &.info {
       font-size: $small-font-size;
     }
@@ -1137,7 +1134,6 @@ footer {
 }
 
 .footer {
-  background: #2d313b;
   padding-top: $line-height * 2;
 
   .footer-title {
@@ -1161,11 +1157,14 @@ footer {
     }
 
     a {
-      color: $footer;
-      display: inline-block;
-      font-size: rem-calc(20);
-      line-height: rem-calc(40);
-      vertical-align: top;
+      background: $social-background;
+      color: $social-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: rem-calc(24);
+      width: rem-calc(40);
+      height: rem-calc(40);
     }
   }
 }
@@ -1187,6 +1186,12 @@ footer {
 
   a {
     padding: 0 $line-height / 2;
+  }
+
+  .social {
+    a {
+      padding: 0;
+    }
   }
 }
 
