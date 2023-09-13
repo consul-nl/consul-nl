@@ -2,16 +2,14 @@
 lock "~> 3.17.1"
 
 def deploysecret(key, default: "")
-  @deploy_secrets_yml ||= YAML.load_file("config/deploy-secrets.yml")[fetch(:stage).to_s]
+  @deploy_secrets_yml ||= YAML.load_file("config/deploy-secrets.yml", aliases: true)[fetch(:stage).to_s]
   @deploy_secrets_yml.fetch(key.to_s, default)
 end
 
 def main_deploy_server
   if deploysecret(:server1) && !deploysecret(:server1).empty?
-    puts "Server 1", deploysecret(:server1)
     deploysecret(:server1)
   else
-    puts "Server", deploysecret(:server)
     deploysecret(:server)
   end
 end

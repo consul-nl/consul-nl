@@ -23,6 +23,4 @@ bin/tenant -a ${arg}
 cd ./config
 sed -e "s/xxx.xxx.xxx.xxx/$HOST/" -e "s/user: "deploy"/user: "$ANSIBLE_USER"/" deploy-secrets.yml.example > deploy-secrets.yml
 
-echo "$REPO"
-
 cap production deploy --trace
