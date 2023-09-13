@@ -28,7 +28,7 @@
 }
 
 $base-font-size: 18px;
-$body-font-family: 'Formata', sans-serif;
+$body-font-family: "Formata", sans-serif;
 $header-font-weight: 700;
 
 $brand: #2272b7;
@@ -38,4 +38,32 @@ $footer: #7796ac;
 $hover: scale-color($brand, $lightness: -20%);
 $hover-secondary: scale-color($brand-secondary, $lightness: -20%);
 
-$text: #231F20;
+$text: #231f20;
+
+html {
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
+
+  --footer: #{$footer};
+}
+
+.top-bar-title {
+  background: none;
+}
+
+footer {
+  color: $text;
+}
+
+.social {
+  a {
+    color: $social-color;
+    background: $social-background;
+    margin: 0 0.25rem;
+
+    &:hover {
+      color: $social-color-hover;
+      background: $social-background-hover;
+    }
+  }
+}
