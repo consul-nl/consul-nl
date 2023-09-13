@@ -40,6 +40,12 @@ $hover-secondary: scale-color($brand-secondary, $lightness: -20%);
 
 $text: #231f20;
 
+$social-background: none;
+$social-color: $text;
+
+$social-background-hover: none;
+$social-color-hover: $text;
+
 html {
   --brand: #{$brand};
   --brand-secondary: #{$brand-secondary};
