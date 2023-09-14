@@ -27,17 +27,50 @@
   font-style: normal;
 }
 
+$brand: #2272b7;
+$brand-secondary: #0054ad;
+
+$footer: #7796ac;
+
+$base-font-size: 18px;
+$body-font-family: "Formata", sans-serif;
+$header-font-weight: 700;
+$hover: scale-color($brand, $lightness: -20%);
+$hover-secondary: scale-color($brand-secondary, $lightness: -20%);
+
+$text: #231f20;
+
+$social-background: $text;
+$social-color: #fff;
+
+$social-background-hover: #fff;
+$social-color-hover: $text;
+
 html {
-  $base-font-size: 18px;
-  $body-font-family: 'Formata', sans-serif;
-  $header-font-weight: 700;
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
 
-  --brand: #2272b7;
-  --brand-secondary: #0054ad;
-  $footer: #7796ac;
-
-  $hover: scale-color(var(--brand), $lightness: -20%);
-  $hover-secondary: scale-color(var(--brand-secondary), $lightness: -20%);
-
-  $text: #231F20;
+  --footer: #{$footer};
 }
+
+.top-bar-title {
+  background: none;
+}
+
+footer {
+  color: $text;
+}
+
+.social {
+  a {
+    color: $social-color;
+    background: $social-background;
+    margin: 0 0.25rem;
+
+    &:hover {
+      color: $social-color-hover;
+      background: $social-background-hover;
+    }
+  }
+}
+
