@@ -21,7 +21,7 @@ set :application, deploysecret(:app_name, default: "consul")
 set :deploy_to, deploysecret(:deploy_to)
 set :ssh_options, port: deploysecret(:ssh_port)
 
-set :repo_url, ENV["repo"]
+set :repo_url, ENV["REPO"]
 
 set :revision, `git rev-parse --short #{fetch(:branch)}`.strip
 
@@ -30,7 +30,8 @@ set :pty, true
 set :use_sudo, false
 
 set :linked_files, %w[config/database.yml config/secrets.yml]
-set :linked_dirs, %w[.bundle log tmp public/system public/assets public/ckeditor_assets public/machine_learning/data storage]
+set :linked_dirs,
+%w[.bundle log tmp public/system public/assets public/ckeditor_assets public/machine_learning/data storage]
 
 set :keep_releases, 5
 
