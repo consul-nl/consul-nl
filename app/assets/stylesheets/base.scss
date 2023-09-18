@@ -107,10 +107,7 @@ main {
       box-shadow: none;
       min-height: unset;
       background: var(--button-secondary-background, #eee);
-
-      &:hover {
-        color: #fff;
-      }
+      color: var(--button-secondary-color, initial);
 
       &::before {
         vertical-align: middle;
