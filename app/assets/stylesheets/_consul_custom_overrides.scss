@@ -10,3 +10,66 @@
 //
 // The variables you can override are defined in the
 // `_settings.scss` and `_consul_settings.scss` files.
+
+@font-face {
+  font-family: "Formata";
+  src: font-url("formata-regular.otf");
+  src: font-url("formata-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Formata";
+  src: font-url("formata-medium.otf");
+  src: font-url("formata-medium.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+$brand: #2272b7;
+$brand-secondary: #0054ad;
+
+$footer: #7796ac;
+
+$base-font-size: 18px;
+$body-font-family: 'Formata', sans-serif;
+$header-font-weight: 700;
+$hover: scale-color($brand, $lightness: -20%);
+$hover-secondary: scale-color($brand-secondary, $lightness: -20%);
+
+$text: #231F20;
+
+$social-background: $text;
+$social-color: #fff;
+
+$social-background-hover: #fff;
+$social-color-hover: $text;
+
+html {
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
+
+  --footer: #{$footer};
+}
+
+.top-bar-title {
+  background: none;
+}
+
+footer {
+  color: $text;
+}
+
+.social {
+  a {
+    color: $social-color;
+    background: $social-background;
+    margin: 0 0.25rem;
+
+    &:hover {
+      color: $social-color-hover;
+      background: $social-background-hover;
+    }
+  }
+}
