@@ -31,6 +31,10 @@
   }
 }
 
+$small-border-radius: var(--small-border-radius, rem-calc(3));
+$medium-border-radius: var(--medium-border-radius, rem-calc(6));
+$large-border-radius: var(--large-border-radius, rem-calc(12));
+
 html {
   font-size: unset;
 }
@@ -44,18 +48,28 @@ h6 {
   font-weight: $header-font-weight;
 }
 
+.title {
+  color: var(--header-color, inherit);
+}
+
 button,
 .button {
   font-weight: $button-font-weight;
   min-height: $line-height * 2;
+  border-radius: var(--button-border-radius);
+  transition-duration: 0.15s;
+
+  &:hover {
+    transition: none;
+  }
 }
 
 .input-group-button {
 
   button,
   .button {
-    border-bottom-right-radius: rem-calc(4) !important;
-    border-top-right-radius: rem-calc(4) !important;
+    border-bottom-right-radius: $small-border-radius !important;
+    border-top-right-radius: $small-border-radius !important;
     max-height: $line-height * 2;
     min-height: 0;
   }
@@ -80,7 +94,7 @@ button,
 main {
 
   .button {
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: var(--button-shadow, 0 0 6px 0 rgba(0, 0, 0, 0.5));
 
     &:hover {
       box-shadow: none;
@@ -92,13 +106,15 @@ main {
     .button {
       box-shadow: none;
       min-height: unset;
+      background: var(--button-secondary-background, #eee);
+
+      &:hover {
+        color: #fff;
+      }
 
       &::before {
         vertical-align: middle;
-
-        &:hover {
-          color: #fff;
-        }
+        color: inherit;
       }
     }
   }
@@ -154,6 +170,7 @@ aside {
   h1,
   .icon {
     font-size: rem-calc(40);
+    color: var(--header-color);
   }
 
   .icon {
@@ -259,6 +276,12 @@ aside {
   padding-top: 0;
 }
 
+.panel, .legislation, .investments-list {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--header-color, initial);
+  }
+}
+
 .debate-show,
 .proposal-show,
 .poll-question-show,
@@ -339,14 +362,14 @@ aside {
 
   .panel {
     border: 2px solid $border;
-    border-radius: rem-calc(12);
+    border-radius: $large-border-radius;
     box-shadow: none;
 
     @include breakpoint(medium) {
 
       img {
-        border-bottom-left-radius: rem-calc(12);
-        border-top-left-radius: rem-calc(12);
+        border-bottom-left-radius: $large-border-radius;
+        border-top-left-radius: $large-border-radius;
         max-width: none;
         height: 100%;
       }
@@ -479,7 +502,7 @@ aside {
 
 .link-to-top {
   background: rgba(226, 226, 226, 0.5);
-  border-radius: rem-calc(6);
+  border-radius: $medium-border-radius;
   bottom: 12px;
   display: table;
   height: rem-calc(48);
@@ -863,14 +886,14 @@ body > header,
   margin-top: $line-height;
 
   figure {
-    border-top-left-radius: rem-calc(12);
-    border-top-right-radius: rem-calc(12);
+    border-top-left-radius: $large-border-radius;
+    border-top-right-radius: $large-border-radius;
   }
 
   a {
     background: $light;
     border: 2px solid #fff;
-    border-radius: rem-calc(12);
+    border-radius: $large-border-radius;
     color: $text;
     height: 100%;
 
@@ -1000,13 +1023,13 @@ body > header,
 
     &:first-of-type {
       border-top: 1px solid $border;
-      border-top-left-radius: rem-calc(12);
-      border-top-right-radius: rem-calc(12);
+      border-top-left-radius: $large-border-radius;
+      border-top-right-radius: $large-border-radius;
     }
 
     &:last-child {
-      border-bottom-left-radius: rem-calc(12);
-      border-bottom-right-radius: rem-calc(12);
+      border-bottom-left-radius: $large-border-radius;
+      border-bottom-right-radius: $large-border-radius;
     }
   }
 
@@ -1148,7 +1171,11 @@ footer {
 
   .social {
     width: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
 
+    // TODO: unused ??
     [class^="fa"] {
       color: $footer;
       font-size: rem-calc(40);
@@ -1162,9 +1189,9 @@ footer {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: rem-calc(24);
-      width: rem-calc(40);
-      height: rem-calc(40);
+      font-size: rem-calc(32);
+      width: rem-calc(48);
+      height: rem-calc(48);
     }
   }
 }
@@ -1463,7 +1490,7 @@ footer {
 
   .is-active a {
     background: #f9f9f9;
-    border-radius: rem-calc(3);
+    border-radius: $small-border-radius;
     color: $budget;
     font-weight: bold;
 
@@ -1773,7 +1800,7 @@ footer {
 
 .legislation {
   border: 2px solid $border;
-  border-radius: rem-calc(12);
+  border-radius: $large-border-radius;
   box-shadow: none;
   padding: $line-height 0 $line-height / 2;
 
@@ -2744,7 +2771,7 @@ a {
 
   blockquote {
     border: 4px solid $light;
-    border-radius: rem-calc(12);
+    border-radius: $large-border-radius;
     color: $text;
     font-size: $base-font-size;
     margin: $line-height 0;
@@ -2820,15 +2847,15 @@ a {
 .poll,
 .poll-question {
   border: 2px solid $border;
-  border-radius: rem-calc(12);
+  border-radius: $large-border-radius;
   box-shadow: none;
   overflow: hidden;
 
   @include breakpoint(medium) {
 
     img {
-      border-bottom-left-radius: rem-calc(12);
-      border-top-left-radius: rem-calc(12);
+      border-bottom-left-radius: $large-border-radius;
+      border-top-left-radius: $large-border-radius;
       max-width: none;
     }
   }
@@ -3066,8 +3093,8 @@ a {
 
   .header {
     background: var(--brand-secondary);
-    border-bottom-right-radius: rem-calc(12);
-    border-top-right-radius: rem-calc(12);
+    border-bottom-right-radius: $large-border-radius;
+    border-top-right-radius: $large-border-radius;
     color: #fff;
     margin-top: $line-height * 2;
     padding: $line-height * 2 0;
@@ -3096,8 +3123,8 @@ a {
     &::after {
       background: #fff;
       border: 4px solid var(--brand-secondary);
-      border-bottom-right-radius: rem-calc(12);
-      border-top-right-radius: rem-calc(12);
+      border-bottom-right-radius: $large-border-radius;
+      border-top-right-radius: $large-border-radius;
       clip-path: polygon(20% 0, 100% 1%, 100% 100%, 20% 100%, 5% 50%);
       color: var(--brand-secondary);
       content: "\f1ad";
@@ -3192,15 +3219,15 @@ a {
     height: 100%;
 
     .panel {
-      border-radius: rem-calc(6);
+      border-radius: $medium-border-radius;
       height: 100%;
       padding: 0;
       position: relative;
 
       img {
         border-bottom-left-radius: 0;
-        border-top-left-radius: rem-calc(6);
-        border-top-right-radius: rem-calc(6);
+        border-top-left-radius: $medium-border-radius;
+        border-top-right-radius: $medium-border-radius;
         width: 100%;
       }
 
@@ -3420,16 +3447,16 @@ a {
     &:first-child {
 
       a {
-        border-bottom-left-radius: rem-calc(6);
-        border-top-left-radius: rem-calc(6);
+        border-bottom-left-radius: $medium-border-radius;
+        border-top-left-radius: $medium-border-radius;
       }
     }
 
     &:last-child {
 
       a {
-        border-bottom-right-radius: rem-calc(6);
-        border-top-right-radius: rem-calc(6);
+        border-bottom-right-radius: $medium-border-radius;
+        border-top-right-radius: $medium-border-radius;
 
         &::after {
           content: none;
@@ -3550,7 +3577,7 @@ a {
 
     &::before {
       background: var(--brand);
-      border-radius: rem-calc(3);
+      border-radius: $small-border-radius;
       color: #fff;
       font-family: "Font Awesome 5 Free";
       font-size: rem-calc(36);
@@ -3661,7 +3688,7 @@ a {
 
   .callout {
     border: 6px solid #f4f4f4;
-    border-radius: rem-calc(12);
+    border-radius: $large-border-radius;
     padding: $line-height;
 
     @include breakpoint(medium) {
@@ -3753,8 +3780,8 @@ a {
 
   .header {
     background: var(--brand-secondary);
-    border-bottom-right-radius: rem-calc(12);
-    border-top-right-radius: rem-calc(12);
+    border-bottom-right-radius: $large-border-radius;
+    border-top-right-radius: $large-border-radius;
     color: #fff;
     margin-top: $line-height * 2;
     padding: $line-height * 2 0;
@@ -3787,8 +3814,8 @@ a {
     &::after {
       background: #fff;
       border: 4px solid var(--brand-secondary);
-      border-bottom-right-radius: rem-calc(12);
-      border-top-right-radius: rem-calc(12);
+      border-bottom-right-radius: $large-border-radius;
+      border-top-right-radius: $large-border-radius;
       clip-path: polygon(20% 0, 100% 1%, 100% 100%, 20% 100%, 5% 50%);
       color: var(--brand-secondary);
       content: "\f1ad";
