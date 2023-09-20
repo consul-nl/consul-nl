@@ -21,7 +21,7 @@
         </ul>
       <% end %>
 
-      <% if @poll.description.present? %>
+      <% if @poll.description.present? && false %>
         <div id="poll_description_text" class="hide" data-toggler="hide">
           <h3><%= t("polls.show.more_info_title") %></h3>
           <%= auto_link_already_sanitized_html AdminWYSIWYGSanitizer.new.sanitize(@poll.description) %>

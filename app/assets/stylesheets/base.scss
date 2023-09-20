@@ -2940,6 +2940,7 @@ a {
 }
 
 .poll-question-answers {
+  flex-direction: column;
 
   span,
   a {
