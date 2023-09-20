@@ -24,3 +24,4 @@ class Map < ApplicationRecord
     find_or_create_by!(budget_id: 0)
   end
 end
+
