@@ -539,14 +539,6 @@ class Admin::MenuComponent < ApplicationComponent
       ]
     end
 
-    def maps_link
-      [
-        t("admin.menu.maps"),
-        admin_maps_path,
-        maps?
-      ]
-    end
-
     def administrator_tasks_link
       [
         t("admin.menu.administrator_tasks"),
