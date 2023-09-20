@@ -878,6 +878,17 @@ body > header,
   }
 }
 
+.home-page,
+.custom-page,
+.sdg-goal-show,
+.sdg-goals-index {
+  h2,h3 {
+    &.title {
+      border-color: var(--heading-border-color, --brand);
+    }
+  }
+}
+
 .home-page .card,
 .custom-page .card {
   margin-top: $line-height;
