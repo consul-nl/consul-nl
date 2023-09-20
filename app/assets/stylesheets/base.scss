@@ -1448,6 +1448,7 @@ footer {
 
       &:hover {
         color: $white;
+        background: $dark;
 
         &::after {
           border-left-color: $dark;
