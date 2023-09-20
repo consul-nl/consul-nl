@@ -54,6 +54,7 @@ html {
   --footer: #{$footer};
 
   --header-color: var(--brand);
+  --heading-border-color: #{$footer};
 
   --button-shadow: none;
   --button-secondary-background: #f1f1f1;
