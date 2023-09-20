@@ -1,8 +1,16 @@
 # config valid only for current version of Capistrano
 lock "~> 3.17.1"
 
+def load_secrets()
+  begin
+    YAML.load_file("config/deploy-secrets.yml", aliases: true)[fetch(:stage).to_s]
+  rescue ArgumentError
+    YAML.load_file("config/deploy-secrets.yml")[fetch(:stage).to_s]
+  end
+end
+
 def deploysecret(key, default: "")
-  @deploy_secrets_yml ||= YAML.load_file("config/deploy-secrets.yml")[fetch(:stage).to_s]
+  @deploy_secrets_yml ||= load_secrets()
   @deploy_secrets_yml.fetch(key.to_s, default)
 end
 
