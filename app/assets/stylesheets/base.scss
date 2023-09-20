@@ -107,10 +107,7 @@ main {
       box-shadow: none;
       min-height: unset;
       background: var(--button-secondary-background, #eee);
-
-      &:hover {
-        color: #fff;
-      }
+      color: var(--button-secondary-color, initial);
 
       &::before {
         vertical-align: middle;
@@ -881,6 +878,17 @@ body > header,
   }
 }
 
+.home-page,
+.custom-page,
+.sdg-goal-show,
+.sdg-goals-index {
+  h2,h3 {
+    &.title {
+      border-color: var(--heading-border-color, --brand);
+    }
+  }
+}
+
 .home-page .card,
 .custom-page .card {
   margin-top: $line-height;
@@ -1440,6 +1448,7 @@ footer {
 
       &:hover {
         color: $white;
+        background: $dark;
 
         &::after {
           border-left-color: $dark;
