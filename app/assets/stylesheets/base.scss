@@ -882,6 +882,10 @@ body > header,
 .custom-page,
 .sdg-goal-show,
 .sdg-goals-index {
+  .cards-container {
+    align-items: flex-start;
+  }
+
   h2,h3 {
     &.title {
       border-color: var(--heading-border-color, --brand);
@@ -907,7 +911,6 @@ body > header,
 
     &:hover {
       border: 2px solid $border;
-      transform: translate(0, -12px);
 
       img {
         transform: none;
@@ -916,9 +919,13 @@ body > header,
   }
 
   h4,
-  p {
+  p,
+  .description {
     padding: 0 $line-height / 2;
+  }
 
+  h4,
+  p {
     &:last-child {
       bottom: 0;
       color: var(--brand);
@@ -927,7 +934,6 @@ body > header,
   }
 
   .figure-card {
-
     @include breakpoint(medium) {
       max-height: $line-height * 10;
     }
@@ -986,29 +992,42 @@ body > header,
     }
   }
 
-  &.budget .description {
-    display: block;
-    max-height: $line-height * 5;
-    overflow: hidden;
-    padding: 0 $line-height / 2;
-    position: relative;
-
-    &::after {
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), $light 50%);
-      bottom: 0;
-      content: "";
-      height: 24px;
-      left: 0;
-      position: absolute;
-      width: 100%;
-    }
-
-    p {
-      color: $text;
-      padding: 0;
-      text-align: left;
+  &:hover {
+    .description {
+      -webkit-line-clamp: none;
     }
   }
+
+  .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // &.budget .description {
+  //   display: block;
+  //   max-height: $line-height * 5;
+  //   overflow: hidden;
+  //   padding: 0 $line-height / 2;
+  //   position: relative;
+  //
+  //   &::after {
+  //     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), $light 50%);
+  //     bottom: 0;
+  //     content: "";
+  //     height: 24px;
+  //     left: 0;
+  //     position: absolute;
+  //     width: 100%;
+  //   }
+  //
+  //   p {
+  //     color: $text;
+  //     padding: 0;
+  //     text-align: left;
+  //   }
+  // }
 }
 
 .welcome-cards {
