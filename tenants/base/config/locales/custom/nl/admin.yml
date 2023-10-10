@@ -219,7 +219,7 @@ nl:
     polls:
       index:
         title: "Alle peilingen"
-        no_polls: "Gein peilingen"
+        no_polls: "Geen peilingen"
         create: "Maak peiling"
         name: "Titel peiling"
         dates: "Periode"
