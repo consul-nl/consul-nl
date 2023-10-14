@@ -28,17 +28,18 @@
 }
 
 $brand: #2272b7;
-$brand-secondary: #0054ad;
+$brand-secondary: #2272b7;
 
-$footer: #7796ac;
+$footer: rgb(128, 161, 182);
+$footer-color: rgb(35, 31, 32);
 
 $base-font-size: 18px;
-$body-font-family: 'Formata', sans-serif;
+$body-font-family: "Formata", sans-serif;
 $header-font-weight: 700;
-$hover: scale-color($brand, $lightness: -20%);
+$hover: rgb(17, 24, 39);
 $hover-secondary: scale-color($brand-secondary, $lightness: -20%);
 
-$text: #231F20;
+$text: #231f20;
 
 $social-background: $text;
 $social-color: #fff;
@@ -51,25 +52,16 @@ html {
   --brand-secondary: #{$brand-secondary};
 
   --footer: #{$footer};
+
+  --header-color: var(--brand);
+  --heading-border-color: #{$footer};
+
+  --button-shadow: none;
+  --button-secondary-background: #f1f1f1;
+  --button-secondary-color: var(#{$text}, inherit);
+
+  --small-border-radius: 0px;
+  --medium-border-radius: 0px;
+  --large-border-radius: 0px;
 }
 
-.top-bar-title {
-  background: none;
-}
-
-footer {
-  color: $text;
-}
-
-.social {
-  a {
-    color: $social-color;
-    background: $social-background;
-    margin: 0 0.25rem;
-
-    &:hover {
-      color: $social-color-hover;
-      background: $social-background-hover;
-    }
-  }
-}
