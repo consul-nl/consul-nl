@@ -481,6 +481,7 @@ nl:
         general: "Algemene instellingen"
         update_setting: "Bewerk"
         participation_processes: "Modules"
+        show_navbar: "Toon in de navigatiebalk"
         images_and_documents: "Afbeeldingen en documenten"
         feature_flags: "Opties"
         features:

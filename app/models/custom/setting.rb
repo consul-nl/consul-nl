@@ -1,6 +1,16 @@
 require_dependency Rails.root.join("app", "models", "setting").to_s
 
 class Setting
+  alias_method :consul_type, :type
+
+  def type
+    if prefix == "show_navbar"
+      current_type = "show_navbar"
+    end
+
+    current_type || consul_type
+  end
+
   class << self
     alias_method :consul_defaults, :defaults
 
@@ -24,9 +34,19 @@ class Setting
       else
         consul_defaults.merge({
           # Overwrite default CONSUL settings or add new settings here
-          "feature.raad": true
+          "feature.raad": true,
+          "show_navbar.debates": true,
+          "show_navbar.proposals": true,
+          "show_navbar.polls": true,
+          "show_navbar.budgets": true,
+          "show_navbar.legislation": true,
+          "show_navbar.raad": true,
+          "show_navbar.sdg": true,
+          "show_navbar.help": true
         })
       end
     end
   end
 end
+
+
