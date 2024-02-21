@@ -11,9 +11,9 @@ class Legislation::DraftVersion < ApplicationRecord
 
   belongs_to :process, foreign_key: "legislation_process_id", inverse_of: :draft_versions
   has_many :annotations,
-    foreign_key: "legislation_draft_version_id",
-    inverse_of:  :draft_version,
-    dependent:   :destroy
+           foreign_key: "legislation_draft_version_id",
+           inverse_of: :draft_version,
+           dependent: :destroy
 
   validates_translation :title, presence: true
   validates_translation :body, presence: true
@@ -22,6 +22,7 @@ class Legislation::DraftVersion < ApplicationRecord
   scope :published, -> { where(status: "published").order("id DESC") }
 
   def body_html
+    # tables: true is custom
     MarkdownConverter.new(body, tables: true, with_toc_data: true).render
   end
 

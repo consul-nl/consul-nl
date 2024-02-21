@@ -119,13 +119,13 @@ describe "Cards", :admin do
   end
 
   context "Header Card" do
-    scenario "Create" do
+    scenario "Create", :consul do
       visit admin_homepage_path
       click_link "Create header"
 
       fill_in "Label (optional)", with: "Header label"
       fill_in "Title", with: "Header text"
-      fill_in_ckeditor "Description", with: "Header description"
+      fill_in "Description", with: "Header description"
       fill_in "Link text", with: "Link text"
       fill_in "widget_card_link_url", with: "consul.dev"
       click_button "Create header"
@@ -168,7 +168,7 @@ describe "Cards", :admin do
         click_link "Create card"
 
         expect(page).to have_link("Go back",
-          href: admin_site_customization_page_widget_cards_path(custom_page))
+                                  href: admin_site_customization_page_widget_cards_path(custom_page))
 
         fill_in "Title", with: "Card for a custom page"
         fill_in "Link URL", with: "/any_path"
@@ -199,25 +199,27 @@ describe "Cards", :admin do
         visit custom_page.url
 
         within("#widget_card_#{card_1.id}") do
-          expect(page).to have_selector("span", text: "MY LABEL")
+          expect(page).to have_css "span", text: "MY LABEL"
         end
 
         within("#widget_card_#{card_2.id}") do
-          expect(page).not_to have_selector("span")
+          expect(page).not_to have_css "span"
         end
       end
 
-      scenario "Show image if it is present" do
+      scenario "Show image if it is present", :consul do
         card_1 = create(:widget_card, cardable: custom_page, title: "Card one")
         card_2 = create(:widget_card, cardable: custom_page, title: "Card two")
 
-        card_1.update!(image: create(:image, imageable: card_1, attachment: fixture_file_upload("clippy.jpg")))
+        card_1.update!(image: create(:image,
+                                     imageable: card_1,
+                                     attachment: fixture_file_upload("clippy.jpg")))
         card_2.update!(image: nil)
 
         visit custom_page.url
 
-        within(".card", text: "Card one") { expect(page).to have_css "img" }
-        within(".card", text: "Card two") { expect(page).not_to have_css "img" }
+        within(".card", text: "CARD ONE") { expect(page).to have_css "img" }
+        within(".card", text: "CARD TWO") { expect(page).not_to have_css "img" }
       end
 
       scenario "Edit" do
@@ -230,7 +232,7 @@ describe "Cards", :admin do
         click_link "Edit"
 
         expect(page).to have_link("Go back",
-          href: admin_site_customization_page_widget_cards_path(custom_page))
+                                  href: admin_site_customization_page_widget_cards_path(custom_page))
 
         within(".translatable-fields") do
           fill_in "Title", with: "Updated title"

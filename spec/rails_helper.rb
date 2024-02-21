@@ -24,7 +24,7 @@ require "view_component/test_helpers"
 module ViewComponent
   module TestHelpers
     def sign_in(user)
-      allow(controller).to receive(:current_user).and_return(user)
+      allow(vc_test_controller).to receive(:current_user).and_return(user)
     end
 
     def within(...)
@@ -57,7 +57,7 @@ Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
     opts.add_argument "--headless"
     opts.add_argument "--no-sandbox"
-    opts.add_argument "--window-size=1200,800"
+    opts.add_argument "--window-size=1200,1200"
     opts.add_argument "--proxy-server=#{Capybara.app_host}:#{Capybara::Webmock.port_number}"
   end
 
@@ -67,6 +67,7 @@ end
 Capybara.exact = true
 Capybara.enable_aria_label = true
 Capybara.disable_animation = true
+Capybara.app_host ||= "http://127.0.0.1"
 Capybara.default_max_wait_time = 5
 
 OmniAuth.config.test_mode = true

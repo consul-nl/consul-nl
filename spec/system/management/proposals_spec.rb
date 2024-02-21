@@ -4,7 +4,7 @@ describe "Proposals" do
   let(:user) { create(:user, :level_two) }
 
   context "Create" do
-    scenario "Creating proposals on behalf of someone", :with_frozen_time do
+    scenario "Creating proposals on behalf of someone", :consul do
       login_managed_user(user)
       login_as_manager
       click_link "Create proposal"
@@ -20,6 +20,7 @@ describe "Proposals" do
       fill_in "Proposal summary", with: "In summary, what we want is..."
       fill_in_ckeditor "Proposal text", with: "This is very important because..."
       fill_in "External video URL", with: "https://www.youtube.com/watch?v=yRYFKcMa_Ek"
+      check "I agree to the Privacy Policy and the Terms and conditions of use"
 
       click_button "Create proposal"
 
@@ -29,7 +30,7 @@ describe "Proposals" do
       expect(page).to have_content "Help refugees"
       expect(page).to have_content "In summary, what we want is..."
       expect(page).to have_content "This is very important because..."
-      expect(page.find(:css, "iframe")[:src]).to eq "https://www.youtube.com/embed/yRYFKcMa_Ek"
+      expect(page).to have_content "https://www.youtube.com/watch?v=yRYFKcMa_Ek"
       expect(page).to have_content user.name
       expect(page).to have_content I18n.l(Date.current)
     end
@@ -109,7 +110,7 @@ describe "Proposals" do
       expect(page).to have_content(proposal1.title)
       expect(page).to have_content(proposal1.summary)
       expect(page).not_to have_content(proposal2.title)
-      expect(page).to have_css("a[href='#{management_proposal_path(proposal1)}']", text: proposal1.title)
+      expect(page).to have_link proposal1.title, href: management_proposal_path(proposal1)
     end
   end
 
@@ -132,9 +133,9 @@ describe "Proposals" do
 
     within(".proposals-list") do
       expect(page).to have_css(".proposal", count: 2)
-      expect(page).to have_css("a[href='#{management_proposal_path(proposal1)}']", text: proposal1.title)
+      expect(page).to have_link proposal1.title, href: management_proposal_path(proposal1)
       expect(page).to have_content(proposal1.summary)
-      expect(page).to have_css("a[href='#{management_proposal_path(proposal2)}']", text: proposal2.title)
+      expect(page).to have_link proposal2.title, href: management_proposal_path(proposal2)
       expect(page).to have_content(proposal2.summary)
     end
   end
@@ -199,10 +200,10 @@ describe "Proposals" do
       click_link "Print proposals"
 
       expect(page).to have_css(".proposal", count: 5)
-      expect(page).to have_css("a[href='javascript:window.print();']", text: "Print")
+      expect(page).to have_link "Print", href: "javascript:window.print();"
     end
 
-    scenario "Filtering proposals to be printed" do
+    scenario "Filtering proposals to be printed", :consul do
       worst_proposal = create(:proposal, title: "Worst proposal")
       worst_proposal.update_column(:confidence_score, 2)
       best_proposal = create(:proposal, title: "Best proposal")
@@ -213,16 +214,16 @@ describe "Proposals" do
       login_as_manager
       click_link "Print proposals"
 
-      expect(page).to have_link "Highest rated", class: "is-active"
+      expect(page).to have_link "highest rated", class: "is-active"
 
       within(".proposals-list") do
         expect(best_proposal.title).to appear_before(medium_proposal.title)
         expect(medium_proposal.title).to appear_before(worst_proposal.title)
       end
 
-      click_link "Newest"
+      click_link "newest"
 
-      expect(page).to have_link "Newest", class: "is-active"
+      expect(page).to have_link "newest", class: "is-active"
 
       expect(page).to have_current_path(/order=created_at/)
       expect(page).to have_current_path(/page=1/)

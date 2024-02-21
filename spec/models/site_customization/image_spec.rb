@@ -3,7 +3,7 @@ require "rails_helper"
 describe SiteCustomization::Image do
   it "stores images with Active Storage" do
     image = create(:site_customization_image, name: "map",
-                   image: fixture_file_upload("custom_map.jpg"))
+                                              image: fixture_file_upload("custom_map.jpg"))
 
     expect(image.image).to be_attached
     expect(image.image.filename).to eq "custom_map.jpg"
@@ -26,12 +26,12 @@ describe SiteCustomization::Image do
       expect(image).to be_valid
     end
 
-    it "is valid with a 400x80 image" do
+    it "is not valid with a 400x80 image", :consul do
       image = build(:site_customization_image,
                     name: "logo_header",
                     image: fixture_file_upload("logo_email_custom.png"))
 
-      expect(image).to be_valid
+      expect(image).not_to be_valid
     end
 
     it "dynamically validates the valid images" do

@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe "Commenting proposals" do
-  let(:user) { create :user }
-  let(:proposal) { create :proposal }
+  let(:user) { create(:user) }
+  let(:proposal) { create(:proposal) }
 
   it_behaves_like "flaggable", :proposal_comment
 
@@ -35,7 +35,7 @@ describe "Commenting proposals" do
     expect(page).to have_link "Go back to #{proposal.title}", href: proposal_path(proposal)
 
     within ".comment", text: "Parent" do
-      expect(page).to have_selector(".comment", count: 2)
+      expect(page).to have_css ".comment", count: 2
     end
   end
 
@@ -54,29 +54,13 @@ describe "Commenting proposals" do
     expect(page).to have_current_path(comment_path(comment))
   end
 
-  scenario "Show order links only if there are comments" do
-    visit proposal_path(proposal)
-
-    within "#tab-comments" do
-      expect(page).not_to have_link "Most voted"
-      expect(page).not_to have_link "Newest first"
-      expect(page).not_to have_link "Oldest first"
-    end
-
-    create(:comment, commentable: proposal, user: user)
-    visit proposal_path(proposal)
-
-    within "#tab-comments" do
-      expect(page).to have_link "Most voted"
-      expect(page).to have_link "Newest first"
-      expect(page).to have_link "Oldest first"
-    end
-  end
-
   scenario "Collapsable comments" do
     parent_comment = create(:comment, body: "Main comment", commentable: proposal)
     child_comment  = create(:comment, body: "First subcomment", commentable: proposal, parent: parent_comment)
-    grandchild_comment = create(:comment, body: "Last subcomment", commentable: proposal, parent: child_comment)
+    grandchild_comment = create(:comment,
+                                body: "Last subcomment",
+                                commentable: proposal,
+                                parent: child_comment)
 
     visit proposal_path(proposal)
 
@@ -138,7 +122,7 @@ describe "Commenting proposals" do
     expect(c2.body).to appear_before(c3.body)
   end
 
-  scenario "Creation date works differently in roots and in child comments, when sorting by confidence_score" do
+  scenario "Creation date works differently in roots and child comments when sorting by confidence_score" do
     old_root = create(:comment, commentable: proposal, created_at: Time.current - 10)
     new_root = create(:comment, commentable: proposal, created_at: Time.current)
     old_child = create(:comment, commentable: proposal, parent_id: new_root.id, created_at: Time.current - 10)
@@ -161,7 +145,7 @@ describe "Commenting proposals" do
   end
 
   scenario "Turns links into html links" do
-    create :comment, commentable: proposal, body: "Built with http://rubyonrails.org/"
+    create(:comment, commentable: proposal, body: "Built with http://rubyonrails.org/")
 
     visit proposal_path(proposal)
 
@@ -169,13 +153,15 @@ describe "Commenting proposals" do
       expect(page).to have_content "Built with http://rubyonrails.org/"
       expect(page).to have_link("http://rubyonrails.org/", href: "http://rubyonrails.org/")
       expect(find_link("http://rubyonrails.org/")[:rel]).to eq("nofollow")
-      expect(find_link("http://rubyonrails.org/")[:target]).to eq("_blank")
+      expect(find_link("http://rubyonrails.org/")[:target]).to be_blank
     end
   end
 
   scenario "Sanitizes comment body for security" do
-    create :comment, commentable: proposal,
-                     body: "<script>alert('hola')</script> <a href=\"javascript:alert('sorpresa!')\">click me<a/> http://www.url.com"
+    create(:comment, commentable: proposal,
+                     body: "<script>alert('hola')</script> " \
+                           "<a href=\"javascript:alert('sorpresa!')\">click me<a/> " \
+                           "http://www.url.com")
 
     visit proposal_path(proposal)
 
@@ -261,7 +247,7 @@ describe "Commenting proposals" do
       expect(page).to have_content "It will be done next week."
     end
 
-    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+    expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
   end
 
   scenario "Reply update parent comment responses count" do
@@ -377,7 +363,7 @@ describe "Commenting proposals" do
         expect(page).to have_css "img.moderator-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
 
     scenario "can not comment as an administrator" do
@@ -433,7 +419,7 @@ describe "Commenting proposals" do
         expect(page).to have_css "img.admin-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
 
     scenario "can not comment as a moderator", :admin do
@@ -514,7 +500,7 @@ describe "Commenting proposals" do
       end
     end
 
-    scenario "Trying to vote multiple times" do
+    scenario "Allow undoing votes" do
       visit proposal_path(proposal)
 
       within("#comment_#{comment.id}_votes") do
@@ -527,14 +513,14 @@ describe "Commenting proposals" do
         click_button "I agree"
 
         within(".in-favor") do
-          expect(page).to have_content "1"
+          expect(page).to have_content "0"
         end
 
         within(".against") do
           expect(page).to have_content "0"
         end
 
-        expect(page).to have_content "1 vote"
+        expect(page).to have_content "No votes"
       end
     end
   end

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Admin custom information texts", :admin do
-  scenario "page is correctly loaded" do
+  scenario "page is correctly loaded", :consul do
     visit admin_site_customization_information_texts_path
 
     click_link "Basic customization"
@@ -9,14 +9,11 @@ describe "Admin custom information texts", :admin do
     expect(page).to have_content "Help with proposals"
     expect(page).to have_content "Help with voting"
     expect(page).to have_content "Help with collaborative legislation"
+    expect(page).to have_content "Help with participatory budgets"
 
     within("#information-texts-tabs") { click_link "Debates" }
 
     expect(page).to have_content "Edit debate"
-
-    within("#information-texts-tabs") { click_link "Budgets" }
-
-    expect(page).to have_content "Your ballot"
 
     within("#information-texts-tabs") { click_link "Community" }
     expect(page).to have_content "Access the community"
@@ -58,8 +55,10 @@ describe "Admin custom information texts", :admin do
     visit admin_site_customization_information_texts_path
 
     within("#information-texts-tabs") { click_link "Proposals" }
-    expect(find("a[href=\"/admin/site_customization/information_texts?tab=proposals\"].is-active"))
-          .to have_content "Proposals"
+
+    expect(page).to have_link "Proposals",
+                              href: "/admin/site_customization/information_texts?tab=proposals",
+                              class: "is-active"
   end
 
   context "Globalization" do
@@ -107,8 +106,8 @@ describe "Admin custom information texts", :admin do
                                        value_es: "Destacar personalizado")
 
       page_title = create(:i18n_content, key: "debates.new.start_new",
-                                          value_en: "Start a new debate",
-                                          value_es: "Empezar un debate")
+                                         value_en: "Start a new debate",
+                                         value_es: "Empezar un debate")
 
       visit admin_site_customization_information_texts_path(tab: "debates")
 

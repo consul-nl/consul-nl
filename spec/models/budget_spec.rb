@@ -241,7 +241,7 @@ describe Budget do
     it "returns nil if there is only one budget and it is still in drafting phase" do
       create(:budget, :drafting)
 
-      expect(Budget.current).to eq(nil)
+      expect(Budget.current).to be nil
     end
 
     it "returns the budget if there is only one and not in drafting phase" do
@@ -340,11 +340,11 @@ describe Budget do
     it "returns true if there is a winner investment" do
       budget.investments << build(:budget_investment, :winner, price: 3, ballot_lines_count: 2)
 
-      expect(budget.has_winning_investments?).to eq true
+      expect(budget.has_winning_investments?).to be true
     end
 
     it "hould return false if there is not a winner investment" do
-      expect(budget.has_winning_investments?).to eq false
+      expect(budget.has_winning_investments?).to be false
     end
   end
 
@@ -370,9 +370,9 @@ describe Budget do
       expect(publishing_prices_phase.next_phase).to eq(balloting_phase)
       expect(balloting_phase.next_phase).to eq(reviewing_ballots_phase)
       expect(reviewing_ballots_phase.next_phase).to eq(finished_phase)
-      expect(finished_phase.next_phase).to eq(nil)
+      expect(finished_phase.next_phase).to be nil
 
-      expect(informing_phase.prev_phase).to eq(nil)
+      expect(informing_phase.prev_phase).to be nil
       expect(accepting_phase.prev_phase).to eq(informing_phase)
       expect(reviewing_phase.prev_phase).to eq(accepting_phase)
       expect(selecting_phase.prev_phase).to eq(reviewing_phase)
@@ -484,51 +484,6 @@ describe Budget do
     context "Defaults" do
       it "defaults to knapsack voting style" do
         expect(build(:budget).voting_style).to eq "knapsack"
-      end
-    end
-  end
-
-  describe "#investments_preview_list" do
-    let(:budget)               { create(:budget, :accepting) }
-    let(:group)                { create(:budget_group, budget: budget) }
-    let(:heading)              { create(:budget_heading, group: group) }
-
-    before do
-      create_list(:budget_investment, 4, heading: heading)
-      create_list(:budget_investment, 4, :feasible, heading: heading)
-      create_list(:budget_investment, 4, :selected, heading: heading)
-    end
-
-    it "returns an empty array if phase is informing or finished" do
-      %w[informing finished].each do |phase_name|
-        budget.phase = phase_name
-
-        expect(budget.investments_preview_list).to eq([])
-      end
-    end
-
-    it "returns a maximum 9 investments" do
-      expect(Budget::Investment.count).to be 12
-      expect(budget.investments_preview_list.count).to be 9
-    end
-
-    it "returns a different random array of investments every time" do
-      expect(budget.investments_preview_list(3)).not_to eq budget.investments_preview_list(3)
-    end
-
-    it "returns only feasible investments if phase is selecting, valuating or publishing_prices" do
-      %w[selecting valuating publishing_prices].each do |phase_name|
-        budget.phase = phase_name
-
-        expect(budget.investments_preview_list.count).to be budget.investments.feasible.count
-      end
-    end
-
-    it "returns only selected investments if phase is balloting or reviewing_ballots" do
-      %w[balloting reviewing_ballots].each do |phase_name|
-        budget.phase = phase_name
-
-        expect(budget.investments_preview_list.count).to be budget.investments.selected.count
       end
     end
   end

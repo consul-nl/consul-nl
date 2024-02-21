@@ -109,20 +109,12 @@
   </fieldset>
 
   <div class="row">
-    <div class="documents small-12 column">
-      <%= render "documents/nested_documents", f: f %>
+    <div class="small-12 column">
+      <%= render Documents::NestedComponent.new(f) %>
     </div>
 
     <div class="small-12 column">
-      <hr>
-    </div>
-
-    <div class="images small-12 column">
-      <%= render "images/nested_image", f: f %>
-    </div>
-
-    <div class="small-12 column">
-      <hr>
+      <%= render Images::NestedComponent.new(f) %>
     </div>
 
     <div class="small-12 column">
@@ -154,10 +146,6 @@
         </div>
       </div>
     </div>
-
-    <div class="small-12 column">
-      <hr>
-    </div>
   </div>
 
   <div class="row">
@@ -167,21 +155,15 @@
       </div>
 
       <div class="small-12 medium-9 column">
-        <%= translations_form.text_area :summary,
-                                        rows: 2,
-                                        hint: t("admin.legislation.processes.form.use_markdown") %>
+        <%= translations_form.text_area :summary, class: "html-area admin" %>
       </div>
 
       <div class="small-12 medium-9 column">
-        <%= translations_form.text_area :description,
-                                        rows: 5,
-                                        hint: t("admin.legislation.processes.form.use_markdown") %>
+        <%= translations_form.text_area :description, class: "html-area admin" %>
       </div>
 
       <div class="small-12 medium-9 column end">
-        <%= translations_form.text_area :additional_info,
-                                        rows: 10,
-                                        hint: t("admin.legislation.processes.form.use_markdown") %>
+        <%= translations_form.text_area :additional_info, class: "html-area admin" %>
       </div>
     <% end %>
   </div>

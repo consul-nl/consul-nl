@@ -81,9 +81,9 @@ describe "Home" do
 
         visit root_path
 
-        expect(page).to have_selector("li[data-slide='0']")
-        expect(page).to have_selector("li[data-slide='1']", visible: :hidden)
-        expect(page).to have_selector("li[data-slide='2']", visible: :hidden)
+        expect(page).to have_css "li[data-slide='0']"
+        expect(page).to have_css "li[data-slide='1']", visible: :hidden
+        expect(page).to have_css "li[data-slide='2']", visible: :hidden
       end
 
       scenario "Display recommended show when click on carousel" do
@@ -92,7 +92,7 @@ describe "Home" do
         visit root_path
 
         within("#section_recommended") do
-          click_on debate.title
+          click_link debate.title
         end
 
         expect(page).to have_current_path(debate_path(debate))
@@ -102,39 +102,6 @@ describe "Home" do
         visit root_path
         expect(page).not_to have_content "Recommendations that may interest you"
       end
-    end
-  end
-
-  describe "IE alert", :no_js do
-    scenario "IE visitors are presented with an alert until they close it", :page_driver do
-      # Selenium API does not include page request/response inspection methods
-      # so we must use Capybara::RackTest driver to set the browser's headers
-      Capybara.current_session.driver.header(
-        "User-Agent",
-        "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)"
-      )
-
-      visit root_path
-      expect(page).to have_xpath(ie_alert_box_xpath)
-      expect(page.driver.request.cookies["ie_alert_closed"]).to be_nil
-
-      # faking close button, since a normal find and click
-      # will not work as the element is inside a HTML conditional comment
-      page.driver.browser.set_cookie("ie_alert_closed=true")
-
-      visit root_path
-      expect(page).not_to have_xpath(ie_alert_box_xpath)
-      expect(page.driver.request.cookies["ie_alert_closed"]).to eq("true")
-    end
-
-    scenario "non-IE visitors are not bothered with IE alerts", :page_driver do
-      visit root_path
-      expect(page).not_to have_xpath(ie_alert_box_xpath)
-      expect(page.driver.request.cookies["ie_alert_closed"]).to be_nil
-    end
-
-    def ie_alert_box_xpath
-      "/html/body/div[@class='wrapper ']/comment()[contains(.,'ie-callout')]"
     end
   end
 
@@ -156,8 +123,9 @@ describe "Home" do
     end
   end
 
-  scenario "if there are cards, the 'featured' title will render" do
-    create(:widget_card,
+  scenario "if there are cards, the 'featured' title will render", :consul do
+    create(
+      :widget_card,
       title: "Card text",
       description: "Card description",
       link_text: "Link text",
@@ -166,17 +134,13 @@ describe "Home" do
 
     visit root_path
 
-    within("#welcome_cards") do
-      expect(page).to have_css(".title", text: "Featured")
-    end
+    expect(page).to have_css(".title", text: "Featured")
   end
 
-  scenario "if there are no cards, the 'featured' title will not render" do
+  scenario "if there are no cards, the 'featured' title will not render", :consul do
     visit root_path
 
-    within("#welcome_cards") do
-      expect(page).not_to have_css(".title", text: "Featured")
-    end
+    expect(page).not_to have_css(".title", text: "Featured")
   end
 
   describe "Header Card" do
@@ -203,20 +167,5 @@ describe "Home" do
 
       within(".header-card") { expect(page).not_to have_link }
     end
-  end
-
-  scenario "Favicon custom" do
-    visit root_path
-
-    expect(page).to have_css("link[rel=\"shortcut icon\"]", visible: :hidden)
-    expect(page).to have_xpath("//link[contains(@href, \"favicon-\")]", visible: :hidden)
-
-    create(:site_customization_image, name: "favicon", image: fixture_file_upload("favicon_custom.ico"))
-
-    visit root_path
-
-    expect(page).to have_css("link[rel=\"shortcut icon\"]", visible: :hidden)
-    expect(page).not_to have_xpath("//link[contains(@href, \"favicon-\")]", visible: :hidden)
-    expect(page).to have_xpath("//link[contains(@href, \"favicon_custom\")]", visible: :hidden)
   end
 end

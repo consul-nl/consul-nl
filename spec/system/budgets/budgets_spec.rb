@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe "Budgets" do
-  let(:budget) { create(:budget) }
-  let(:level_two_user) { create(:user, :level_two) }
+  let(:budget)             { create(:budget) }
+  let(:level_two_user)     { create(:user, :level_two) }
   let(:allowed_phase_list) { ["balloting", "reviewing_ballots", "finished"] }
 
   context "Load" do
@@ -17,8 +17,8 @@ describe "Budgets" do
 
   describe "Index" do
     describe "Normal index" do
-      let!(:group1) { create(:budget_group, budget: budget) }
-      let!(:group2) { create(:budget_group, budget: budget) }
+      let!(:group1)   { create(:budget_group, budget: budget) }
+      let!(:group2)   { create(:budget_group, budget: budget) }
       let!(:heading1) { create(:budget_heading, group: group1) }
       let!(:heading2) { create(:budget_heading, group: group2) }
 
@@ -51,8 +51,8 @@ describe "Budgets" do
       visit budgets_path
 
       within("#finished_budgets") do
-        expect(page).to have_content(finished_budget_1.name)
-        expect(page).to have_content(finished_budget_2.name)
+        expect(page).to     have_content(finished_budget_1.name)
+        expect(page).to     have_content(finished_budget_2.name)
         expect(page).not_to have_content(budget.name)
         expect(page).not_to have_content(drafting_budget.name)
       end
@@ -87,7 +87,7 @@ describe "Budgets" do
       end
     end
 
-    scenario "Show informing index without links" do
+    scenario "Show informing index without links", :consul do
       budget.update!(phase: "informing")
       heading = create(:budget_heading, budget: budget)
 
@@ -178,7 +178,7 @@ describe "Budgets" do
     end
   end
 
-  scenario "Index shows only published phases" do
+  scenario "Index shows only published phases", :consul do
     budget.update!(phase: :finished)
     phases = budget.phases
 
@@ -187,30 +187,30 @@ describe "Budgets" do
                              name: "Custom name for informing phase")
 
     phases.accepting.update!(starts_at: "01-01-2018", ends_at: "10-01-2018", enabled: true,
-                             description: "Description of accepting phase",
-                             name: "Custom name for accepting phase")
+                            description: "Description of accepting phase",
+                            name: "Custom name for accepting phase")
 
     phases.reviewing.update!(starts_at: "11-01-2018", ends_at: "20-01-2018", enabled: false,
-                             description: "Description of reviewing phase")
+                            description: "Description of reviewing phase")
 
     phases.selecting.update!(starts_at: "21-01-2018", ends_at: "01-02-2018", enabled: true,
-                             description: "Description of selecting phase",
-                             name: "Custom name for selecting phase")
+                            description: "Description of selecting phase",
+                            name: "Custom name for selecting phase")
 
     phases.valuating.update!(starts_at: "10-02-2018", ends_at: "20-02-2018", enabled: false,
-                             description: "Description of valuating phase")
+                            description: "Description of valuating phase")
 
     phases.publishing_prices.update!(starts_at: "21-02-2018", ends_at: "01-03-2018", enabled: false,
-                                     description: "Description of publishing prices phase")
+                                    description: "Description of publishing prices phase")
 
     phases.balloting.update!(starts_at: "02-03-2018", ends_at: "10-03-2018", enabled: true,
-                             description: "Description of balloting phase")
+                            description: "Description of balloting phase")
 
     phases.reviewing_ballots.update!(starts_at: "11-03-2018", ends_at: "20-03-2018", enabled: false,
-                                     description: "Description of reviewing ballots phase")
+                                    description: "Description of reviewing ballots phase")
 
     phases.finished.update!(starts_at: "21-03-2018", ends_at: "30-03-2018", enabled: true,
-                            description: "Description of finished phase")
+                           description: "Description of finished phase")
 
     visit budgets_path
 
@@ -376,18 +376,18 @@ describe "Budgets" do
       expect(page).to have_link "See results"
     end
 
-    scenario "Show investments list" do
+    scenario "Show investments list", :consul do
       budget = create(:budget, phase: "balloting")
       group = create(:budget_group, budget: budget)
       heading = create(:budget_heading, group: group)
 
-      create_list(:budget_investment, 10, :selected, heading: heading, price: 999)
+      create_list(:budget_investment, 3, :selected, heading: heading, price: 999)
 
       visit budget_path(budget)
 
       within(".investments-list") do
         expect(page).to have_content "List of investments"
-        expect(page).to have_content "PRICE", count: 9
+        expect(page).to have_content "PRICE", count: 3
       end
 
       expect(page).to have_link "See all investments",
@@ -407,7 +407,7 @@ describe "Budgets" do
       expect(page).to have_css ".investments-list"
     end
 
-    scenario "Show supports info on selecting phase" do
+    scenario "Show supports info on selecting phase", :consul do
       budget = create(:budget, :selecting)
       group = create(:budget_group, budget: budget)
       heading = create(:budget_heading, group: group)

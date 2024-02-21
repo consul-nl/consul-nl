@@ -31,9 +31,8 @@
   }
 }
 
-$small-border-radius: var(--small-border-radius, rem-calc(3));
-$medium-border-radius: var(--medium-border-radius, rem-calc(6));
-$large-border-radius: var(--large-border-radius, rem-calc(12));
+$link: $anchor-color;
+$link-hover: $anchor-color-hover;
 
 html {
   font-size: unset;
@@ -48,28 +47,17 @@ h6 {
   font-weight: $header-font-weight;
 }
 
-.title {
-  color: var(--header-color, inherit);
-}
-
 button,
 .button {
   font-weight: $button-font-weight;
   min-height: $line-height * 2;
-  border-radius: var(--button-border-radius);
-  transition-duration: 0.15s;
-
-  &:hover {
-    transition: none;
-  }
 }
 
 .input-group-button {
-
   button,
   .button {
-    border-bottom-right-radius: $small-border-radius !important;
-    border-top-right-radius: $small-border-radius !important;
+    border-bottom-right-radius: rem-calc(4) !important;
+    border-top-right-radius: rem-calc(4) !important;
     max-height: $line-height * 2;
     min-height: 0;
   }
@@ -77,7 +65,6 @@ button,
 
 .input-group,
 .input-group-field {
-
   input {
     border-bottom-right-radius: 0 !important;
     border-top-right-radius: 0 !important;
@@ -92,9 +79,8 @@ button,
 }
 
 main {
-
   .button {
-    box-shadow: var(--button-shadow, 0 0 6px 0 rgba(0, 0, 0, 0.5));
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
 
     &:hover {
       box-shadow: none;
@@ -102,23 +88,22 @@ main {
   }
 
   .view-mode {
-
     .button {
       box-shadow: none;
       min-height: unset;
-      background: var(--button-secondary-background, #eee);
-      color: var(--button-secondary-color, initial);
 
       &::before {
         vertical-align: middle;
-        color: inherit;
+
+        &:hover {
+          color: #fff;
+        }
       }
     }
   }
 }
 
 .button {
-
   &:hover {
     background: $hover;
   }
@@ -138,9 +123,7 @@ main {
 }
 
 aside {
-
   .button {
-
     &.hollow {
       background: var(--brand);
       border: 0;
@@ -167,7 +150,6 @@ aside {
   h1,
   .icon {
     font-size: rem-calc(40);
-    color: var(--header-color);
   }
 
   .icon {
@@ -176,7 +158,6 @@ aside {
 }
 
 .menu {
-
   &.simple {
     border-bottom: 4px solid $light;
     display: inline-block;
@@ -218,7 +199,6 @@ aside {
     margin-right: 0;
 
     a {
-
       &.is-active {
         border-bottom: 0;
         position: relative;
@@ -273,12 +253,6 @@ aside {
   padding-top: 0;
 }
 
-.panel, .legislation, .investments-list {
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--header-color, initial);
-  }
-}
-
 .debate-show,
 .proposal-show,
 .poll-question-show,
@@ -292,7 +266,6 @@ aside {
 .communities-show,
 .topic-show,
 .milestone-content {
-
   aside h2 {
     border-top: 0;
     color: $label;
@@ -307,7 +280,6 @@ aside {
 }
 
 .draft-panels {
-
   .draft-allegation .draft-text a {
     color: $anchor-color;
   }
@@ -319,7 +291,6 @@ aside {
 
   ul,
   ol {
-
     li {
       font-size: $base-font-size;
     }
@@ -327,7 +298,6 @@ aside {
 }
 
 .back {
-
   .icon-angle-left {
     padding-right: $line-height / 4;
   }
@@ -356,17 +326,15 @@ aside {
 .budget-investments-list .budget-investment,
 .proposals-list .proposal,
 .legislation-proposals .proposal {
-
   .panel {
     border: 2px solid $border;
-    border-radius: $large-border-radius;
+    border-radius: rem-calc(12);
     box-shadow: none;
 
     @include breakpoint(medium) {
-
       img {
-        border-bottom-left-radius: $large-border-radius;
-        border-top-left-radius: $large-border-radius;
+        border-bottom-left-radius: rem-calc(12);
+        border-top-left-radius: rem-calc(12);
         max-width: none;
         height: 100%;
       }
@@ -377,7 +345,6 @@ aside {
     }
 
     .supported {
-
       &.callout {
         padding: $line-height / 4;
       }
@@ -423,7 +390,6 @@ aside {
 }
 
 .document-link {
-
   .button {
     min-height: 0;
   }
@@ -436,7 +402,6 @@ aside {
     margin-bottom: 0;
 
     > a {
-
       &:focus,
       &[aria-selected="true"] {
         background: transparent;
@@ -499,7 +464,7 @@ aside {
 
 .link-to-top {
   background: rgba(226, 226, 226, 0.5);
-  border-radius: $medium-border-radius;
+  border-radius: rem-calc(6);
   bottom: 12px;
   display: table;
   height: rem-calc(48);
@@ -518,6 +483,11 @@ aside {
   }
 }
 
+.ssb-twitter,
+.ssb-facebook {
+  color: #fff !important;
+}
+
 // 1. Header
 // --------------------
 header,
@@ -525,8 +495,6 @@ body > header,
 .wrapper > header {
   background: none;
   border-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .top-bar {
@@ -534,14 +502,12 @@ body > header,
   justify-content: space-between;
 
   @include breakpoint(small only) {
-
     .menu {
       margin-bottom: 0;
     }
   }
 
   .menu > li {
-
     a {
       line-height: $line-height;
     }
@@ -556,9 +522,7 @@ body > header,
   }
 
   .dropdown {
-
     &.menu > li {
-
       &.is-active > a {
         color: $text;
       }
@@ -567,6 +531,7 @@ body > header,
 }
 
 .top-bar-title {
+  background: var(--brand);
   margin: 0;
   position: relative;
 
@@ -575,6 +540,7 @@ body > header,
     padding-top: $line-height;
 
     &::before {
+      background: var(--brand);
       content: "";
       height: 100%;
       left: -999%;
@@ -597,7 +563,6 @@ body > header,
 }
 
 .top-bar .top-bar-title {
-
   @include breakpoint(medium) {
     flex: unset;
     flex-grow: unset;
@@ -605,17 +570,15 @@ body > header,
 }
 
 .top-bar-right {
-
   @include breakpoint(medium) {
     padding-top: $line-height;
-    padding-right: .5rem;
+    padding-right: 0.5rem;
   }
 
   a {
     position: relative;
 
     &.hide-for-small-only {
-
       &::after {
         content: "\f078" !important;
         font-family: "Font Awesome 5 Free";
@@ -631,17 +594,29 @@ body > header,
   .menu {
     padding-left: $line-height / 2;
   }
+
+  .avatar {
+    margin-right: $line-height * 1.5;
+    position: relative;
+
+    .avatar-image {
+      position: absolute;
+      right: -48px;
+      top: -10px;
+    }
+  }
 }
 
 .menu-icon {
   @include hamburger($color: var(--brand), $color-hover: var(--brand));
 
   &.dark {
-
     &::after,
     &:hover::after {
       background: var(--brand);
-      box-shadow: 0 7px 0 var(--brand), 0 14px 0 var(--brand);
+      box-shadow:
+        0 7px 0 var(--brand),
+        0 14px 0 var(--brand);
     }
   }
 }
@@ -649,7 +624,9 @@ body > header,
 .menu-icon.dark::after,
 .menu-icon.dark:hover::after {
   background: var(--brand);
-  box-shadow: 0 7px 0 var(--brand), 0 14px 0 var(--brand);
+  box-shadow:
+    0 7px 0 var(--brand),
+    0 14px 0 var(--brand);
 }
 
 .menu-button {
@@ -668,11 +645,11 @@ body > header,
 .subnavigation a {
   color: $text;
   font-size: 16px;
-  line-height: $line-height * 2;
   position: relative;
   font-weight: $button-font-weight;
 
   @include breakpoint(medium) {
+    line-height: $line-height * 2;
 
     &.is-active {
       border-bottom: 0;
@@ -696,7 +673,6 @@ body > header,
 }
 
 .subnavigation ul li {
-
   @include breakpoint(medium) {
     margin-right: $line-height / 2;
   }
@@ -711,13 +687,11 @@ body > header,
 }
 
 .subnavigation {
-
   @include breakpoint(small only) {
     padding: 0 !important;
   }
 
   .dropdown.menu > li {
-
     &.opens-left > .is-dropdown-submenu {
       background: #fff;
 
@@ -727,9 +701,7 @@ body > header,
     }
 
     &.is-dropdown-submenu-parent {
-
       > a {
-
         @include breakpoint(small only) {
           display: inline;
         }
@@ -741,6 +713,10 @@ body > header,
           top: unset;
           width: calc(100% + 8px);
         }
+      }
+
+      > a::after {
+        border: 0;
       }
 
       > a::before {
@@ -804,7 +780,6 @@ body > header,
 }
 
 .dropdown.menu > li {
-
   &.is-dropdown-submenu-parent > a::after {
     border-top-color: transparent;
     margin-top: -8px;
@@ -812,9 +787,7 @@ body > header,
 }
 
 .top-bar {
-
   .avatar {
-
     a:not(.avatar-image) {
       padding-left: $line-height * 2;
 
@@ -832,7 +805,8 @@ body > header,
 
 .admin > .header > *,
 .public > .wrapper > header > * {
-  @include full-width-background($adjust-padding: false);
+  left: 0 !important;
+  right: 0 !important;
 }
 
 .public > .wrapper > header::after {
@@ -847,7 +821,6 @@ body > header,
 // ----------------------------
 
 .home-page {
-
   .jumbo {
     background: none;
 
@@ -871,24 +844,8 @@ body > header,
 
   h2,
   h3 {
-
     &.title {
       border-bottom: 0;
-    }
-  }
-}
-
-.home-page,
-.custom-page,
-.sdg-goal-show,
-.sdg-goals-index {
-  .cards-container {
-    align-items: flex-start;
-  }
-
-  h2,h3 {
-    &.title {
-      border-color: var(--heading-border-color, --brand);
     }
   }
 }
@@ -898,19 +855,20 @@ body > header,
   margin-top: $line-height;
 
   figure {
-    border-top-left-radius: $large-border-radius;
-    border-top-right-radius: $large-border-radius;
+    border-top-left-radius: rem-calc(12);
+    border-top-right-radius: rem-calc(12);
   }
 
   a {
     background: $light;
     border: 2px solid #fff;
-    border-radius: $large-border-radius;
+    border-radius: rem-calc(12);
     color: $text;
     height: 100%;
 
     &:hover {
       border: 2px solid $border;
+      transform: translate(0, -12px);
 
       img {
         transform: none;
@@ -919,13 +877,9 @@ body > header,
   }
 
   h4,
-  p,
-  .description {
-    padding: 0 $line-height / 2;
-  }
-
-  h4,
   p {
+    padding: 0 $line-height / 2;
+
     &:last-child {
       bottom: 0;
       color: var(--brand);
@@ -992,53 +946,42 @@ body > header,
     }
   }
 
-  &:hover {
-    .description {
-      -webkit-line-clamp: none;
+  &.budget .description {
+    display: block;
+    max-height: $line-height * 5;
+    overflow: hidden;
+    padding: 0 $line-height / 2;
+    position: relative;
+
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        $light 50%
+      );
+      bottom: 0;
+      content: "";
+      height: 24px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    p {
+      color: $text;
+      padding: 0;
+      text-align: left;
     }
   }
-
-  .description {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  // &.budget .description {
-  //   display: block;
-  //   max-height: $line-height * 5;
-  //   overflow: hidden;
-  //   padding: 0 $line-height / 2;
-  //   position: relative;
-  //
-  //   &::after {
-  //     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), $light 50%);
-  //     bottom: 0;
-  //     content: "";
-  //     height: 24px;
-  //     left: 0;
-  //     position: absolute;
-  //     width: 100%;
-  //   }
-  //
-  //   p {
-  //     color: $text;
-  //     padding: 0;
-  //     text-align: left;
-  //   }
-  // }
 }
 
 .welcome-cards {
-
   @include breakpoint(medium) {
     display: flex;
   }
 }
 
 .feed-content {
-
   .row {
     margin: 0 auto;
   }
@@ -1050,13 +993,13 @@ body > header,
 
     &:first-of-type {
       border-top: 1px solid $border;
-      border-top-left-radius: $large-border-radius;
-      border-top-right-radius: $large-border-radius;
+      border-top-left-radius: rem-calc(12);
+      border-top-right-radius: rem-calc(12);
     }
 
     &:last-child {
-      border-bottom-left-radius: $large-border-radius;
-      border-bottom-right-radius: $large-border-radius;
+      border-bottom-left-radius: rem-calc(12);
+      border-bottom-right-radius: rem-calc(12);
     }
   }
 
@@ -1071,7 +1014,6 @@ body > header,
   }
 
   .feed-description {
-
     a {
       color: var(--brand);
       display: inline-block;
@@ -1089,7 +1031,6 @@ body > header,
   display: block;
 
   @include breakpoint(medium) {
-
     .feed-proposals:not(:only-child) {
       width: 100%;
     }
@@ -1153,7 +1094,6 @@ body > header,
 }
 
 .figure-card {
-
   &.legislation-process img {
     min-height: rem-calc(185);
   }
@@ -1163,16 +1103,16 @@ body > header,
 // --------------------
 
 footer {
-  color: $footer-color;
+  color: #fff;
 
   a,
   a:active,
   a:focus {
-    color: $footer-color;
+    color: #fff;
     text-decoration: none;
 
     &:hover {
-      color: $footer-color;
+      color: #fff;
     }
   }
 
@@ -1184,6 +1124,7 @@ footer {
 }
 
 .footer {
+  background: #2d313b;
   padding-top: $line-height * 2;
 
   .footer-title {
@@ -1198,11 +1139,7 @@ footer {
 
   .social {
     width: auto;
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
 
-    // TODO: unused ??
     [class^="fa"] {
       color: $footer;
       font-size: rem-calc(40);
@@ -1211,14 +1148,11 @@ footer {
     }
 
     a {
-      background: $social-background;
-      color: $social-color;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: rem-calc(32);
-      width: rem-calc(48);
-      height: rem-calc(48);
+      color: $footer;
+      display: inline-block;
+      font-size: rem-calc(20);
+      line-height: rem-calc(40);
+      vertical-align: top;
     }
   }
 }
@@ -1240,12 +1174,6 @@ footer {
 
   a {
     padding: 0 $line-height / 2;
-  }
-
-  .social {
-    a {
-      padding: 0;
-    }
   }
 }
 
@@ -1302,7 +1230,6 @@ footer {
   }
 
   .callout {
-
     &.primary a {
       color: $anchor-color;
     }
@@ -1352,32 +1279,18 @@ footer {
 .budget-group-show,
 .budget-groups-index,
 .budget-ballot-show {
-
   > header {
-
-    &::before {
-      left: 0;
-      right: 0;
-    }
-  }
-}
-
-.budget-header {
-
-  &::before {
-    left: 0;
-    right: 0;
+    margin-top: -$line-height;
+    padding-top: $line-height;
   }
 }
 
 .budget-phases {
-
   header {
     padding-top: $line-height;
   }
 
   .tabs-title > a {
-
     &.current-phase {
       background: var(--brand-secondary);
       color: #fff;
@@ -1407,9 +1320,7 @@ footer {
   }
 
   .tabs-title {
-
     &.current-phase-tab {
-
       [aria-selected="true"] {
         background: var(--brand-secondary);
         color: $white;
@@ -1423,7 +1334,6 @@ footer {
 
   .budget-prev-phase,
   .budget-next-phase {
-
     &::before {
       background: var(--brand);
     }
@@ -1444,7 +1354,6 @@ footer {
     }
 
     &:first-child {
-
       &,
       a {
         clip-path: none;
@@ -1452,7 +1361,6 @@ footer {
     }
 
     &:last-child {
-
       &,
       a {
         clip-path: none;
@@ -1460,14 +1368,12 @@ footer {
     }
 
     &.current-phase-tab a {
-
       &::after {
         border-left-color: var(--brand-secondary);
       }
 
       &:hover {
         color: $white;
-        background: $dark;
 
         &::after {
           border-left-color: $dark;
@@ -1478,7 +1384,6 @@ footer {
 }
 
 .budget-subheader {
-
   .current-phase {
     color: $label;
     text-transform: uppercase;
@@ -1486,7 +1391,6 @@ footer {
 }
 
 .budget-info .groups-and-headings .heading {
-
   @include breakpoint(medium) {
     min-width: rem-calc(160);
     width: auto;
@@ -1503,7 +1407,6 @@ footer {
   margin-right: $line-height / 2;
 
   a {
-
     span {
       color: #000;
       font-weight: normal;
@@ -1518,7 +1421,7 @@ footer {
 
   .is-active a {
     background: #f9f9f9;
-    border-radius: $small-border-radius;
+    border-radius: rem-calc(3);
     color: $budget;
     font-weight: bold;
 
@@ -1536,13 +1439,11 @@ footer {
 }
 
 .admin-budgets-show {
-
   button {
     font-weight: normal;
   }
 
   .groups-and-headings .heading a {
-
     &:hover {
       transform: none;
     }
@@ -1609,7 +1510,6 @@ footer {
 }
 
 .remove {
-
   .investment-project-amount,
   .budget-investment-amount {
     color: $text !important;
@@ -1633,7 +1533,6 @@ footer {
 }
 
 .progress-votes {
-
   .progress {
     background: #bbcdd9;
   }
@@ -1708,7 +1607,6 @@ footer {
 }
 
 .budget-phases {
-
   h3 {
     margin-top: $line-height;
   }
@@ -1728,9 +1626,7 @@ footer {
   }
 
   .budget-phase {
-
     @include breakpoint(medium) {
-
       > * {
         word-break: break-word;
       }
@@ -1743,7 +1639,6 @@ footer {
 }
 
 .ballot-list li {
-
   &:hover {
     background: var(--brand);
   }
@@ -1759,7 +1654,6 @@ footer {
 
 .budget-info,
 .investments-list {
-
   h2 {
     font-size: rem-calc(20);
     margin: $line-height / 2 0;
@@ -1767,9 +1661,7 @@ footer {
 }
 
 .investments-list {
-
   .budget-investment .panel {
-
     h3 a {
       word-break: break-word;
     }
@@ -1780,7 +1672,6 @@ footer {
   }
 
   .investments-list-item {
-
     h3 {
       word-wrap: break-word;
     }
@@ -1828,7 +1719,7 @@ footer {
 
 .legislation {
   border: 2px solid $border;
-  border-radius: $large-border-radius;
+  border-radius: rem-calc(12);
   box-shadow: none;
   padding: $line-height 0 $line-height / 2;
 
@@ -1900,7 +1791,6 @@ footer {
 }
 
 a {
-
   &.legislation-date {
     display: block;
 
@@ -1978,7 +1868,6 @@ a {
 }
 
 .legislation-hero {
-
   .title {
     border-bottom: 0;
     color: $label;
@@ -2001,7 +1890,6 @@ a {
 }
 
 .key-dates {
-
   .is-active {
     background: #fff;
     border: 2px solid $border;
@@ -2038,7 +1926,6 @@ a {
 }
 
 .debate-chooser {
-
   .debate-list {
     border-bottom: 2px solid $border;
   }
@@ -2062,9 +1949,7 @@ a {
 }
 
 .debate-questions {
-
   .quiz-header {
-
     .quiz-title {
       background: $light;
 
@@ -2080,7 +1965,6 @@ a {
   }
 
   aside {
-
     h3 {
       color: $label;
       font-size: rem-calc(18);
@@ -2109,7 +1993,6 @@ a {
 }
 
 .draft-panels .comment-box {
-
   .icon-like,
   .icon-unlike {
     color: $text !important;
@@ -2128,14 +2011,17 @@ a {
 }
 
 .draft-panels .draft-allegation .calc-comments {
-
-  .comments-box-container {
-    top: rem-calc(100) !important;
-  }
+  // .comments-box-container {
+  //   top: rem-calc(100) !important;
+  // }
 
   .comment-box .comment-input {
     border-bottom: 0;
     padding-bottom: 0;
+  }
+
+  .comments-box-container {
+    z-index: 1;
   }
 }
 
@@ -2145,7 +2031,6 @@ a {
 }
 
 .comment-box {
-
   .button {
     float: right;
     line-height: $line-height * 2;
@@ -2176,7 +2061,6 @@ a {
     padding: $line-height / 2 !important;
 
     .comment-meta {
-
       .comment-more-info {
         display: table-cell !important;
         height: $line-height * 2 !important;
@@ -2198,7 +2082,6 @@ a {
     }
 
     .voted {
-
       .icon-like,
       .icon-unlike {
         color: #fff !important;
@@ -2208,13 +2091,16 @@ a {
 }
 
 .draft-panels .draft-allegation {
-
   .draft-panel {
     color: $text;
   }
 
   .calc-comments .comment-box {
     overflow: auto;
+  }
+
+  details:not([open]) .draft-panel .panel-title {
+    margin-top: rem-calc(120);
   }
 }
 
@@ -2230,7 +2116,6 @@ a {
 // --------------------
 
 .comments {
-
   h3 {
     border-bottom: 4px solid var(--brand);
     color: var(--brand);
@@ -2240,7 +2125,6 @@ a {
   }
 
   .comment {
-
     p {
       margin-bottom: $line-height;
     }
@@ -2248,13 +2132,11 @@ a {
 }
 
 .comment-info {
-
   a {
     color: $text;
   }
 
   .user-name {
-
     a {
       color: $anchor-color-dark;
     }
@@ -2262,7 +2144,6 @@ a {
 }
 
 .comment-body {
-
   .reply {
     border-bottom: 2px solid $border;
     border-top: 0;
@@ -2317,14 +2198,16 @@ a {
 }
 
 .comment-votes {
-
   .votes {
-    bottom: 6px;
+    bottom: 24px;
     position: absolute;
     right: 0;
 
-    .like {
+    @include breakpoint(medium) {
+      bottom: 6px;
+    }
 
+    .like {
       &:hover,
       &.voted {
         background: $like;
@@ -2337,7 +2220,6 @@ a {
     }
 
     .unlike {
-
       &:hover,
       &.voted {
         background: $unlike;
@@ -2389,7 +2271,6 @@ a {
 // --------------------
 
 .admin .heading-mode {
-
   h2 {
     font-size: rem-calc(20);
   }
@@ -2409,10 +2290,6 @@ a {
   }
 }
 
-.admin .dropdown.menu > .is-dropdown-submenu-parent > a::after {
-  border-color: transparent;
-}
-
 .admin .menu.simple {
   display: block;
 
@@ -2429,12 +2306,13 @@ a {
 }
 
 .admin {
-
   .top-links {
     justify-content: right;
 
     a {
       flex-grow: unset;
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -2449,7 +2327,6 @@ a {
 }
 
 .admin-budgets-show {
-
   h3 {
     color: $admin-text;
     font-size: rem-calc(20);
@@ -2470,7 +2347,6 @@ a {
 }
 
 .reveal button {
-
   &.close-button {
     min-height: 0;
   }
@@ -2478,7 +2354,6 @@ a {
 
 .budget-draft,
 .budget-completed {
-
   span {
     font-style: normal;
     text-transform: uppercase;
@@ -2539,9 +2414,7 @@ a {
 .debate-show,
 .proposal-show,
 .legislation-proposals {
-
   .votes {
-
     .divider {
       display: none;
     }
@@ -2560,7 +2433,6 @@ a {
     }
 
     .no-voted {
-
       .icon-like,
       .icon-unlike {
         opacity: 1;
@@ -2574,7 +2446,6 @@ a {
       width: rem-calc(48);
 
       &.voted {
-
         .percentage {
           color: #fff;
         }
@@ -2582,7 +2453,6 @@ a {
     }
 
     .like {
-
       &:hover {
         background: $like;
 
@@ -2598,7 +2468,6 @@ a {
     }
 
     .unlike {
-
       &:hover {
         background: $unlike;
 
@@ -2627,7 +2496,6 @@ a {
 .communities-show,
 .topic-show,
 .milestone-content {
-
   .author-photo {
     vertical-align: middle;
   }
@@ -2637,7 +2505,6 @@ a {
 // --------------------
 
 .related-content-list {
-
   li {
     border-bottom: 2px solid $border;
 
@@ -2663,7 +2530,6 @@ a {
     &.debate,
     &.proposal,
     &.budget-investment {
-
       &::before {
         font-family: "Font Awesome 5 Free";
         font-size: $small-font-size;
@@ -2689,7 +2555,6 @@ a {
 }
 
 .related-content {
-
   h2,
   h2 span {
     color: $label;
@@ -2717,9 +2582,7 @@ a {
 // --------------------
 
 .proposals-sidebar {
-
   .small {
-
     &:not(.button) {
       display: block;
       color: $anchor-color;
@@ -2748,7 +2611,6 @@ a {
 
 .proposal-show .supports,
 .proposal .supports {
-
   .total-supports {
     font-size: $small-font-size;
     text-align: right;
@@ -2792,14 +2654,13 @@ a {
 }
 
 .proposal-show {
-
   .supports .percentage {
     font-size: $base-font-size;
   }
 
   blockquote {
     border: 4px solid $light;
-    border-radius: $large-border-radius;
+    border-radius: rem-calc(12);
     color: $text;
     font-size: $base-font-size;
     margin: $line-height 0;
@@ -2817,7 +2678,6 @@ a {
 }
 
 .additional-content {
-
   .filter-subnav {
     background: none;
   }
@@ -2852,14 +2712,12 @@ a {
 }
 
 .proposal-dashboard .button {
-
   &.expanded {
     word-break: break-word;
   }
 }
 
 .proposals-list {
-
   @include breakpoint(medium) {
     min-height: $line-height * 15;
 
@@ -2875,21 +2733,19 @@ a {
 .poll,
 .poll-question {
   border: 2px solid $border;
-  border-radius: $large-border-radius;
+  border-radius: rem-calc(12);
   box-shadow: none;
   overflow: hidden;
 
   @include breakpoint(medium) {
-
     img {
-      border-bottom-left-radius: $large-border-radius;
-      border-top-left-radius: $large-border-radius;
+      border-bottom-left-radius: rem-calc(12);
+      border-top-left-radius: rem-calc(12);
       max-width: none;
     }
   }
 
   @include breakpoint(small only) {
-
     .message {
       position: unset !important;
     }
@@ -2927,10 +2783,6 @@ a {
   .image-container {
     min-height: $line-height * 10;
   }
-
-  h4 {
-    font-size: rem-calc(24)
-  }
 }
 
 .section-title-divider {
@@ -2963,13 +2815,6 @@ a {
 }
 
 .poll-question-answers {
-  flex-direction: column;
-
-  > * {
-    display: flex;
-    flex-direction: column;
-  }
-
   span,
   a {
     width: 100%;
@@ -2977,7 +2822,6 @@ a {
 
   .button {
     &.hollow {
-
       &.secondary,
       &.secondary.disabled,
       &.secondary[disabled],
@@ -3012,11 +2856,10 @@ a {
 }
 
 .poll-more-info-answers {
-
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-  }
+  // .row {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  // }
 
   .column:nth-child(odd),
   .columns:nth-child(odd) {
@@ -3038,7 +2881,6 @@ a {
 }
 
 .answer {
-
   a,
   img {
     outline: 0;
@@ -3060,14 +2902,12 @@ a {
 // --------------------
 
 .auth-page {
-
   .auth-title {
     margin: $line-height * 2 0;
     text-align: center;
   }
 
   .auth-form {
-
     @include breakpoint(medium) {
       margin-bottom: 0;
       padding-bottom: $line-height * 10;
@@ -3091,6 +2931,28 @@ a {
     img {
       padding-top: rem-calc(100);
     }
+
+    .button-facebook:hover {
+      background: #3b5998;
+    }
+
+    .button-google:hover {
+      background: #de4c34;
+    }
+
+    .button-twitter:hover {
+      background: #45b0e3;
+    }
+
+    .button-facebook:hover,
+    .button-google:hover,
+    .button-twitter:hover {
+      color: #fff;
+
+      &::before {
+        color: #fff;
+      }
+    }
   }
 
   .auth-image {
@@ -3113,7 +2975,6 @@ a {
 }
 
 .subscriptions-edit {
-
   form {
     max-width: none;
   }
@@ -3127,11 +2988,10 @@ a {
 // ------------------------------
 
 .budget-investment-new {
-
   .header {
     background: var(--brand-secondary);
-    border-bottom-right-radius: $large-border-radius;
-    border-top-right-radius: $large-border-radius;
+    border-bottom-right-radius: rem-calc(12);
+    border-top-right-radius: rem-calc(12);
     color: #fff;
     margin-top: $line-height * 2;
     padding: $line-height * 2 0;
@@ -3160,8 +3020,8 @@ a {
     &::after {
       background: #fff;
       border: 4px solid var(--brand-secondary);
-      border-bottom-right-radius: $large-border-radius;
-      border-top-right-radius: $large-border-radius;
+      border-bottom-right-radius: rem-calc(12);
+      border-top-right-radius: rem-calc(12);
       clip-path: polygon(20% 0, 100% 1%, 100% 100%, 20% 100%, 5% 50%);
       color: var(--brand-secondary);
       content: "\f1ad";
@@ -3201,9 +3061,7 @@ a {
     }
 
     &.header-single-heading {
-
       .header-icon {
-
         @include breakpoint(large) {
           top: 80px;
         }
@@ -3243,7 +3101,6 @@ a {
 
 .budget-info,
 .investments-list {
-
   h2 {
     font-size: rem-calc(20);
     margin: $line-height / 2 0;
@@ -3251,20 +3108,19 @@ a {
 }
 
 .budget-investment {
-
   &.index {
     height: 100%;
 
     .panel {
-      border-radius: $medium-border-radius;
+      border-radius: rem-calc(6);
       height: 100%;
       padding: 0;
       position: relative;
 
       img {
         border-bottom-left-radius: 0;
-        border-top-left-radius: $medium-border-radius;
-        border-top-right-radius: $medium-border-radius;
+        border-top-left-radius: rem-calc(6);
+        border-top-right-radius: rem-calc(6);
         width: 100%;
       }
 
@@ -3325,11 +3181,8 @@ a {
 }
 
 .supports-and-price {
-
   .table-cell {
-
     &:first-child {
-
       &::after {
         content: "\f559";
         font-family: "Font Awesome 5 Free";
@@ -3344,7 +3197,6 @@ a {
 }
 
 .filter-selector {
-
   label {
     margin-right: $line-height / 2;
     padding-top: $line-height / 2;
@@ -3356,7 +3208,6 @@ a {
 }
 
 .budget-header {
-
   &.budget:not(.button) {
     min-height: $line-height * 25;
     padding-top: $line-height * 4;
@@ -3402,7 +3253,6 @@ a {
 }
 
 .budget-subheader {
-
   .current-phase {
     color: $label;
     text-transform: uppercase;
@@ -3424,7 +3274,6 @@ a {
   padding-bottom: $line-height * 2;
 
   @include breakpoint(small only) {
-
     .phases-list {
       display: none;
     }
@@ -3482,18 +3331,16 @@ a {
     }
 
     &:first-child {
-
       a {
-        border-bottom-left-radius: $medium-border-radius;
-        border-top-left-radius: $medium-border-radius;
+        border-bottom-left-radius: rem-calc(6);
+        border-top-left-radius: rem-calc(6);
       }
     }
 
     &:last-child {
-
       a {
-        border-bottom-right-radius: $medium-border-radius;
-        border-top-right-radius: $medium-border-radius;
+        border-bottom-right-radius: rem-calc(6);
+        border-top-right-radius: rem-calc(6);
 
         &::after {
           content: none;
@@ -3580,19 +3427,16 @@ a {
   }
 
   .tabs-title {
-
     &:last-child a::after {
       content: none !important;
     }
   }
 
   .tabs-controls {
-
     .budget-prev-phase,
     .budget-prev-phase-disabled,
     .budget-next-phase,
     .budget-next-phase-disabled {
-
       &::before {
         left: 6px;
         top: 6px;
@@ -3614,7 +3458,7 @@ a {
 
     &::before {
       background: var(--brand);
-      border-radius: $small-border-radius;
+      border-radius: rem-calc(3);
       color: #fff;
       font-family: "Font Awesome 5 Free";
       font-size: rem-calc(36);
@@ -3629,7 +3473,6 @@ a {
 
   .budget-prev-phase-disabled,
   .budget-next-phase-disabled {
-
     &::before {
       background: none;
       color: #acb6b6;
@@ -3638,7 +3481,6 @@ a {
 
   .budget-prev-phase,
   .budget-prev-phase-disabled {
-
     &::before {
       content: "\f104";
       left: 0;
@@ -3647,7 +3489,6 @@ a {
 
   .budget-next-phase,
   .budget-next-phase-disabled {
-
     &::before {
       content: "\f105";
       left: 52px;
@@ -3689,12 +3530,11 @@ a {
   }
 
   h2 {
-    font-size: rem-calc(36);
+    font-size: rem-calc(60);
     font-weight: normal;
   }
 
   a {
-
     &:hover {
       text-decoration: none;
     }
@@ -3706,9 +3546,7 @@ a {
 }
 
 .supports-info {
-
   @include breakpoint(medium) {
-
     h2 {
       font-size: rem-calc(48);
     }
@@ -3725,7 +3563,7 @@ a {
 
   .callout {
     border: 6px solid #f4f4f4;
-    border-radius: $large-border-radius;
+    border-radius: rem-calc(12);
     padding: $line-height;
 
     @include breakpoint(medium) {
@@ -3744,7 +3582,6 @@ a {
   }
 
   a {
-
     &.keep-scrolling {
       color: var(--brand);
       position: relative;
@@ -3755,7 +3592,6 @@ a {
 }
 
 .section-recommended {
-
   .orbit-bullets button {
     background-color: #ccc;
     height: $line-height / 2;
@@ -3796,7 +3632,6 @@ a {
 }
 
 .sdg-related-list-selector {
-
   .help-text,
   .goals legend {
     font-size: $small-font-size;
@@ -3805,7 +3640,6 @@ a {
 
 .sdg-goal-tag-cloud .sdg-goal-tag-list,
 .sdg-tag-list .sdg-goal-tag-list {
-
   img {
     border-radius: 0;
   }
@@ -3814,11 +3648,10 @@ a {
 .debate-new,
 .proposal-form,
 .budget-investment-new {
-
   .header {
     background: var(--brand-secondary);
-    border-bottom-right-radius: $large-border-radius;
-    border-top-right-radius: $large-border-radius;
+    border-bottom-right-radius: rem-calc(12);
+    border-top-right-radius: rem-calc(12);
     color: #fff;
     margin-top: $line-height * 2;
     padding: $line-height * 2 0;
@@ -3851,8 +3684,8 @@ a {
     &::after {
       background: #fff;
       border: 4px solid var(--brand-secondary);
-      border-bottom-right-radius: $large-border-radius;
-      border-top-right-radius: $large-border-radius;
+      border-bottom-right-radius: rem-calc(12);
+      border-top-right-radius: rem-calc(12);
       clip-path: polygon(20% 0, 100% 1%, 100% 100%, 20% 100%, 5% 50%);
       color: var(--brand-secondary);
       content: "\f1ad";
@@ -3892,9 +3725,7 @@ a {
     }
 
     &.header-single-heading {
-
       .header-icon {
-
         @include breakpoint(large) {
           top: 80px;
         }

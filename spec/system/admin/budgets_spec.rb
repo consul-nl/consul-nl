@@ -36,7 +36,7 @@ describe "Admin budgets", :admin do
       end
     end
 
-    scenario "Filters by phase" do
+    scenario "Filters by phase", :consul do
       create(:budget, :drafting, name: "Unpublished budget")
       create(:budget, :accepting, name: "Accepting budget")
       create(:budget, :selecting, name: "Selecting budget")
@@ -50,7 +50,7 @@ describe "Admin budgets", :admin do
       expect(page).to have_content "Balloting budget"
 
       within "tr", text: "Unpublished budget" do
-        expect(page).to have_content "DRAFT"
+        expect(page).to have_content "Draft"
       end
 
       within "tr", text: "Finished budget" do
@@ -101,7 +101,7 @@ describe "Admin budgets", :admin do
       click_link "Create multiple headings budget"
 
       expect(page).to have_select("Final voting style", selected: "Knapsack")
-      expect(page).not_to have_selector("#budget_hide_money")
+      expect(page).not_to have_css "#budget_hide_money"
 
       fill_in "Name", with: "Budget hide money"
       select "Approval", from: "Final voting style"
@@ -117,7 +117,7 @@ describe "Admin budgets", :admin do
       expect(page).to have_field "Hide money amount for this budget", checked: true
     end
 
-    scenario "Create a budget with hide money by steps" do
+    scenario "Create a budget with hide money by steps", :consul do
       visit admin_budgets_path
       click_button "Create new budget"
       click_link "Create multiple headings budget"
@@ -151,8 +151,7 @@ describe "Admin budgets", :admin do
       click_link "Continue to headings"
 
       expect(page).to have_content "Showing headings from the All city group."
-      expect(page).to have_button "Manage headings from a different group"
-      within(".budget-group-switcher") { expect(page).to have_link("District A", visible: :hidden) }
+      expect(page).to have_link "Manage headings from the District A group."
 
       click_button "Add new heading"
       fill_in "Heading name", with: "All city"
@@ -190,72 +189,6 @@ describe "Admin budgets", :admin do
 
       expect(page).to have_current_path budget_path(budget)
     end
-
-    scenario "Hide money active" do
-      budget_hide_money = create(:budget, :approval, :hide_money)
-      group = create(:budget_group, budget: budget_hide_money)
-      heading = create(:budget_heading, group: group)
-      heading_2 = create(:budget_heading, group: group)
-
-      visit admin_budget_path(budget_hide_money)
-
-      within("#budget_group_#{group.id}") do
-        expect(page).to have_content heading.name
-        expect(page).to have_content heading_2.name
-        expect(page).not_to have_content "Money amount"
-      end
-
-      visit edit_admin_budget_path(budget_hide_money)
-
-      expect(find("#budget_hide_money")).to be_checked
-      expect(budget_hide_money.voting_style).to eq "approval"
-    end
-
-    scenario "Change voting style uncheck hide money" do
-      budget_hide_money = create(:budget, :approval, :hide_money)
-      hide_money_help_text = "If this option is checked, all fields showing the amount of money "\
-                             "will be hidden throughout the process."
-
-      visit edit_admin_budget_path(budget_hide_money)
-      expect(find("#budget_hide_money")).to be_checked
-      expect(page).to have_content hide_money_help_text
-
-      select "Knapsack", from: "Final voting style"
-      expect(page).not_to have_selector("#budget_hide_money")
-      expect(page).not_to have_content hide_money_help_text
-
-      select "Approval", from: "Final voting style"
-      expect(find("#budget_hide_money")).not_to be_checked
-      expect(page).to have_content hide_money_help_text
-    end
-
-    scenario "Edit knapsack budget do not show hide money info" do
-      budget = create(:budget, :knapsack)
-      hide_money_help_text = "If this option is checked, all fields showing the amount of money "\
-                             "will be hidden throughout the process."
-
-      visit edit_admin_budget_path(budget)
-      expect(page).not_to have_selector("#budget_hide_money")
-      expect(page).not_to have_content hide_money_help_text
-
-      select "Approval", from: "Final voting style"
-      expect(find("#budget_hide_money")).not_to be_checked
-      expect(page).to have_content hide_money_help_text
-    end
-
-    scenario "Edit approval budget show hide money info" do
-      budget = create(:budget, :approval)
-      hide_money_help_text = "If this option is checked, all fields showing the amount of money "\
-                             "will be hidden throughout the process."
-
-      visit edit_admin_budget_path(budget)
-      expect(find("#budget_hide_money")).not_to be_checked
-      expect(page).to have_content hide_money_help_text
-
-      select "Knapsack", from: "Final voting style"
-      expect(page).not_to have_selector("#budget_hide_money")
-      expect(page).not_to have_content hide_money_help_text
-    end
   end
 
   context "Destroy" do
@@ -265,7 +198,9 @@ describe "Admin budgets", :admin do
     scenario "Destroy a budget without investments" do
       visit admin_budget_path(budget)
 
-      message = "Are you sure? This will delete the budget and all its associated groups and headings. This action cannot be undone."
+      message = "Are you sure? " \
+                "This will delete the budget and all its associated groups and headings. " \
+                "This action cannot be undone."
 
       accept_confirm(message) { click_button "Delete budget" }
 
@@ -295,27 +230,26 @@ describe "Admin budgets", :admin do
   context "Edit" do
     let(:budget) { create(:budget) }
 
-    scenario "Show phases table" do
+    scenario "Show phases table", :consul do
       travel_to(Date.new(2015, 7, 15)) do
         budget.update!(phase: "selecting")
         budget.phases.valuating.update!(enabled: false)
 
         visit admin_budget_path(budget)
 
-        expect(page).to have_content "The configuration of these phases is used for information purposes "\
-                                     "only. Its function is to define the phases information displayed "\
+        expect(page).to have_content "The configuration of these phases is used for information purposes " \
+                                     "only. Its function is to define the phases information displayed " \
                                      "on the public page of the participatory budget."
         expect(page).to have_table "Phases", with_cols: [
           [
-            "Information (Information)",
-            "Accepting projects (Accepting projects)",
-            "Reviewing projects (Reviewing projects)",
-            "Selecting projects (Selecting projects) Active",
-            "Valuating projects (Valuating projects)",
-            "Publishing projects prices (Publishing projects prices)",
-            "Voting projects (Voting projects)",
-            "Reviewing voting (Reviewing voting)",
-            "Finished budget (Finished budget)"
+            "Information",
+            "Accepting projects",
+            "Reviewing projects",
+            "Selecting projects Active",
+            "Valuating projects",
+            "Publishing projects prices",
+            "Voting projects",
+            "Reviewing voting"
           ],
           [
             "2015-07-15 00:00 - 2015-08-14 23:59",
@@ -323,10 +257,9 @@ describe "Admin budgets", :admin do
             "2015-09-15 00:00 - 2015-10-14 23:59",
             "2015-10-15 00:00 - 2015-11-14 23:59",
             "2015-11-15 00:00 - 2015-12-14 23:59",
-            "2015-12-15 00:00 - 2016-01-14 23:59",
+            "2015-11-15 00:00 - 2016-01-14 23:59",
             "2016-01-15 00:00 - 2016-02-14 23:59",
-            "2016-02-15 00:00 - 2016-03-14 23:59",
-            "2016-03-15 00:00 - 2016-04-14 23:59"
+            "2016-02-15 00:00 - 2016-03-14 23:59"
           ],
           [
             "Yes",
@@ -334,7 +267,6 @@ describe "Admin budgets", :admin do
             "Yes",
             "Yes",
             "No",
-            "Yes",
             "Yes",
             "Yes",
             "Yes"
@@ -427,7 +359,7 @@ describe "Admin budgets", :admin do
 
     scenario "Change voting style uncheck hide money" do
       budget_hide_money = create(:budget, :approval, :hide_money)
-      hide_money_help_text = "If this option is checked, all fields showing the amount of money "\
+      hide_money_help_text = "If this option is checked, all fields showing the amount of money " \
                              "will be hidden throughout the process."
 
       visit edit_admin_budget_path(budget_hide_money)
@@ -448,7 +380,7 @@ describe "Admin budgets", :admin do
 
     scenario "Edit knapsack budget do not show hide money info" do
       budget = create(:budget, :knapsack)
-      hide_money_help_text = "If this option is checked, all fields showing the amount of money "\
+      hide_money_help_text = "If this option is checked, all fields showing the amount of money " \
                              "will be hidden throughout the process."
 
       visit edit_admin_budget_path(budget)
@@ -464,7 +396,7 @@ describe "Admin budgets", :admin do
 
     scenario "Edit approval budget show hide money info" do
       budget = create(:budget, :approval)
-      hide_money_help_text = "If this option is checked, all fields showing the amount of money "\
+      hide_money_help_text = "If this option is checked, all fields showing the amount of money " \
                              "will be hidden throughout the process."
 
       visit edit_admin_budget_path(budget)
@@ -522,10 +454,11 @@ describe "Admin budgets", :admin do
     scenario "For a Budget in reviewing balloting" do
       budget = create(:budget, :reviewing_ballots)
       heading = create(:budget_heading, budget: budget, price: 4)
-      unselected = create(:budget_investment, :unselected, heading: heading, price: 1,
+      unselected = create(:budget_investment, :unselected, heading: heading,
+                                                           price: 1,
                                                            ballot_lines_count: 3)
       winner = create(:budget_investment, :selected, heading: heading, price: 3,
-                                                   ballot_lines_count: 2)
+                                                     ballot_lines_count: 2)
       selected = create(:budget_investment, :selected, heading: heading, price: 2, ballot_lines_count: 1)
 
       visit admin_budget_path(budget)

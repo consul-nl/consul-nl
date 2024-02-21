@@ -5,13 +5,15 @@
     </div>
 
     <div class="small-12 medium-4 column text-right">
-      <%= link_to t("legislation.processes.process.see_latest_comments"),
-                  process,
-                  title: t("legislation.processes.process.see_latest_comments_title") %>
+      <%= link_to process, class: "button hollow big expanded",
+                           title: t("legislation.processes.process.see_latest_comments_title") do %>
+        <span class="icon-comments"></span>&nbsp;
+        <%= t("legislation.processes.process.see_latest_comments") %>
+      <% end %>
     </div>
 
     <div class="small-12 medium-11 column end">
-      <%= markdown(process.summary.presence || first_paragraph(process.description)) %>
+      <%= auto_link_already_sanitized_html AdminWYSIWYGSanitizer.new.sanitize((process.summary.presence || first_paragraph(process.description)) %>
     </div>
 
     <div class="small-12 medium-11 column end">

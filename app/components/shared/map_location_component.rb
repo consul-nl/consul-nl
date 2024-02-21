@@ -19,15 +19,15 @@ class Shared::MapLocationComponent < ApplicationComponent
     end
 
     def latitude
-      map_location.latitude.presence || Setting["map.latitude"]
+      map_location.latitude.presence || Map.default.map_location.latitude
     end
 
     def longitude
-      map_location.longitude.presence || Setting["map.longitude"]
+      map_location.longitude.presence || Map.default.map_location.longitude
     end
 
     def zoom
-      map_location.zoom.presence || Setting["map.zoom"]
+      map_location.zoom.presence || Map.default.map_location.zoom
     end
 
     def remove_marker_label
@@ -40,9 +40,9 @@ class Shared::MapLocationComponent < ApplicationComponent
 
     def remove_marker
       button_tag remove_marker_label,
-        id: remove_marker_id,
-        class: "map-location-remove-marker",
-        type: "button"
+                 id: remove_marker_id,
+                 class: "map-location-remove-marker",
+                 type: "button"
     end
 
     def data
@@ -58,6 +58,7 @@ class Shared::MapLocationComponent < ApplicationComponent
         marker_investments_coordinates: investments_coordinates,
         marker_latitude: map_location.latitude.presence,
         marker_longitude: map_location.longitude.presence,
+        marker_clustering: feature?("map.feature.marker_clustering"),
         geozones: geozones_data
       }.merge(input_selectors)
     end

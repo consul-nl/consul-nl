@@ -46,7 +46,7 @@ describe "Admin polls", :admin do
     expect(page).to have_content poll.name
   end
 
-  scenario "Create" do
+  scenario "Create", :consul do
     travel_to(Time.zone.local(2015, 7, 15, 13, 32, 13))
 
     visit admin_polls_path
@@ -55,8 +55,8 @@ describe "Admin polls", :admin do
     fill_in "Name", with: "Upcoming poll"
     fill_in "Start Date", with: 1.week.from_now
     fill_in "Closing Date", with: 2.weeks.from_now
-    fill_in_ckeditor "Summary", with: "Upcoming poll's summary. This poll..."
-    fill_in_ckeditor "Description", with: "Upcomming poll's description. This poll..."
+    fill_in "Summary", with: "Upcoming poll's summary. This poll..."
+    fill_in "Description", with: "Upcomming poll's description. This poll..."
 
     expect(page).not_to have_css("#poll_results_enabled")
     expect(page).not_to have_css("#poll_stats_enabled")
@@ -535,7 +535,7 @@ describe "Admin polls", :admin do
       end
     end
 
-    scenario "create poll with sdg related list" do
+    scenario "create poll with sdg related list", :consul do
       visit new_admin_poll_path
       fill_in "Name", with: "Upcoming poll with SDG related content"
       fill_in "Start Date", with: 1.week.from_now

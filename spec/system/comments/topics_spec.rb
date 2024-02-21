@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe "Commenting topics from proposals" do
-  let(:user)     { create :user }
-  let(:proposal) { create :proposal }
+  let(:user)     { create(:user) }
+  let(:proposal) { create(:proposal) }
 
   it_behaves_like "flaggable", :topic_with_community_comment
 
@@ -55,28 +55,6 @@ describe "Commenting topics from proposals" do
 
     expect(page).to have_link "Go back to #{topic.title}"
     expect(page).to have_current_path(comment_path(comment))
-  end
-
-  scenario "Show order links only if there are comments" do
-    community = proposal.community
-    topic = create(:topic, community: community)
-
-    visit community_topic_path(community, topic)
-
-    within "#tab-comments" do
-      expect(page).not_to have_link "Most voted"
-      expect(page).not_to have_link "Newest first"
-      expect(page).not_to have_link "Oldest first"
-    end
-
-    create(:comment, commentable: topic, user: user)
-    visit community_topic_path(community, topic)
-
-    within "#tab-comments" do
-      expect(page).to have_link "Most voted"
-      expect(page).to have_link "Newest first"
-      expect(page).to have_link "Oldest first"
-    end
   end
 
   scenario "Collapsable comments" do
@@ -148,7 +126,7 @@ describe "Commenting topics from proposals" do
     expect(c2.body).to appear_before(c3.body)
   end
 
-  scenario "Creation date works differently in roots and in child comments, when sorting by confidence_score" do
+  scenario "Creation date works differently in roots and child comments when sorting by confidence_score" do
     community = proposal.community
     topic = create(:topic, community: community)
     old_root = create(:comment, commentable: topic, created_at: Time.current - 10)
@@ -175,7 +153,7 @@ describe "Commenting topics from proposals" do
   scenario "Turns links into html links" do
     community = proposal.community
     topic = create(:topic, community: community)
-    create :comment, commentable: topic, body: "Built with http://rubyonrails.org/"
+    create(:comment, commentable: topic, body: "Built with http://rubyonrails.org/")
 
     visit community_topic_path(community, topic)
 
@@ -183,15 +161,17 @@ describe "Commenting topics from proposals" do
       expect(page).to have_content "Built with http://rubyonrails.org/"
       expect(page).to have_link("http://rubyonrails.org/", href: "http://rubyonrails.org/")
       expect(find_link("http://rubyonrails.org/")[:rel]).to eq("nofollow")
-      expect(find_link("http://rubyonrails.org/")[:target]).to eq("_blank")
+      expect(find_link("http://rubyonrails.org/")[:target]).to be_blank
     end
   end
 
   scenario "Sanitizes comment body for security" do
     community = proposal.community
     topic = create(:topic, community: community)
-    create :comment, commentable: topic,
-                     body: "<script>alert('hola')</script> <a href=\"javascript:alert('sorpresa!')\">click me<a/> http://www.url.com"
+    create(:comment, commentable: topic,
+                     body: "<script>alert('hola')</script> " \
+                           "<a href=\"javascript:alert('sorpresa!')\">click me<a/> " \
+                           "http://www.url.com")
 
     visit community_topic_path(community, topic)
 
@@ -290,7 +270,7 @@ describe "Commenting topics from proposals" do
       expect(page).to have_content "It will be done next week."
     end
 
-    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+    expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
   end
 
   scenario "Reply update parent comment responses count" do
@@ -420,7 +400,7 @@ describe "Commenting topics from proposals" do
         expect(page).to have_css "img.moderator-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
 
     scenario "can not comment as an administrator" do
@@ -482,7 +462,7 @@ describe "Commenting topics from proposals" do
         expect(page).to have_css "img.admin-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
 
     scenario "can not comment as a moderator", :admin do
@@ -567,7 +547,7 @@ describe "Commenting topics from proposals" do
       end
     end
 
-    scenario "Trying to vote multiple times" do
+    scenario "Allow undoing votes" do
       visit community_topic_path(proposal.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -580,22 +560,22 @@ describe "Commenting topics from proposals" do
         click_button "I agree"
 
         within(".in-favor") do
-          expect(page).to have_content "1"
+          expect(page).to have_content "0"
         end
 
         within(".against") do
           expect(page).to have_content "0"
         end
 
-        expect(page).to have_content "1 vote"
+        expect(page).to have_content "No votes"
       end
     end
   end
 end
 
 describe "Commenting topics from budget investments" do
-  let(:user)       { create :user }
-  let(:investment) { create :budget_investment }
+  let(:user)       { create(:user) }
+  let(:investment) { create(:budget_investment) }
 
   scenario "Index" do
     community = investment.community
@@ -695,7 +675,7 @@ describe "Commenting topics from budget investments" do
     expect(c2.body).to appear_before(c3.body)
   end
 
-  scenario "Creation date works differently in roots and in child comments, when sorting by confidence_score" do
+  scenario "Creation date works differently in roots and child comments when sorting by confidence_score" do
     community = investment.community
     topic = create(:topic, community: community)
     old_root = create(:comment, commentable: topic, created_at: Time.current - 10)
@@ -722,7 +702,7 @@ describe "Commenting topics from budget investments" do
   scenario "Turns links into html links" do
     community = investment.community
     topic = create(:topic, community: community)
-    create :comment, commentable: topic, body: "Built with http://rubyonrails.org/"
+    create(:comment, commentable: topic, body: "Built with http://rubyonrails.org/")
 
     visit community_topic_path(community, topic)
 
@@ -730,15 +710,17 @@ describe "Commenting topics from budget investments" do
       expect(page).to have_content "Built with http://rubyonrails.org/"
       expect(page).to have_link("http://rubyonrails.org/", href: "http://rubyonrails.org/")
       expect(find_link("http://rubyonrails.org/")[:rel]).to eq("nofollow")
-      expect(find_link("http://rubyonrails.org/")[:target]).to eq("_blank")
+      expect(find_link("http://rubyonrails.org/")[:target]).to be_blank
     end
   end
 
   scenario "Sanitizes comment body for security" do
     community = investment.community
     topic = create(:topic, community: community)
-    create :comment, commentable: topic,
-                     body: "<script>alert('hola')</script> <a href=\"javascript:alert('sorpresa!')\">click me<a/> http://www.url.com"
+    create(:comment, commentable: topic,
+                     body: "<script>alert('hola')</script> " \
+                           "<a href=\"javascript:alert('sorpresa!')\">click me<a/> " \
+                           "http://www.url.com")
 
     visit community_topic_path(community, topic)
 
@@ -837,7 +819,7 @@ describe "Commenting topics from budget investments" do
       expect(page).to have_content "It will be done next week."
     end
 
-    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+    expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
   end
 
   scenario "Errors on reply" do
@@ -931,7 +913,7 @@ describe "Commenting topics from budget investments" do
         expect(page).to have_css "img.moderator-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
 
     scenario "can not comment as an administrator" do
@@ -993,7 +975,7 @@ describe "Commenting topics from budget investments" do
         expect(page).to have_css "img.admin-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
 
     scenario "can not comment as a moderator", :admin do
@@ -1078,7 +1060,7 @@ describe "Commenting topics from budget investments" do
       end
     end
 
-    scenario "Trying to vote multiple times" do
+    scenario "Allow undoing votes" do
       visit community_topic_path(investment.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -1091,14 +1073,14 @@ describe "Commenting topics from budget investments" do
         click_button "I agree"
 
         within(".in-favor") do
-          expect(page).to have_content "1"
+          expect(page).to have_content "0"
         end
 
         within(".against") do
           expect(page).to have_content "0"
         end
 
-        expect(page).to have_content "1 vote"
+        expect(page).to have_content "No votes"
       end
     end
   end

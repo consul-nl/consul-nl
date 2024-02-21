@@ -116,6 +116,7 @@ namespace :admin do
   end
 
   resources :settings, only: [:index, :update]
+  put :update_map, to: "settings#update_map"
   put :update_content_types, to: "settings#update_content_types"
 
   resources :moderators, only: [:index, :create, :destroy] do
@@ -258,9 +259,12 @@ namespace :admin do
     end
     resources :images, only: [:index, :update, :destroy]
     resources :content_blocks, except: [:show]
-    delete "/heading_content_blocks/:id", to: "content_blocks#delete_heading_content_block", as: "delete_heading_content_block"
-    get "/edit_heading_content_blocks/:id", to: "content_blocks#edit_heading_content_block", as: "edit_heading_content_block"
-    put "/update_heading_content_blocks/:id", to: "content_blocks#update_heading_content_block", as: "update_heading_content_block"
+    delete "/heading_content_blocks/:id", to: "content_blocks#delete_heading_content_block",
+                                          as: "delete_heading_content_block"
+    get "/edit_heading_content_blocks/:id", to: "content_blocks#edit_heading_content_block",
+                                            as: "edit_heading_content_block"
+    put "/update_heading_content_blocks/:id", to: "content_blocks#update_heading_content_block",
+                                              as: "update_heading_content_block"
     resources :information_texts, only: [:index] do
       post :update, on: :collection
     end
@@ -348,3 +352,4 @@ end
 resolve "Poll::Question::Answer::Video" do |video, options|
   [:answer, :video, options.merge(answer_id: video.answer, id: video)]
 end
+

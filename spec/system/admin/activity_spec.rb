@@ -16,7 +16,6 @@ describe "Admin activity" do
       within("#proposal_#{proposal.id}") do
         accept_confirm("Are you sure? Hide \"#{proposal.title}\"") { click_button "Hide" }
       end
-
       expect(page).to have_css("#proposal_#{proposal.id}.faded")
 
       visit admin_activity_path
@@ -85,7 +84,6 @@ describe "Admin activity" do
       within("#debate_#{debate.id}") do
         accept_confirm("Are you sure? Hide \"#{debate.title}\"") { click_button "Hide" }
       end
-
       expect(page).to have_css("#debate_#{debate.id}.faded")
 
       visit admin_activity_path
@@ -214,12 +212,12 @@ describe "Admin activity" do
 
   context "User" do
     scenario "Shows moderation activity on users" do
-      proposal = create(:proposal)
+      proposal = create(:proposal, author: create(:user, username: "Sam"))
 
       visit proposal_path(proposal)
 
       within("#proposal_#{proposal.id}") do
-        accept_confirm("Are you sure? This will hide the user \"#{proposal.author.name}\" and all their contents.") do
+        accept_confirm("Are you sure? This will hide the user \"Sam\" and all their contents.") do
           click_button "Block author"
         end
 
@@ -367,8 +365,8 @@ describe "Admin activity" do
     scenario "Shows moderation activity on system emails" do
       proposal = create(:proposal, title: "Proposal A")
       proposal_notification = create(:proposal_notification, proposal: proposal,
-                                                               title: "Proposal A Title",
-                                                               body: "Proposal A Notification Body")
+                                                             title: "Proposal A Title",
+                                                             body: "Proposal A Notification Body")
       proposal_notification.moderate_system_email(admin.user)
 
       visit admin_activity_path

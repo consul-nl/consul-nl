@@ -349,12 +349,13 @@ describe "Emails" do
     let(:budget) { create(:budget) }
     before { create(:budget_heading, name: "More hospitals", budget: budget) }
 
-    scenario "Investment created" do
+    scenario "Investment created", :consul do
       login_as(author)
       visit new_budget_investment_path(budget_id: budget.id)
 
       fill_in_new_investment_title with: "Build a hospital"
       fill_in_ckeditor "Description", with: "We have lots of people that require medical attention"
+      check "budget_investment_terms_of_service"
 
       click_button "Create Investment"
       expect(page).to have_content "Investment created successfully"
@@ -369,7 +370,7 @@ describe "Emails" do
       expect(email).to have_body_text(budget_path(budget))
     end
 
-    scenario "Unfeasible investment" do
+    scenario "Unfeasible investment", :consul do
       budget.update!(phase: "valuating")
       valuator = create(:valuator)
       investment = create(:budget_investment, author: author, budget: budget, valuators: [valuator])
@@ -378,15 +379,16 @@ describe "Emails" do
       visit edit_valuation_budget_budget_investment_path(budget, investment)
 
       within_fieldset("Feasibility") { choose "Unfeasible" }
-      fill_in "Unfeasibility explanation", with: "This is not legal as stated in Article 34.9"
+      fill_in "Feasibility explanation", with: "This is not legal as stated in Article 34.9"
       accept_confirm { check "Valuation finished" }
       click_button "Save changes"
 
       expect(page).to have_content "Dossier updated"
 
       email = open_last_email
-      expect(email).to have_subject("Your investment project '#{investment.code}' has been marked as unfeasible")
-      expect(email).to deliver_to(investment.author.email)
+      expect(email).to have_subject "Your investment project '#{investment.code}' " \
+                                    "has been marked as unfeasible"
+      expect(email).to deliver_to investment.author.email
       expect(email).to have_body_text "This is not legal as stated in Article 34.9"
     end
 
@@ -495,7 +497,8 @@ describe "Emails" do
       expect(email.body.encoded).to include("This is a different body")
       expect(email).to have_body_text("To unsubscribe from these emails, visit")
       expect(email).to have_body_text(
-                        edit_subscriptions_path(token: user_with_newsletter_in_segment_2.subscriptions_token))
+                        edit_subscriptions_path(token: user_with_newsletter_in_segment_2.subscriptions_token)
+                      )
       expect(email).to have_body_text('and uncheck "Receive relevant information by email"')
     end
   end

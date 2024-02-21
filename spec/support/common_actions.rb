@@ -35,8 +35,8 @@ module CommonActions
   end
 
   def validate_officer
-    allow_any_instance_of(Officing::BaseController).
-    to receive(:verify_officer_assignment).and_return(true)
+    allow_any_instance_of(Officing::BaseController)
+      .to receive(:verify_officer_assignment).and_return(true)
   end
 
   def fill_in_proposal
@@ -45,8 +45,6 @@ module CommonActions
     fill_in_ckeditor "Proposal text", with: "This is very important because..."
     fill_in "External video URL", with: "https://www.youtube.com/watch?v=yPQfcG-eimk"
     fill_in "Full name of the person submitting the proposal", with: "Isabel Garcia"
-    # Check terms of service by default
-    # check "I agree to the Privacy Policy and the Terms and conditions of use"
   end
 
   def fill_in_new_proposal_title(with:)
@@ -70,8 +68,8 @@ module CommonActions
   def set_officing_booth(booth = nil)
     booth = create(:poll_booth) if booth.blank?
 
-    allow_any_instance_of(Officing::BaseController).
-    to receive(:current_booth).and_return(booth)
+    allow_any_instance_of(Officing::BaseController)
+      .to receive(:current_booth).and_return(booth)
   end
 
   def click_sdg_goal(code)

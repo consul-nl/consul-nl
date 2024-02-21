@@ -1,7 +1,7 @@
 engines:
   rubocop:
     enabled: true
-    channel: rubocop-0-74
+    channel: rubocop-1-31-0
   duplication:
     enabled: true
     config:
@@ -22,15 +22,15 @@ engines:
     enabled: true
 ratings:
   paths:
-  - app/**/*
-  - lib/**/*
+    - app/**/*
+    - lib/**/*
 exclude_paths:
-- app/assets/fonts/
-- app/assets/images/
-- bin/rails
-- bin/rake
-- db/
-- files/
-- public/
-- tmp/
-- vendor/
+  - app/assets/fonts/
+  - app/assets/images/
+  - bin/rails
+  - bin/rake
+  - db/
+  - files/
+  - public/
+  - tmp/
+  - vendor/

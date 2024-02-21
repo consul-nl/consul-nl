@@ -37,7 +37,7 @@ describe "Admin settings", :admin do
       expect(page).not_to have_css("#admin-map.leaflet-container", visible: :all)
     end
 
-    scenario "When `Map settings` tab content is shown map should be initialized" do
+    scenario "When `Map settings` tab content is shown map should be initialized", :consul do
       visit admin_settings_path
 
       click_link "Map configuration"
@@ -47,7 +47,7 @@ describe "Admin settings", :admin do
   end
 
   describe "Update map" do
-    scenario "Should not be able when map feature deactivated" do
+    scenario "Should not be able when map feature deactivated", :consul do
       Setting["feature.map"] = false
 
       visit admin_settings_path
@@ -59,7 +59,7 @@ describe "Admin settings", :admin do
       expect(page).not_to have_css("#admin-map")
     end
 
-    scenario "Should be able when map feature activated" do
+    scenario "Should be able when map feature activated", :consul do
       Setting["feature.map"] = true
 
       visit admin_settings_path
@@ -71,7 +71,7 @@ describe "Admin settings", :admin do
                                        'on "Features" tab.'
     end
 
-    scenario "Should show successful notice" do
+    scenario "Should show successful notice", :consul do
       Setting["feature.map"] = true
 
       visit admin_settings_path
@@ -84,7 +84,7 @@ describe "Admin settings", :admin do
       expect(page).to have_content "Map configuration updated successfully"
     end
 
-    scenario "Should display marker by default" do
+    scenario "Should display marker by default", :consul do
       Setting["feature.map"] = true
 
       visit admin_settings_path
@@ -93,7 +93,7 @@ describe "Admin settings", :admin do
       expect(find("#longitude", visible: :hidden).value).to eq "0.0"
     end
 
-    scenario "Should update marker" do
+    scenario "Should update marker", :consul do
       Setting["feature.map"] = true
 
       visit admin_settings_path
@@ -208,7 +208,7 @@ describe "Admin settings", :admin do
         Setting["feature.map"] = true
       end
 
-      scenario "On #tab-map-configuration" do
+      scenario "On #tab-map-configuration", :consul do
         Setting.create!(key: "map.whatever")
 
         visit admin_settings_path

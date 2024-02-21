@@ -35,7 +35,7 @@ describe "Admin administrators" do
   scenario "Delete Administrator" do
     visit admin_administrators_path
 
-    confirmation = "Are you sure? This action will delete "\
+    confirmation = "Are you sure? This action will delete " \
                    "\"#{user_administrator.name}\" and can't be undone."
 
     within "#administrator_#{user_administrator.id}" do
@@ -57,20 +57,6 @@ describe "Admin administrators" do
 
     within("#error") do
       expect(page).to have_content I18n.t("admin.administrators.administrator.restricted_removal")
-    end
-  end
-
-  scenario "Delete Administrator when it is assigned to a budget" do
-    create(:budget, administrators: [user_administrator])
-
-    visit admin_administrators_path
-
-    within "#administrator_#{user_administrator.id}" do
-      accept_confirm { click_button "Delete" }
-    end
-
-    within("#administrators") do
-      expect(page).not_to have_content user_administrator.name
     end
   end
 

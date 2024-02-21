@@ -107,6 +107,7 @@ es:
         icon_alt: Icono de Debates
         title: Debates
         help: Ayuda sobre los debates
+        description: "Inicia un debate para compartir tus puntos de vista sobre temas que consideres importantes."
       section_footer:
         title: Ayuda sobre los debates
         description: Inicia un debate para compartir puntos de vista con otras personas sobre los temas que te preocupan.
@@ -197,17 +198,17 @@ es:
           zero: Sin apoyos
           one: 1 Apoyo
           other: "Apoyos"
+    link_to_top:
+      title: "Volver a la parte superior de la página"
     footer:
       accessibility: Accesibilidad
       conditions: Condiciones de uso
       consul: aplicación CONSUL DEMOCRACY
       consul_url: https://github.com/consuldemocracy/consuldemocracy
-      copyright: CONSUL DEMOCRACY, %{year}
+      copyright: "CONSUL DEMOCRACY versión %{version}, %{year}"
       description: Este portal usa la %{consul} que es %{open_source}.
       open_source: software de código abierto
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
-      participation_text: Decide cómo debe ser la ciudad que quieres.
-      participation_title: Participación
       privacy: Política de privacidad
     header:
       administration_menu: Menú
@@ -222,7 +223,6 @@ es:
       help: Ayuda
       my_account_link: Mi cuenta
       my_activity_link: Mi contenido
-      open_gov: Gobierno abierto
       proposals: Propuestas
       poll_questions: Votaciones
       budgets: Presupuestos participativos
@@ -370,6 +370,7 @@ es:
         icon_alt: Icono de Propuestas
         title: Propuestas
         help: Ayuda sobre las propuestas
+        description: "Apoya las propuestas y si obtienen suficiente apoyo serán votadas."
       section_footer:
         title: Ayuda sobre las propuestas
         description: Las propuestas ciudadanas son una oportunidad para que los vecinos y colectivos decidan directamente cómo quieren que sea su ciudad, después de conseguir los apoyos suficientes y de someterse a votación ciudadana.
@@ -576,6 +577,7 @@ es:
     no_dates: "sin fecha asignada"
     dates: "Desde el %{open_at} hasta el %{closed_at}"
     final_date: "Recuento final/Resultados"
+    question: "Pregunta"
     index:
       filters:
         current: "Abiertas"
@@ -594,6 +596,7 @@ es:
         icon_alt: Icono de Votaciones
         title: Votaciones
         help: Ayuda sobre las votaciones
+        description: "Da tu opinión sobre temas específicos."
       section_footer:
         title: Ayuda sobre las votaciones
         description: Las votaciones ciudadanas son un mecanismo de participación por el que la ciudadanía con derecho a voto puede tomar decisiones de forma directa.
@@ -609,6 +612,7 @@ es:
       cant_answer_expired: "Esta votación ha terminado."
       cant_answer_wrong_geozone: "Esta votación no está disponible en tu zona."
       more_info_title: "Más información"
+      less_info_title: "Menos información"
       documents: Documentos
       zoom_plus: Ampliar imagen
       read_more: "Leer más sobre %{answer}"
@@ -755,6 +759,7 @@ es:
         other: "%{count} idiomas en uso"
     optional: "Campos opcionales"
     required: "Campos obligatorios"
+    required_fields: "Todos los campos marcados con un (*) son obligatorios"
     comments:
       one: "1 comentario"
       other: "%{count} comentarios"
@@ -864,6 +869,10 @@ es:
         debates: Ahora mismo no hay debates
         proposals: Ahora mismo no hay propuestas
         processes: Ahora mismo no hay procesos abiertos
+        budgets: "Ahora mismo no hay presupuestos participativos"
+      description:
+        proposals: "Las propuestas ciudadanas que reúnan suficientes apoyos pasarán a una fase de votación, para que todos los ciudadanos decidan cómo quieren que sea su ciudad."
+        budgets: "Los presupuestos participativos son procesos en los que los ciudadanos deciden directamente en qué se gasta parte del presupuesto municipal. Los proyectos más apoyados se evalúan y pasan a una votación final en la que se deciden las acciones que llevará a cabo el Ayuntamiento."
       process_label: Proceso
       see_process: Ver proceso
     cards:

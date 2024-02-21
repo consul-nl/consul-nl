@@ -7,30 +7,26 @@ describe "Account" do
     login_as(user)
   end
 
-  scenario "Show" do
+  scenario "Show", :consul do
     visit root_path
 
     click_link "My account"
 
     expect(page).to have_current_path(account_path, ignore_query: true)
 
-    within(".account") do
-      expect(page).to have_selector("input[value='Manuela Colau']")
-      expect(page).to have_selector(avatar("Manuela Colau"), count: 1)
-    end
+    expect(page).to have_css "input[value='Manuela Colau']"
+    expect(page).to have_css avatar("Manuela Colau"), count: 1
   end
 
-  scenario "Show organization" do
+  scenario "Show organization", :consul do
     create(:organization, user: user, name: "Manuela Corp")
 
     visit account_path
 
-    within(".account") do
-      expect(page).to have_selector("input[value='Manuela Corp']")
-      expect(page).not_to have_selector("input[value='Manuela Colau']")
+    expect(page).to have_css "input[value='Manuela Corp']"
+    expect(page).not_to have_css "input[value='Manuela Colau']"
 
-      expect(page).to have_selector(avatar("Manuela Corp"), count: 1)
-    end
+    expect(page).to have_css avatar("Manuela Corp"), count: 1
   end
 
   scenario "Edit" do
@@ -47,7 +43,7 @@ describe "Account" do
 
     visit account_path
 
-    expect(page).to have_selector("input[value='Larry Bird']")
+    expect(page).to have_css "input[value='Larry Bird']"
     expect(find("#account_email_on_comment")).to be_checked
     expect(find("#account_email_on_comment_reply")).to be_checked
     expect(find("#account_email_digest")).not_to be_checked
@@ -65,9 +61,9 @@ describe "Account" do
 
     click_button "Update"
 
-    notice = "Your account has been updated successfully;"\
-             " however, we need to verify your new email address."\
-             " Please check your email and click on the link to"\
+    notice = "Your account has been updated successfully;" \
+             " however, we need to verify your new email address." \
+             " Please check your email and click on the link to" \
              " complete the confirmation of your new email address."
     expect(page).to have_content notice
 
@@ -85,7 +81,7 @@ describe "Account" do
 
     visit account_path
     click_link "Change my login details"
-    expect(page).to have_selector("input[value='new_user_email@example.com']")
+    expect(page).to have_css "input[value='new_user_email@example.com']"
   end
 
   scenario "Edit Organization" do
@@ -102,7 +98,7 @@ describe "Account" do
 
     visit account_path
 
-    expect(page).to have_selector("input[value='Google']")
+    expect(page).to have_css "input[value='Google']"
     expect(find("#account_email_on_comment")).to be_checked
     expect(find("#account_email_on_comment_reply")).to be_checked
   end

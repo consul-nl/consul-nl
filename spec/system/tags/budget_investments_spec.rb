@@ -6,7 +6,7 @@ describe "Tags" do
   let(:group)   { create(:budget_group, name: "Health", budget: budget) }
   let!(:heading) do
     create(:budget_heading, name: "More hospitals",
-           group: group, latitude: "40.416775", longitude: "-3.703790")
+                            group: group, latitude: "40.416775", longitude: "-3.703790")
   end
   let!(:tag_medio_ambiente) { create(:tag, :category, name: "Medio Ambiente") }
   let!(:tag_economia) { create(:tag, :category, name: "Economía") }
@@ -29,7 +29,7 @@ describe "Tags" do
 
   scenario "Index shows 3 tags with no plus link" do
     tag_list = ["Medio Ambiente", "Corrupción", "Fiestas populares"]
-    create :budget_investment, heading: heading, tag_list: tag_list
+    create(:budget_investment, heading: heading, tag_list: tag_list)
 
     visit budget_investments_path(budget, heading_id: heading.id)
 
@@ -43,7 +43,7 @@ describe "Tags" do
 
   scenario "Index shows up to 5 tags per investment" do
     tag_list = ["Hacienda", "Economía", "Medio Ambiente", "Corrupción", "Fiestas populares", "Prensa"]
-    create :budget_investment, heading: heading, tag_list: tag_list
+    create(:budget_investment, heading: heading, tag_list: tag_list)
 
     visit budget_investments_path(budget, heading_id: heading.id)
 
@@ -53,7 +53,9 @@ describe "Tags" do
   end
 
   scenario "Show" do
-    investment = create(:budget_investment, heading: heading, tag_list: "#{tag_medio_ambiente.name}, #{tag_economia.name}")
+    investment = create(:budget_investment,
+                        heading: heading,
+                        tag_list: "#{tag_medio_ambiente.name}, #{tag_economia.name}")
 
     visit budget_investment_path(budget, investment)
 
@@ -61,13 +63,14 @@ describe "Tags" do
     expect(page).to have_content(tag_economia.name)
   end
 
-  scenario "Create with custom tags" do
+  scenario "Create with custom tags", :consul do
     login_as(author)
 
     visit new_budget_investment_path(budget_id: budget.id)
 
     fill_in_new_investment_title with: "Build a skyscraper"
     fill_in_ckeditor "Description", with: "I want to live in a high tower over the clouds"
+    check   "budget_investment_terms_of_service"
 
     fill_in "budget_investment_tag_list", with: "#{tag_medio_ambiente.name}, #{tag_economia.name}"
 
@@ -78,13 +81,14 @@ describe "Tags" do
     expect(page).to have_content tag_medio_ambiente.name
   end
 
-  scenario "Category with category tags" do
+  scenario "Category with category tags", :consul do
     login_as(author)
 
     visit new_budget_investment_path(budget_id: budget.id)
 
     fill_in_new_investment_title with: "Build a skyscraper"
     fill_in_ckeditor "Description", with: "If I had a gym near my place I could go do Zumba"
+    check "budget_investment_terms_of_service"
 
     find(".js-add-tag-link", text: tag_economia.name).click
     click_button "Create Investment"
@@ -98,7 +102,7 @@ describe "Tags" do
     end
   end
 
-  scenario "Turbolinks sanity check from budget's show" do
+  scenario "Turbolinks sanity check from budget's show", :consul do
     create(:tag, name: "Education", kind: "category")
     create(:tag, name: "Health",    kind: "category")
 
@@ -108,6 +112,7 @@ describe "Tags" do
 
     fill_in_new_investment_title with: "Build a skyscraper"
     fill_in_ckeditor "Description", with: "If I had a gym near my place I could go do Zumba"
+    check "budget_investment_terms_of_service"
 
     find(".js-add-tag-link", text: "Education").click
     click_button "Create Investment"
@@ -121,7 +126,7 @@ describe "Tags" do
     end
   end
 
-  scenario "Turbolinks sanity check from budget heading's show" do
+  scenario "Turbolinks sanity check from budget heading's show", :consul do
     create(:tag, name: "Education", kind: "category")
     create(:tag, name: "Health",    kind: "category")
 
@@ -131,6 +136,7 @@ describe "Tags" do
 
     fill_in_new_investment_title with: "Build a skyscraper"
     fill_in_ckeditor "Description", with: "If I had a gym near my place I could go do Zumba"
+    check "budget_investment_terms_of_service"
 
     find(".js-add-tag-link", text: "Education").click
     click_button "Create Investment"
@@ -144,15 +150,17 @@ describe "Tags" do
     end
   end
 
-  scenario "Create with too many tags" do
+  scenario "Create with too many tags", :consul do
     login_as(author)
 
     visit new_budget_investment_path(budget_id: budget.id)
 
     fill_in_new_investment_title with: "Build a skyscraper"
     fill_in_ckeditor "Description", with: "I want to live in a high tower over the clouds"
+    check   "budget_investment_terms_of_service"
 
-    fill_in "budget_investment_tag_list", with: "Impuestos, Economía, Hacienda, Sanidad, Educación, Política, Igualdad"
+    fill_in "budget_investment_tag_list",
+            with: "Impuestos, Economía, Hacienda, Sanidad, Educación, Política, Igualdad"
 
     click_button "Create Investment"
 
@@ -160,13 +168,14 @@ describe "Tags" do
     expect(page).to have_content "tags must be less than or equal to 6"
   end
 
-  scenario "Create with dangerous strings" do
+  scenario "Create with dangerous strings", :consul do
     login_as(author)
 
     visit new_budget_investment_path(budget_id: budget.id)
 
     fill_in_new_investment_title with: "Build a skyscraper"
     fill_in_ckeditor "Description", with: "I want to live in a high tower over the clouds"
+    check   "budget_investment_terms_of_service"
 
     fill_in "budget_investment_tag_list", with: "user_id=1, &a=3, <script>alert('hey');</script>"
 
@@ -230,7 +239,7 @@ describe "Tags" do
       end
     end
 
-    scenario "Filter by user tags" do
+    scenario "Filter by user tags", :consul do
       budget.update!(phase: phase)
 
       [investment1, investment2, investment3].each do |investment|
@@ -243,13 +252,7 @@ describe "Tags" do
         end
       end
 
-      login_as(admin) if budget.drafting?
-      visit budget_path(budget)
-      if budget.informing?
-        visit budget_investments_path(budget, heading: heading.id)
-      else
-        click_link "See all investments"
-      end
+      visit budget_investments_path(budget, heading: heading.id)
 
       within "#tag-cloud" do
         click_link new_tag
@@ -279,7 +282,7 @@ describe "Tags" do
       end
     end
 
-    scenario "Filter by category tags" do
+    scenario "Filter by category tags", :consul do
       budget.update!(phase: phase)
 
       [investment1, investment2, investment3].each do |investment|
@@ -292,13 +295,7 @@ describe "Tags" do
         end
       end
 
-      login_as(admin) if budget.drafting?
-      visit budget_path(budget)
-      if budget.informing?
-        visit budget_investments_path(budget, heading: heading.id)
-      else
-        click_link "See all investments"
-      end
+      visit budget_investments_path(budget, heading: heading.id)
 
       within "#categories" do
         click_link tag_medio_ambiente.name
