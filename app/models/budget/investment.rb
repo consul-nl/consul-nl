@@ -270,7 +270,7 @@ class Budget
       return permission_problem(user) if permission_problem?(user)
       return :different_heading_assigned unless valid_heading?(user)
 
-      return :no_selecting_allowed unless budget.selecting?
+      :no_selecting_allowed unless budget.selecting?
     end
 
     def reason_for_not_being_ballotable_by(user, ballot)
@@ -286,7 +286,7 @@ class Budget
     def permission_problem(user)
       return :not_logged_in unless user
       return :organization  if user.organization?
-      return :not_verified  unless user.can?(:create, ActsAsVotable::Vote)
+      return :not_verified  unless user.level_two_or_three_verified?
 
       nil
     end

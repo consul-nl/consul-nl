@@ -34,6 +34,23 @@ describe "Polls" do
       end
     end
 
+    scenario "Expired polls are ordered by ends date" do
+      travel_to "01/07/2023".to_date do
+        create(:poll, starts_at: "03/05/2023", ends_at: "01/06/2023", name: "Expired poll one")
+        create(:poll, starts_at: "02/05/2023", ends_at: "02/06/2023", name: "Expired poll two")
+        create(:poll, starts_at: "01/05/2023", ends_at: "03/06/2023", name: "Expired poll three")
+        create(:poll, starts_at: "04/05/2023", ends_at: "04/06/2023", name: "Expired poll four")
+        create(:poll, starts_at: "05/05/2023", ends_at: "05/06/2023", name: "Expired poll five")
+
+        visit polls_path(filter: "expired")
+
+        expect("Expired poll five").to appear_before("Expired poll four")
+        expect("Expired poll four").to appear_before("Expired poll three")
+        expect("Expired poll three").to appear_before("Expired poll two")
+        expect("Expired poll two").to appear_before("Expired poll one")
+      end
+    end
+
     scenario "Proposal polls won't be listed" do
       proposal = create(:proposal)
       _poll = create(:poll, related: proposal)
@@ -135,7 +152,7 @@ describe "Polls" do
 
       visit polls_path
 
-      expect(page).to have_selector "img[alt='1. No Poverty']"
+      expect(page).to have_css "img[alt='1. No Poverty']"
       expect(page).to have_content "target 1.1"
     end
   end
@@ -213,7 +230,7 @@ describe "Polls" do
 
     scenario "Level 1 users" do
       visit polls_path
-      expect(page).not_to have_selector(".already-answer")
+      expect(page).not_to have_css ".already-answer"
 
       poll.update!(geozone_restricted_to: [geozone])
 
@@ -283,7 +300,7 @@ describe "Polls" do
 
       visit poll_path(poll)
 
-      expect(page).to have_selector "img[alt='1. No Poverty']"
+      expect(page).to have_css "img[alt='1. No Poverty']"
       expect(page).to have_content "target 1.1"
     end
 

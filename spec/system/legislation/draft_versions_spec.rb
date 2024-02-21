@@ -278,9 +278,9 @@ describe "Legislation Draft Versions" do
 
       expect(page).to have_css(".annotator-hl", count: 1)
 
-      click_link "Help"
+      click_link "CONSUL"
 
-      expect(page).to have_content "CONSUL is a platform for citizen participation"
+      expect(page).to have_content "Most active proposals"
 
       go_back
 
@@ -296,9 +296,11 @@ describe "Legislation Draft Versions" do
 
       find(:css, ".annotator-hl").click
 
-      click_link "Help"
+      expect(page).to have_link "Publish Comment"
 
-      expect(page).to have_content "CONSUL is a platform for citizen participation"
+      click_link "CONSUL"
+
+      expect(page).to have_content "Most active proposals"
 
       go_back
 
@@ -443,7 +445,7 @@ describe "Legislation Draft Versions" do
     scenario "See table as a user" do
       visit legislation_process_draft_version_path(draft_version.process, draft_version)
 
-      expect(page).to have_css("table")
+      expect(page).to have_table
       expect(page).to have_content "Roberta"
       expect(page).to have_content "25"
     end
@@ -454,7 +456,7 @@ describe "Legislation Draft Versions" do
       visit path
       click_link "Launch text editor"
 
-      expect(page).to have_css("table")
+      expect(page).to have_table
       expect(page).to have_content "Roberta"
       expect(page).to have_content "25"
     end

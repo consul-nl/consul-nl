@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe "Commenting legislation questions" do
-  let(:user) { create :user }
-  let(:annotation) { create :legislation_annotation, author: user }
+  let(:user) { create(:user) }
+  let(:annotation) { create(:legislation_annotation, author: user) }
 
   it_behaves_like "flaggable", :legislation_annotation_comment
 
@@ -37,7 +37,7 @@ describe "Commenting legislation questions" do
     expect(page).to have_link "Go back to #{annotation.title}", href: href
 
     within ".comment", text: "Parent" do
-      expect(page).to have_selector(".comment", count: 2)
+      expect(page).to have_css ".comment", count: 2
     end
   end
 
@@ -155,7 +155,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Turns links into html links" do
-    annotation = create :legislation_annotation, author: user
+    annotation = create(:legislation_annotation, author: user)
     annotation.comments << create(:comment, body: "Built with http://rubyonrails.org/")
 
     visit polymorphic_path(annotation)
@@ -164,15 +164,15 @@ describe "Commenting legislation questions" do
       expect(page).to have_content "Built with http://rubyonrails.org/"
       expect(page).to have_link("http://rubyonrails.org/", href: "http://rubyonrails.org/")
       expect(find_link("http://rubyonrails.org/")[:rel]).to eq("nofollow")
-      expect(find_link("http://rubyonrails.org/")[:target]).to eq("_blank")
+      expect(find_link("http://rubyonrails.org/")[:target]).to be_blank
     end
   end
 
   scenario "Sanitizes comment body for security" do
-    create :comment, commentable: annotation,
+    create(:comment, commentable: annotation,
                      body: "<script>alert('hola')</script> " \
                            "<a href=\"javascript:alert('sorpresa!')\">click me<a/> " \
-                           "http://www.url.com"
+                           "http://www.url.com")
 
     visit polymorphic_path(annotation)
 
@@ -275,7 +275,7 @@ describe "Commenting legislation questions" do
       expect(page).to have_content "It will be done next week."
     end
 
-    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+    expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
   end
 
   scenario "Reply update parent comment responses count" do
@@ -412,7 +412,7 @@ describe "Commenting legislation questions" do
         expect(page).to have_css "img.moderator-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
 
     scenario "can not comment as an administrator" do
@@ -469,7 +469,7 @@ describe "Commenting legislation questions" do
         expect(page).to have_css "img.admin-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
 
     scenario "can not comment as a moderator", :admin do
@@ -550,7 +550,7 @@ describe "Commenting legislation questions" do
       end
     end
 
-    scenario "Trying to vote multiple times" do
+    scenario "Allow undoing votes" do
       visit polymorphic_path(annotation)
 
       within("#comment_#{comment.id}_votes") do
@@ -562,14 +562,14 @@ describe "Commenting legislation questions" do
         click_button "I agree"
         within(".in-favor") do
           expect(page).not_to have_content "2"
-          expect(page).to have_content "1"
+          expect(page).to have_content "0"
         end
 
         within(".against") do
           expect(page).to have_content "0"
         end
 
-        expect(page).to have_content "1 vote"
+        expect(page).to have_content "No votes"
       end
     end
   end

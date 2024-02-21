@@ -125,7 +125,7 @@ describe "Internal valuation comments on Budget::Investments" do
         expect(page).to have_content("Check http://rubyonrails.org/")
         expect(page).to have_link("http://rubyonrails.org/", href: "http://rubyonrails.org/")
         expect(find_link("http://rubyonrails.org/")[:rel]).to eq("nofollow")
-        expect(find_link("http://rubyonrails.org/")[:target]).to eq("_blank")
+        expect(find_link("http://rubyonrails.org/")[:target]).to be_blank
       end
     end
 
@@ -211,7 +211,7 @@ describe "Internal valuation comments on Budget::Investments" do
         expect(page).to have_content "It will be done next week."
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
 
       visit budget_investment_path(investment.budget, investment)
       expect(page).not_to have_content("It will be done next week.")
@@ -273,9 +273,9 @@ describe "Internal valuation comments on Budget::Investments" do
       visit valuation_budget_budget_investment_path(budget, investment)
       expect(page).to have_css(".comment.comment.comment.comment.comment.comment.comment.comment")
 
-      expect(page).to have_no_css(".comment-votes")
-      expect(page).to have_no_css(".js-flag-actions")
-      expect(page).to have_no_css(".moderation-actions")
+      expect(page).not_to have_css(".comment-votes")
+      expect(page).not_to have_css(".js-flag-actions")
+      expect(page).not_to have_css(".moderation-actions")
     end
   end
 
@@ -329,7 +329,7 @@ describe "Internal valuation comments on Budget::Investments" do
         expect(page).to have_css "img.admin-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_css "#js-comment-form-comment_#{comment.id}"
     end
   end
 
