@@ -85,8 +85,8 @@ nl:
       budget/heading/translation:
         name: "Naam rubriek"
       budget/investment:
-        location: "Hier kun je meer vertellen over de locatie"
-        organization_name: "Als je een voorstel doet uit naam van een stichting, coöperatie of organisatie, voer dan hier de naam in"
+        location: "Hier kunt u meer vertellen over de locatie"
+        organization_name: "Als u een voorstel doet uit naam van een stichting, coöperatie of organisatie, voer dan hier de naam in"
         feasibility_explanation: "Feasibility explanation (optioneel)"
         unfeasibility_explanation: "Unfeasibility explanation"
       budget/investment/translation:
@@ -160,4 +160,4 @@ nl:
         sdg/local_target:
           attributes:
             code:
-              invalid: "moet beginnen met dezelfde code als de gerelateerde SDG, gevolgd door een punt en eindigen met een cijfer"
+              invalid: "moet beginnen met dezelfde code als de gerelateerde SDG, gevolgs door een punt en eindigen met een cijfer"
