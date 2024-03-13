@@ -7,6 +7,15 @@ footer {
 }
 
 .footer {
+  .title {
+    border-color: $text;
+  }
+
+  a:hover {
+    color: #fff;
+    border-color: #fff;
+  }
+
   .social {
     ul {
       display: flex;
@@ -27,7 +36,8 @@ footer {
   }
 }
 
-.home-page, .custom-page {
+.home-page,
+.custom-page {
   .card .figure-card figcaption h3 {
     min-height: unset;
     background: white;
