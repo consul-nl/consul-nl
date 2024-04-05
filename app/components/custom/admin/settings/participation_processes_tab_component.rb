@@ -10,7 +10,6 @@ class Admin::Settings::ParticipationProcessesTabComponent
       show_navbar.polls
       show_navbar.budgets
       show_navbar.legislation
-      show_navbar.raad
       show_navbar.sdg
       show_navbar.help
     ]
