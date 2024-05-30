@@ -88,12 +88,8 @@
 
   <div class="actions">
     <% unless current_user.manager? || investment.persisted? %>
-      <div>
-        <p class="form-label"><%= t("shared.required_fields") %></p>
-        <%= render Shared::AgreeWithTermsOfServiceFieldComponent.new(f) %>
-      </div>
+      <%= f.hidden_field :terms_of_service, value: 1 %>
     <% end %>
-
     <%= f.submit(nil, class: "button large margin-top") %>
   </div>
 <% end %>
