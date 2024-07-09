@@ -50,7 +50,6 @@ nl:
         description: "Start een discussie om je mening met anderen te delen over onderwerpen die jij belangrijk vindt."
         help_text_1: "Deel je mening over allerlei onderwerpen, kansen of knelpunten die jij belangrijk vindt."
         help_text_2: "Om een discussie te starten of om deel te nemen aan een discussie moet je je registreren op %{org}."
-        help_text_link: "aanmelden"
       title: "Discussies"
       search_form:
         title: "Zoek"
@@ -70,8 +69,10 @@ nl:
   form:
     debate: "discussie"
     proposal: "initiatief"
-    not_saved: "\n\n Let op: bekijk de rode tekst voor meer informatie of acties."
     budget/investment: "idee"
+    not_saved: "zorgden ervoor dat je %{resource} niet geplaatst kan worden. <br>Bekijk de rode tekst om te zien wat aangepast moet worden."
+    budget/investment: "idee"
+    accept_terms: "Ik begrijp dat ik een idee indien voor de Oosterparkwijk"
   proposals:
     proposal:
       reason_for_supports_necessary: ""
@@ -161,7 +162,7 @@ nl:
       recommendations_title: "Advies bij het indienen  van een initiatief"
       recommendation_one: "Vul alle informatie in die je wil vertellen over je idee"
       recommendation_two: "Waarom is dit een goed idee?Wat wil je met dit idee?Is het eenmalig of voor een lange periode? Hoeveel geld is er voor nodig? Wie doet er mee? Wie organiseert het? Wie zijn fan van het idee? Wat is het? Met wat voor regels krijg je te maken? Wat kan er wel en wat kan er niet? Wat zijn de belangen? Wat heb je nodig?"
-      recommendation_three: "Ben je al wat verder met je idee? Een plan van aanpak en een begroting zijn belangrijke stappen in het maken van een plan. Ook een video, website of een plaatje of foto doen het altijd goed voor de steunbetuigingen! Bezoekers kunnen namelijk reageren op je idee. Ook kan je likes verzamelen. Let op: dit zijn nog geen stemmen."
+      recommendation_three: "Een video, website of foto doen het altijd goed voor de hoeveelheid steun! Anderen kunnen reageren op je initiatief en je helpen."
     create:
       form:
         submit_button: "Idee indienen"
@@ -200,7 +201,7 @@ nl:
       filters:
         expired: "Afgerond"
       participate_button: "Deelnemen"
-      no_geozone_restricted: "Hele gemeente"
+      no_geozone_restricted: "Hele regio"
       geozone_restricted: "Per gebied"
       cant_answer: "Deze stemronde is niet beschikbaar in jouw gebied"
       section_header:
@@ -213,7 +214,6 @@ nl:
       cant_answer_not_logged_in: "Je moet %{signin} of je %{signup} om verder te gaan"
       cant_answer_wrong_geozone: "Deze peiling is niet actief voor jouw gebied"
       comments_tab: "Reacties"
-      more_info_options: "Meer informatie over de antwoordmogelijkheden"
       info_menu: "Vragen?"
   comments:
     comment:
@@ -236,8 +236,9 @@ nl:
     login_to_comment: "Je moet %{signin} of je %{signup} om te kunnen reageren."
     login_to_continue: "Je moet %{signin} of je %{signup} om verder te gaan."
     signin: "inloggen"
-    signup: "aanmelden"
+    signup: "registreren"
     show:
+      comments: "Reacties"
       proposals: "Initiatieven"
       budget_investments: "Ideeën"
       actions: "Acties"
@@ -263,7 +264,7 @@ nl:
       new:
         signin: "Inloggen"
         authenticate: "Je moet %{signin} of %{signup} om verder te gaan."
-        submit_button: "Stuur melding"
+        submit_button: "Bericht sturen"
   layouts:
     header:
       collaborative_legislation: "Inspraak"
@@ -272,6 +273,7 @@ nl:
       debates: "Discussies"
       poll_questions: "Peilingen"
       my_account_link: "Mijn profiel"
+      my_activity_link: "Mijn bijdragen"
       administration_menu: "Menu"
       administration: "Admin"
       moderation: "Modereren"
@@ -286,9 +288,9 @@ nl:
     admin:
       watch_form_message: "Je hebt niet-opgeslagen wijzigingen. Verlaat de pagina?"
     footer:
-      org_name: "CONSUL"
       contact_title: "Neem contact met ons op"
       privacy: "Privacyverklaring"
+      contact_email: "noreply@consul.dev"
     dashboard:
       proposal_header:
         published: "Gepubliceerd"
@@ -305,10 +307,8 @@ nl:
           one: "1 steunbetuiging"
           other: "%{count} steunbetuigingen"
     link_to_top:
-      title: "Ga terug naar boven"
+      title: "Go back to the top of the page"
   votes:
-    agree_label: "Ik ben het eens met %{title}"
-    disagree_label: "Ik ben het oneens met %{title}"
     supports: "Steun"
     budget_investments:
       not_verified: "Alleen geverifieerde gebruikers mogen stemmen op ideeën; %{verify_account}."
@@ -317,9 +317,27 @@ nl:
         other: "Je kan ideeën in %{count} groep steunen. Je hebt al ideeën gesteund in de groep %{supported_headings}."
     organizations: "Collectieven en verenigingen kunnen niet stemmen."
   welcome:
+    steps:
+      title: "Doe mee in drie stappen"
+      subtitle: ""
+      step_1:
+        number: "1"
+        title: "Registreren"
+        description: "Gebruik Twitter, Facebook, Google, of jouw mailadres om in te loggen."
+        link: "Meld je binnen vijf minuten aan"
+      step_2:
+        number: "2"
+        title: "Stem"
+        description: "Deel en stem op ideeën."
+        link: "Bekijk wat er gebeurt"
+      step_3:
+        number: "3"
+        title: "Deel"
+        description: "Blijf betrokken bij ideeën die jij belangrijk vindt en deel ze via social media."
+        link: ""
     feed:
       description:
-        proposals: "Voorstellen die genoeg steun ontvangen gaan door naar de stemfase. Zo kunnen alle inwoners van stad bepalen hoe de gemeente eruit komt te zien."
+        proposals: "Voorstellen die genoeg steun ontvangen gaan door naar de stem fase. Zo kunnen alle inwoners van stad bepalen hoe de gemeente eruit komt te zien."
         budgets: "Geef aan wat volgens jou de belangrijkste ideeën zijn."
       most_active:
         debates: "Actieve discussies"
@@ -327,13 +345,7 @@ nl:
         budgets: "Ideeën"
       see_budget: "Bekijk ideeën"
       see_all_proposals: "Alle initiatieven"
-      process_label: "Plan"
-      see_process: "Plan bekijken"
-      no_items:
-        debates: Er zijn op dit moment geen discussies
-        proposals: Er zijn op dit moment geen voorstellen
-        processes: Er zijn op dit moment geen plannen
-        budgets: Er zijn op dit moment geen ideeën
+      see_process: "Bekijk plan"
     cards:
       title: "Uitgelicht"
   shared:
@@ -345,6 +357,9 @@ nl:
     required_fields: "Alle velden gemarkeerd met een (*) zijn verplicht"
     back: "Ga terug"
     search_results: "Zoekresultaten"
+    view_mode:
+      cards: "Overzicht"
+      title: "Weergave"
     advanced_search:
       author_type: "Type indiener"
       date: "Periode"
@@ -357,6 +372,7 @@ nl:
           one: "Er bestaat al een discussie met de term '%{query}'. Je kunt deelnemen aan die discussie in plaats van een nieuwe discussie te starten."
           other: "Er bestaan al discussies met de term '%{query}'. Je kunt deelnemen aan die discussies in plaats van een nieuwe discussie te starten."
       budget_investment:
+        message: "%{limit} van %{count} voorstellen met de term '%{query}'"
         found:
           one: "Er bestaat al een idee met de term '%{query}'. Je kunt meedoen met dat idee in plaats van een nieuw idee delen."
           other: "Er bestaan al ideeën met de term '%{query}'. Je kunt meedoen met die ideeën in plaats van een nieuw idee delen."
@@ -375,6 +391,10 @@ nl:
         zero: "0 Taalinstelling"
         one: "1 Taalinstelling"
         other: "%{count} Taalinstelling"
+    comments:
+      one: "1 opmerking"
+      other: "%{count} opmerkingen"
+      zero: "Geen reacties"
     print:
       print_button: "Afdrukken"
     followable:
@@ -465,20 +485,24 @@ nl:
         sent: "Mail verzonden"
       new:
         title: "E-mail om te delen"
+  proposal_notifications:
+    new:
+      info_about_receivers: "Dit bericht wordt naar <strong>%{count} mensen</strong> gestuurd en is zichtbaar op de %{proposal_page}.<br>Meldingen worden niet direct gestuurd, maar de gebruikers ontvangen periodiek een email met alle meldingen omtrent jouw initiatief."
+      proposal_page: "pagina van je initiatief"
   omniauth:
     facebook:
       sign_in: "Inloggen via Facebook"
-      sign_up: "Aanmelden via Facebook"
+      sign_up: "Registreren via Facebook"
       name: "Facebook"
     finish_signup:
       title: "Verdere details"
       username_warning: "Door een verandering in de manier waarop we met sociale netwerken communiceren, is het mogelijk dat uw gebruikersnaam nu als 'al in gebruik' verschijnt. Kiest u dan een andere gebruikersnaam, aub."
     google_oauth2:
       sign_in: "Inloggen via Google"
-      sign_up: "Aanmelden met Google"
+      sign_up: "Registreren met Google"
       name: "Google"
     info_sign_in: "Inloggen via sociale media"
-    info_sign_up: "Aanmelden via sociale media"
+    info_sign_up: "Registreren via sociale media"
     or_fill: "Of vul het formulier in"
     info:
       sign_in: "Aanmelden met:"
@@ -503,11 +527,9 @@ nl:
   poll_questions:
     show:
       voted: "Je hebt %{answer} gestemd"
-      vote_registered: "Je stem is opgeslagen."
   proposal_notifications:
     new:
       title: "Stuur melding"
       submit_button: "Stuur melding"
       info_about_receivers: "Deze melding stuur je naar <strong>%{count} mensen</strong> en is te zien op %{proposal_page}.<br> Meldingen worden niet direct gestuurd, maar de gebruikers ontvangen periodiek een email met alle meldingen omtrent jouw initiatief."
       proposal_page: "de pagina van het initiatief"
-  skip_to_content: "Ga naar de inhoud"

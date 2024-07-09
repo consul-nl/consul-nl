@@ -7,6 +7,9 @@ nl:
     related_sdg_list: "Goals and Targets"
   activerecord:
     models:
+      budget:
+        one: "Idee"
+        other: "Ideeën"
       budget/investment:
         one: "Idee"
         other: "Ideeën"
@@ -49,7 +52,7 @@ nl:
         summary: "Samenvatting initiatief"
         retired_explanation: "Toelichting"
       user:
-        email_digest: "Ontvang een samenvatting van notificaties van initiatieven"
+        email_digest: "Ontvang meldingen van door mij gevolgde initiatieven"
         email_on_comment: "Stuur mij een mail wanneer iemand reageert op mijn initiatieven of discussies"
         email_on_comment_reply: "Stuur mij een mail wanneer iemand op mijn reactie reageert"
         email_on_direct_message: "Ontvang emails over privéberichten"
@@ -58,6 +61,9 @@ nl:
         public_interests: "Maak de onderwerpen/labels die ik volg openbaar"
         recommended_debates: "Toon aanbevelingen voor discussie"
         recommended_proposals: "Toon aanbevelingen voor voorstellen"
+      direct_message:
+        title: "Titel"
+        body: "Bericht"
       budget:
         main_button_text: "Tekst knop"
         main_button_url: "Link knop"
@@ -85,6 +91,7 @@ nl:
       budget/heading/translation:
         name: "Naam rubriek"
       budget/investment:
+        heading_id: "Voor welk(e) wijk/dorp/gebied is dit idee?"
         location: "Hier kun je meer vertellen over de locatie"
         organization_name: "Als je een voorstel doet uit naam van een stichting, coöperatie of organisatie, voer dan hier de naam in"
         feasibility_explanation: "Feasibility explanation (optioneel)"
@@ -160,4 +167,4 @@ nl:
         sdg/local_target:
           attributes:
             code:
-              invalid: "moet beginnen met dezelfde code als de gerelateerde SDG, gevolgd door een punt en eindigen met een cijfer"
+              invalid: "moet beginnen met dezelfde code als de gerelateerde SDG, gevolgs door een punt en eindigen met een cijfer"

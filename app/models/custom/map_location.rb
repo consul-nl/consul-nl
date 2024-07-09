@@ -1,8 +1,6 @@
 require_dependency Rails.root.join("app", "models", "map_location").to_s
 
 class MapLocation
-  belongs_to :map
-
   def from_map(map)
     self.latitude = map.map_location.latitude
     self.longitude = map.map_location.longitude

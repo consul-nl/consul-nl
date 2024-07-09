@@ -61,7 +61,8 @@ nl:
       map: "Alle ideeën op de kaart"
       current_phase: "Huidige fase"
       section_header:
-        help: "Toelichting"
+        title: "Ideeën"
+        help: "Veelgestelde vragen"
       section_footer:
         title: "Over dit proces"
         description: "Beslis mee over de verdeling van geld tussen verschillende ideeën en projecten."
@@ -102,13 +103,16 @@ nl:
           voted_info_link: "je stem wijzigen"
           create: "Nieuw idee delen"
           zero: "Je hebt nog niet op een idee gestemd"
+          by_feasibility: "Op haalbaarheid"
           change_ballot: "Als je je bedenkt kun je je stemmen in %{check_ballot} verwijderen en opnieuw beginnen."
           check_ballot_link: "Bekijk mijn stemmen"
           different_heading_assigned: "Je hebt al gestemd in een andere groep: %{heading_link}"
+          feasible: "Haalbare budgetten ideeën"
           my_ballot: "Mijn stemmen"
           not_logged_in: "Om een idee in te dienen moet je %{sign_in} of %{sign_up}."
           sign_in: "inloggen"
           sign_up: "registreren"
+          unfeasible: "Onhaalbare ideeën"
           verified_only: "%{verify} je account om een idee in te dienen."
           verify_account: "je account verifieren"
           change_vote_info:
@@ -132,11 +136,9 @@ nl:
         search_form:
           placeholder: "Zoek ideeën..."
         unfeasible: "Niet stembare ideeën"
-        unfeasible_text: "De Coöperatieve Wijkraad heeft alle ideeën bekeken die de afgelopen weken zijn verzameld. We hebben nagekeken of ze écht voor de wijk zijn en hebben onderzocht hoeveel geld het zou kosten om dit idee uit te voeren. Hieronder vind je alle ideeën waar niet op gestemd kan worden. We hebben uitgelegd aan de indiener van het idee waarom wij dat vinden. Sommige ideeën zijn gecombineerd met een ander idee, andere ideeën waren een suggestie. Sommige ideeën worden al uitgevoerd en met sommige indieners van ideeën hebben we helaas geen contact kunnen krijgen."
         title: "Ideeën"
       show:
-        title: "Idee"
-        supports: "Steun"
+        supports: "Steunen"
         location: "Locatie: <strong>%{location}</strong>"
         organization_name: "Idee ingediend door: <strong>%{name}</strong>"
         author: "Auteur"
@@ -151,6 +153,7 @@ nl:
         unfeasibility_explanation: "Uitleg over geschiktheid idee"
         price_explanation: "Toelichting kosten"
         votes: "Stemmen"
+        edit: "Bewerk je idee"
       form:
         title: "Deel een idee"
         map_location_instructions: "Klik op de kaart om de locatie aan te geven. Je kunt de kaart bewegen"
@@ -163,8 +166,8 @@ nl:
         tags_placeholder: "Voer de categorie in die je wilt gebruiken, gescheiden door kommas (',')"
       investment:
         price_title: "Prijs"
-        support_title: "Stemmen"
-        give_support: "Steun"
+        support_title: "Steunbetuigingen"
+        give_support: "Steunen"
         remove_support: "Steun verwijderen"
         supports:
           zero: "nog geen steun"
@@ -182,7 +185,14 @@ nl:
         change_ballot: "Als je je bedenkt kun je je stemmen in %{check_ballot} verwijderen en opnieuw beginnen."
         different_heading_assigned: "Je hebt al gestemd in een andere groep: %{heading_link}"
       share:
-        message: "Dit is een goed idee voor de Oosterparkwijk! Vanaf 18 november kan je stemmen op dit idee"
+        message: "Ik vind dit een goed idee!"
+      new:
+        recommendations_title: "Beschrijf bijvoorbeeld:"
+        recommendation_one: "waarom het een goed idee is"
+        recommendation_two: "voor wie het idee bedoeld is"
+        recommendation_three: "wat er nodig is voor de realisatie ervan"
+        recommendation_four: "wat je zelf wilt of kunt doen voor de realisatie"
+        recommendation_five: "of het eenmalig is (zoals een activiteit) of voor meerdere jaren (zoals een voorziening)"
     show:
       see_all_investments: "Bekijk alle ideeën"
       investments_list: "Ideeën"
@@ -205,6 +215,10 @@ nl:
       you_have_assigned: "Je hebt"
       assigned: "Uitgegeven"
       available: "Beschikbare bedrag:"
+      votes:
+        zero: "Je hebt op <strong>0</strong> van de <strong>%{limit}</strong> ideeën gestemd"
+        one: "Je hebt op <strong>1</strong> van de <strong>%{limit}</strong> ideeën gestemd"
+        other: "Je hebt op <strong>%{count}</strong> van de <strong>%{limit}</strong> ideeën gestemd"
     results:
       link: "De uitslag"
       investment_title: "Idee"
