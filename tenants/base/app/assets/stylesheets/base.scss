@@ -510,12 +510,11 @@ form {
   select,
   textarea,
   [type]:not(
-      [type="button"],
-      [type="checkbox"],
-      [type="file"],
-      [type="radio"],
-      [type="submit"]
-    ):not(.close-button),
+    [type="button"],
+    [type="checkbox"],
+    [type="file"],
+    [type="radio"],
+    [type="submit"]):not(.close-button),
   .cke {
     border: 2px solid $border-forms;
   }
