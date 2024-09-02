@@ -128,7 +128,7 @@
 //= require custom
 //= require_tree ./custom
 
-var initialize_modules = function () {
+var initialize_modules = function() {
   "use strict";
 
   App.Options.initialize();
@@ -187,7 +187,7 @@ var initialize_modules = function () {
   App.ResponsiveMenu.initialize();
 };
 
-var destroy_non_idempotent_modules = function () {
+var destroy_non_idempotent_modules = function() {
   "use strict";
 
   App.ColumnsSelector.destroy();
