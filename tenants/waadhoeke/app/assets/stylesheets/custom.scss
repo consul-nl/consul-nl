@@ -1,0 +1,51 @@
+// Custom styles
+// 1. General
+//
+
+// 1. General
+// --------------------
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: bold;
+  src: font-url("poppins_bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Century gothic";
+  font-style: normal;
+  font-weight: 300;
+  src: font-url("gothic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Century gothic";
+  font-style: normal;
+  font-weight: bold;
+  src: font-url("gothic_bold.ttf") format("truetype");
+}
+
+body,
+p,
+a {
+  font-family: "Century gothic", "Montserrat", sans-serif !important;
+}
+
+h1 {
+  font-family: "Poppins", "Montserrat", sans-serif !important;
+  font-weight: bold;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Century gothic", "Montserrat", sans-serif !important;
+  font-weight: bold;
+}
+
+.top-bar {
+  padding: 0;
+}

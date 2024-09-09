@@ -48,6 +48,11 @@
   src: font-url("Roboto-BoldItalic.ttf") format("truetype");
 }
 
+:root {
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
+}
+
 body,
 p,
 a {
