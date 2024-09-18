@@ -2,18 +2,32 @@
   background: none;
 }
 
+.top-bar .menu > li a {
+  font-weight: 700;
+  color: var(--brand);
+
+  &.button {
+    color: #fff;
+    background: var(--green);
+    border-radius: 6px;
+  }
+}
+
 footer {
-  color: $text;
+  color: #fff;
 }
 
 .footer {
   .title {
-    border-color: $text;
+    border-color: #fff;
   }
 
-  a:hover {
+  a {
     color: #fff;
-    border-color: #fff;
+
+    &:hover {
+      border-color: #fff;
+    }
   }
 
   .social {
@@ -38,16 +52,37 @@ footer {
 
 .home-page,
 .custom-page {
-  .card .figure-card figcaption h3 {
-    min-height: unset;
-    background: white;
-    color: var(--brand);
-    left: 0.75rem;
-    right: 0.75rem;
-    bottom: 0.75rem;
-    margin: 0;
-    padding: rem-calc(10) rem-calc(12);
+  .card.budget .description::after {
+    background: none;
   }
+  .card {
+
+    .completed, h4, .dates, .phase, .description, a {
+      color: #fff;
+    }
+
+    p, h4 {
+      &:last-child {
+        color: #fff;
+      }
+    }
+
+    a {
+      background: $green;
+    }
+
+    .figure-card figcaption h3 {
+      min-height: unset;
+      background: white;
+      color: var(--green);
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: 0.75rem;
+      margin: 0;
+      padding: rem-calc(10) rem-calc(12);
+    }
+  }
+
 }
 
 .home-page .figure-card,
@@ -64,4 +99,49 @@ h4,
 h5,
 h6 {
   color: var(--header-color, inherit);
+}
+
+.subnavigation {
+  background: var(--green);
+
+  a {
+    color: white;
+
+    &:hover, &.is-active {
+      text-decoration: underline;
+      color: white;
+    }
+
+    &.is-active::after {
+      background: white;
+    }
+  }
+}
+
+.button, .button.expanded {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 6px;
+  background: var(--green);
+
+  font-family: "Formata", sans-serif;
+  font-weight: 700;
+}
+
+body {
+  color: $text;
+}
+
+.header-card, header, .help-header {
+  color: $blue-dark;
+}
+
+.investments-list .past-budgets.investments-list-item, .process-summary .past-budgets.debate-summary, .process-summary .past-budgets.proposal-summary, .process-summary .past-budgets.annotation-summary, .debate .past-budgets.panel, .proposal .past-budgets.panel, .budget-investment .past-budgets.panel, .budget-investment-show .past-budgets.panel, .legislation .past-budgets.panel, .communities-show .past-budgets.panel {
+  align-items: center;
+
+  .button {
+    margin-bottom: 0;
+  }
 }
