@@ -9,7 +9,7 @@
   &.button {
     color: #fff;
     background: var(--green);
-    border-radius: 6px;
+    border-radius: 4px;
   }
 }
 
@@ -69,6 +69,12 @@ footer {
 
     a {
       background: $green;
+      border-radius: 4px;
+    }
+
+    figure {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
     }
 
     .figure-card figcaption h3 {
@@ -104,6 +110,18 @@ h6 {
 .subnavigation {
   background: var(--green);
 
+  .dropdown.menu > li.is-active > a {
+    color: white;
+  }
+
+  .dropdown.menu > li.is-dropdown-submenu-parent > a::before {
+    border-color: white transparent transparent;
+  }
+
+  .is-dropdown-submenu-item a {
+    color: var(--blue-dark);
+  }
+
   a {
     color: white;
 
@@ -123,11 +141,22 @@ h6 {
   justify-content: center;
   align-items: center;
 
-  border-radius: 6px;
+  border-radius: 4px;
   background: var(--green);
+  color: white;
 
   font-family: "Formata", sans-serif;
   font-weight: 700;
+}
+
+.button.hollow {
+  background: none;
+  color: var(--green);
+  border-color: var(--green);
+}
+
+form[role="search"] input {
+  margin-bottom: 0!important;
 }
 
 body {
@@ -143,5 +172,20 @@ body {
 
   .button {
     margin-bottom: 0;
+  }
+}
+
+.budget-phases .phase-title.current-phase-tab a:hover::after {
+  border-left-color: var(--brand-secondary);
+}
+
+.budget-phases .phase-title.current-phase-tab a:hover {
+  color: white;
+  background: var(--brand-secondary);
+}
+
+@media print, screen and (min-width: 40em) {
+  .menu-and-content [for="show_menu"] {
+    display: none;
   }
 }
