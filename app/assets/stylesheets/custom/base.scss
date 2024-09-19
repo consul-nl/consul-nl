@@ -119,7 +119,12 @@ h6 {
   }
 
   .is-dropdown-submenu-item a {
-    color: var(--blue-dark);
+    color: $blue-dark;
+
+    &:hover, &.is-active {
+      text-decoration: underline;
+      color: $blue-dark;
+    }
   }
 
   a {
