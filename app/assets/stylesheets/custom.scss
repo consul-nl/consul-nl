@@ -26,6 +26,11 @@
   src: font-url("gothic_bold.ttf") format("truetype");
 }
 
+:root {
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
+}
+
 body,
 p,
 a {
@@ -49,3 +54,4 @@ h6 {
 .top-bar {
   padding: 0;
 }
+
