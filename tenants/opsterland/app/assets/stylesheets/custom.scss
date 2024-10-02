@@ -161,33 +161,6 @@ main .button,
     }
   }
 
-  .tabs-title > a {
-    &[aria-selected="true"],
-    &.is-active {
-      background: $brand;
-      color: #fff;
-
-      &::after {
-        border-left-color: $brand;
-      }
-    }
-  }
-
-  .tabs-title.current-phase-tab [aria-selected="true"] {
-    background: $brand;
-
-    &::after {
-      border-left-color: $brand;
-    }
-  }
-
-  .tabs-controls {
-    .budget-prev-phase,
-    .budget-next-phase {
-      border-radius: 0;
-    }
-  }
-
   .phase-title {
     &.current-phase-tab a {
       background: #fff;
@@ -204,6 +177,23 @@ main .button,
           border-left-color: $brand;
         }
       }
+
+      &.is-active {
+        background: $brand;
+        color: #fff;
+
+        &::after {
+          border-left-color: $brand;
+        }
+
+      }
+    }
+  }
+
+  .tabs-controls {
+    .budget-prev-phase,
+    .budget-next-phase {
+      border-radius: 0;
     }
   }
 }
