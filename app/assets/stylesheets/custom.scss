@@ -19,6 +19,11 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
+:root {
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
+}
+
 body, h1, h2, h3, h4, p, a {
   font-family: "Montserrat", sans-serif !important;
 }
