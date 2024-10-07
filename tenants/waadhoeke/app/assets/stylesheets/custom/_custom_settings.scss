@@ -4,5 +4,18 @@
 // To override existing variables, use the file named
 // `_consul_custom_overrides.scss` instead
 
-$brand:             #27b3b3;
+$brand:             #906;
 $brand-secondary:   #515159;
+
+:root {
+  --text: #{$text};
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
+  --footer: #f7ce55;
+  --subnavigation: #4BA69E;
+  --subnavigation-contrast: #fff;
+  --subnavigation-contrast-hover: #fff;
+  --header-color: var(--brand);
+  --label: var(--text);
+}
+
