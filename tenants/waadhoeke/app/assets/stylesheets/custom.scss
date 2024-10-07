@@ -26,11 +26,6 @@
   src: font-url("OpenSans-SemiBold.ttf") format("truetype");
 }
 
-:root {
-  --brand: #{$brand};
-  --brand-secondary: #{$brand-secondary};
-}
-
 body,
 p,
 a {
