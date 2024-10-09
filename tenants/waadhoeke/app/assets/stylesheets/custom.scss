@@ -9,43 +9,68 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: bold;
-  src: font-url("poppins_bold.ttf") format("truetype");
+  src: font-url("Poppins-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Century gothic";
+  font-family: "Open Sans";
   font-style: normal;
-  font-weight: 300;
-  src: font-url("gothic.ttf") format("truetype");
+  font-weight: 400;
+  src: font-url("OpenSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Century gothic";
+  font-family: "Open Sans";
   font-style: normal;
-  font-weight: bold;
-  src: font-url("gothic_bold.ttf") format("truetype");
+  font-weight: 600;
+  src: font-url("OpenSans-SemiBold.ttf") format("truetype");
 }
 
 body,
 p,
 a {
-  font-family: "Century gothic", "Montserrat", sans-serif !important;
+  font-family: "Open Sans", sans-serif !important;
 }
 
-h1 {
-  font-family: "Poppins", "Montserrat", sans-serif !important;
+h1,
+h2 {
+  font-family: "Poppins", sans-serif !important;
   font-weight: bold;
+  color: var(--brand);
 }
 
-h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Century gothic", "Montserrat", sans-serif !important;
+  font-family: "Open Sans", sans-serif !important;
   font-weight: bold;
+  color: var(--brand);
 }
 
 .top-bar {
   padding: 0;
+}
+
+.top-bar-title {
+  background: none;
+}
+
+.subnavigation a {
+  &:hover,
+  &.is-active {
+    text-decoration: underline;
+  }
+}
+
+footer {
+  color: var(--text);
+
+  a {
+    color: var(--brand);
+  }
+}
+
+.button, button {
+  font-weight: bold;
 }
