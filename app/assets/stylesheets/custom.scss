@@ -170,29 +170,11 @@ main .button,
 
   .phase-title {
     &.current-phase-tab a {
-      background: #fff;
-      color: #000;
+      background: $brand;
+      color: #fff;
 
       &::after {
-        border-left-color: #fff;
-      }
-
-      &:hover {
-        background: $brand;
-
-        &::after {
-          border-left-color: $brand;
-        }
-      }
-
-      &.is-active {
-        background: $brand;
-        color: #fff;
-
-        &::after {
-          border-left-color: $brand;
-        }
-
+        border-left-color: $brand;
       }
     }
   }
