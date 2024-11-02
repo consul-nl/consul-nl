@@ -35,11 +35,6 @@ every 1.day, at: "1:00 am", roles: [:cron] do
   rake "files:remove_old_cached_attachments"
 end
 
-every 1.day, at: "2:00 am" do
-  # Number of workers must be kept in sync with capistrano's delayed_job_workers
-  command "cd #{@path} && RAILS_ENV=#{@environment} bin/delayed_job -m -n 2 restart"
-end
-
 every 1.day, at: "3:00 am", roles: [:cron] do
   rake "votes:reset_hot_score"
 end
