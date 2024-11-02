@@ -10,3 +10,16 @@ $footer-text-color: #fff;
 
 $text: #575757;
 $body-font-color: $text;
+
+:root {
+  --text: #{$text};
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
+
+  --footer: var(--brand);
+  --subnavigation: #f2f5f7;
+  --subnavigation-contrast: var(--brand);
+  --header-color: var(--brand);
+  --label: var(--text);
+}
+
