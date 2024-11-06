@@ -9,3 +9,201 @@
     }
   }
 }
+
+.top-bar-title {
+  background: none;
+}
+
+.top-bar .menu > li a {
+  font-weight: 700;
+  color: var(--brand);
+
+  &.button {
+    color: #fff;
+    background: var(--green);
+    border-radius: 4px;
+  }
+}
+
+footer {
+  color: #fff;
+}
+
+.footer {
+  .title {
+    border-color: #fff;
+  }
+
+  a {
+    color: #fff;
+
+    &:hover {
+      border-color: #fff;
+    }
+  }
+
+  .social {
+    ul {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+
+    a {
+      color: $social-color;
+      background: $social-background;
+      margin: 0;
+
+      &:hover {
+        color: $social-color-hover;
+        background: $social-background-hover;
+      }
+    }
+  }
+}
+
+.home-page,
+.custom-page {
+  .card.budget .description::after {
+    background: none;
+  }
+  .card {
+
+    .completed, h4, .dates, .phase, .description, a {
+      color: #fff;
+    }
+
+    p, h4 {
+      &:last-child {
+        color: #fff;
+      }
+    }
+
+    a {
+      background: $green;
+      border-radius: 4px;
+    }
+
+    figure {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
+
+    .figure-card figcaption h3 {
+      min-height: unset;
+      background: white;
+      color: var(--green);
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: 0.75rem;
+      margin: 0;
+      padding: rem-calc(10) rem-calc(12);
+    }
+  }
+
+}
+
+.home-page .figure-card,
+.custom-page .figure-card {
+  .gradient {
+    display: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--header-color, inherit);
+}
+
+.subnavigation {
+  background: var(--green);
+
+  .dropdown.menu > li.is-active > a {
+    color: white;
+  }
+
+  .dropdown.menu > li.is-dropdown-submenu-parent > a::before {
+    border-color: white transparent transparent;
+  }
+
+  .is-dropdown-submenu-item a {
+    color: $blue-dark;
+
+    &:hover, &.is-active {
+      text-decoration: underline;
+      color: $blue-dark;
+    }
+  }
+
+  a {
+    color: white;
+
+    &:hover, &.is-active {
+      text-decoration: underline;
+      color: white;
+    }
+
+    &.is-active::after {
+      background: white;
+    }
+  }
+}
+
+.button, .button.expanded {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+  background: var(--green);
+  color: white;
+
+  font-family: "Formata", sans-serif;
+  font-weight: 700;
+}
+
+.button.hollow {
+  background: none;
+  color: var(--green);
+  border-color: var(--green);
+}
+
+form[role="search"] input {
+  margin-bottom: 0!important;
+}
+
+body {
+  color: $text;
+  overflow-x: hidden;
+}
+
+.header-card, header, .help-header {
+  color: $blue-dark;
+}
+
+.investments-list .past-budgets.investments-list-item, .process-summary .past-budgets.debate-summary, .process-summary .past-budgets.proposal-summary, .process-summary .past-budgets.annotation-summary, .debate .past-budgets.panel, .proposal .past-budgets.panel, .budget-investment .past-budgets.panel, .budget-investment-show .past-budgets.panel, .legislation .past-budgets.panel, .communities-show .past-budgets.panel {
+  align-items: center;
+
+  .button {
+    margin-bottom: 0;
+  }
+}
+
+.budget-phases .phase-title.current-phase-tab a:hover::after {
+  border-left-color: var(--brand-secondary);
+}
+
+.budget-phases .phase-title.current-phase-tab a:hover {
+  color: white;
+  background: var(--brand-secondary);
+}
+
+@media print, screen and (min-width: 40em) {
+  .menu-and-content [for="show_menu"] {
+    display: none;
+  }
+}
