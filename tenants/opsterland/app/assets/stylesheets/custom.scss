@@ -48,6 +48,11 @@
   src: font-url("Roboto-BoldItalic.ttf") format("truetype");
 }
 
+:root {
+  --brand: #{$brand};
+  --brand-secondary: #{$brand-secondary};
+}
+
 body,
 p,
 a {
@@ -156,9 +161,8 @@ main .button,
     }
   }
 
-  .tabs-title > a {
-    &[aria-selected="true"],
-    &.is-active {
+  .phase-title {
+    &.current-phase-tab a {
       background: $brand;
       color: #fff;
 
@@ -168,37 +172,10 @@ main .button,
     }
   }
 
-  .tabs-title.current-phase-tab [aria-selected="true"] {
-    background: $brand;
-
-    &::after {
-      border-left-color: $brand;
-    }
-  }
-
   .tabs-controls {
     .budget-prev-phase,
     .budget-next-phase {
       border-radius: 0;
-    }
-  }
-
-  .phase-title {
-    &.current-phase-tab a {
-      background: #fff;
-      color: #000;
-
-      &::after {
-        border-left-color: #fff;
-      }
-
-      &:hover {
-        background: $brand;
-
-        &::after {
-          border-left-color: $brand;
-        }
-      }
     }
   }
 }

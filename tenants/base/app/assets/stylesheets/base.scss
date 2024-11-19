@@ -155,13 +155,14 @@ aside {
   padding-top: $line-height * 2;
 
   a {
-    color: var(--brand);
+    color: var(--header-link-color, var(--brand));
     font-weight: bold;
   }
 
   h1,
   .icon {
     font-size: rem-calc(40);
+    color: var(--header-color);
   }
 
   .icon {
@@ -595,7 +596,7 @@ body > header,
 }
 
 .top-bar-title {
-  background: var(--brand);
+  /* background: var(--brand); */
   margin: 0;
   position: relative;
 
@@ -698,15 +699,12 @@ body > header,
 }
 
 .subnavigation {
-  background: $light;
-
   @include breakpoint(medium) {
     padding: $line-height / 2 0;
   }
 }
 
 .subnavigation a {
-  color: $text;
   font-size: 16px;
   position: relative;
   font-weight: $button-font-weight;
@@ -719,8 +717,8 @@ body > header,
     }
 
     &.is-active::after {
-      background: var(--brand);
-      bottom: -12px;
+      background: var(--subnavigation-contrast);
+      bottom: -13px;
       content: "";
       height: 4px;
       left: 0;
@@ -731,7 +729,7 @@ body > header,
 
   &:hover,
   &.is-active {
-    color: var(--brand);
+    color: var(--subnavigation-contrast-hover, var(--brand));
   }
 }
 
@@ -1357,8 +1355,10 @@ footer {
     padding-top: $line-height;
   }
 
-  .tabs-title > a {
-    &.current-phase {
+  .tabs-title.current-phase-tab {
+    color: #fff;
+
+    a {
       background: var(--brand-secondary);
       color: #fff;
 
@@ -1371,29 +1371,6 @@ footer {
 
         &::after {
           border-left-color: $dark;
-        }
-      }
-    }
-
-    &[aria-selected="true"],
-    &.is-active {
-      background: $dark;
-      color: #fff;
-
-      &::after {
-        border-left-color: $dark;
-      }
-    }
-  }
-
-  .tabs-title {
-    &.current-phase-tab {
-      [aria-selected="true"] {
-        background: var(--brand-secondary);
-        color: $white;
-
-        &::after {
-          border-left-color: var(--brand-secondary);
         }
       }
     }
@@ -1441,6 +1418,7 @@ footer {
 
       &:hover {
         color: $white;
+        background: $dark;
 
         &::after {
           border-left-color: $dark;
@@ -3321,7 +3299,7 @@ a {
 
 .budget-subheader {
   .current-phase {
-    color: $label;
+    color: var(--label);
     text-transform: uppercase;
   }
 
@@ -3804,3 +3782,4 @@ a {
     }
   }
 }
+
