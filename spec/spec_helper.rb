@@ -1,7 +1,7 @@
 require "factory_bot_rails"
 require "email_spec"
 require "devise"
-require "knapsack"
+require "knapsack_pro"
 
 Dir["./spec/factory_bot/**/*.rb"].sort.each { |f| require f }
 Dir["./spec/models/concerns/*.rb"].each { |f| require f }
