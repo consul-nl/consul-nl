@@ -3,7 +3,9 @@ Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 
-CKEDITOR.editorConfig = function (config) {
+CKEDITOR.editorConfig = function(config) {
+  "use strict";
+
   config.filebrowserImageBrowseLinkUrl = "/ckeditor/pictures";
   config.filebrowserImageBrowseUrl = "/ckeditor/pictures";
   config.filebrowserImageUploadUrl = "/ckeditor/pictures?";
@@ -16,7 +18,7 @@ CKEDITOR.editorConfig = function (config) {
   config.extraPlugins = "mediaembed";
 
   // Rails CSRF token
-  config.filebrowserParams = function () {
+  config.filebrowserParams = function() {
     var csrf_token,
       csrf_param,
       meta,
@@ -27,14 +29,14 @@ CKEDITOR.editorConfig = function (config) {
       meta = metas[i];
 
       switch (meta.name) {
-        case "csrf-token":
-          csrf_token = meta.content;
-          break;
-        case "csrf-param":
-          csrf_param = meta.content;
-          break;
-        default:
-          continue;
+      case "csrf-token":
+        csrf_token = meta.content;
+        break;
+      case "csrf-param":
+        csrf_param = meta.content;
+        break;
+      default:
+        continue;
       }
     }
 
@@ -45,7 +47,7 @@ CKEDITOR.editorConfig = function (config) {
     return params;
   };
 
-  config.addQueryString = function (url, params) {
+  config.addQueryString = function(url, params) {
     var queryString = [];
 
     if (!params) {
@@ -56,11 +58,11 @@ CKEDITOR.editorConfig = function (config) {
       }
     }
 
-    return url + (url.indexOf("?") != -1 ? "&" : "?") + queryString.join("&");
+    return url + (url.indexOf("?") !== -1 ? "&" : "?") + queryString.join("&");
   };
 
   // Integrate Rails CSRF token into file upload dialogs (link, image, attachment and flash)
-  CKEDITOR.on("dialogDefinition", function (ev) {
+  CKEDITOR.on("dialogDefinition", function(ev) {
     // Take the dialog name and its definition from the event data.
     var dialogName = ev.data.name;
     var dialogDefinition = ev.data.definition;
@@ -69,7 +71,7 @@ CKEDITOR.editorConfig = function (config) {
     if (
       CKEDITOR.tools.indexOf(
         ["link", "image", "attachment", "flash"],
-        dialogName,
+        dialogName
       ) > -1
     ) {
       content =
@@ -85,7 +87,7 @@ CKEDITOR.editorConfig = function (config) {
         upload.filebrowser.params = config.filebrowserParams();
         upload.action = config.addQueryString(
           upload.action,
-          upload.filebrowser.params,
+          upload.filebrowser.params
         );
       }
     }
