@@ -6,11 +6,11 @@ describe "Link to top" do
     scroll = (window_height * 20 / 100) + 1
 
     visit root_path
-    expect(page).to have_link("Go back to the top of the page", visible: false)
+    expect(page).to have_link("Go back to the top of the page", visible: :hidden)
 
     execute_script "window.scrollTo(0, #{scroll})"
     expect(page.evaluate_script("window.scrollY;")).not_to eq(0)
-    expect(page).to have_link("Go back to the top of the page", visible: true)
+    expect(page).to have_link("Go back to the top of the page", visible: :visible)
 
     click_link "Go back to the top of the page"
     expect(page.evaluate_script("window.scrollY;")).to eq(0)
@@ -18,10 +18,10 @@ describe "Link to top" do
     login_as(create(:administrator).user)
 
     visit admin_root_path
-    expect(page).to have_link("Go back to the top of the page", visible: false)
+    expect(page).to have_link("Go back to the top of the page", visible: :hidden)
 
     execute_script "window.scrollTo(0, #{scroll})"
-    expect(page).to have_link("Go back to the top of the page", visible: true)
+    expect(page).to have_link("Go back to the top of the page", visible: :visible)
     expect(page.evaluate_script("window.scrollY;")).not_to eq(0)
 
     click_link "Go back to the top of the page"

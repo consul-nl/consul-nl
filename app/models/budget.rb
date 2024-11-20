@@ -193,7 +193,7 @@ class Budget < ApplicationRecord
   end
 
   def total_headings_price
-    headings.map(&:price).reduce(:+)
+    headings.sum(&:price)
   end
 
   def formatted_amount(amount)

@@ -30,7 +30,7 @@ class Verification::SmsController < ApplicationController
       current_user.update!(confirmed_phone: current_user.unconfirmed_phone)
 
       if VerifiedUser.phone?(current_user)
-        current_user.update(verified_at: Time.current)
+        current_user.update!(verified_at: Time.current)
       end
 
       redirect_to_next_path

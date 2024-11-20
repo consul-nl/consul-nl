@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
       locale = current_locale
 
       if current_user && current_user.locale != locale.to_s
-        current_user.update(locale: locale)
+        current_user.update!(locale: locale)
       end
 
       session[:locale] = locale.to_s

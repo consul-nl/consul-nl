@@ -149,9 +149,13 @@ describe "Homepage", :admin do
   end
 
   scenario "Header card description allows wysiwyg content" do
-    header = create(:widget_card, label: "Header", title: "Welcome!", header: true,
-                                  link_text: "Link text", link_url: "consul.dev",
-                                  description: "<h2>CONSUL</h2>&nbsp;<p><strong>Open-source software</strong></p>")
+    header = create(:widget_card,
+                    label: "Header",
+                    title: "Welcome!",
+                    header: true,
+                    link_text: "Link text",
+                    link_url: "consul.dev",
+                    description: "<h2>CONSUL</h2>&nbsp;<p><strong>Open-source software</strong></p>")
 
     visit admin_homepage_path
 

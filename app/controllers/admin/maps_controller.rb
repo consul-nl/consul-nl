@@ -27,7 +27,7 @@ class Admin::MapsController < Admin::BaseController
   private
 
     def load_maps
-      @maps = Map.all.order(id: :desc)
+      @maps = Map.order(id: :desc)
     end
 
     def load_map

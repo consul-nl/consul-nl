@@ -20,7 +20,7 @@ class Admin::AdministratorsController < Admin::BaseController
     if current_user.id == @administrator.user_id
       flash[:error] = I18n.t("admin.administrators.administrator.restricted_removal")
     else
-      @administrator.destroy
+      @administrator.destroy!
     end
 
     redirect_to admin_administrators_path

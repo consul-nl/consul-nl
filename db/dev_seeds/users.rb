@@ -106,14 +106,14 @@ section "Creating Users" do
     user = create_user("user#{i}@consul.dev", "Regular user #{i}")
     level = [1, 2, 3].sample
     if level >= 2
-      user.update(residence_verified_at: Time.current,
-                  confirmed_phone: Faker::PhoneNumber.phone_number,
-                  document_number: unique_document_number,
-                  document_type: "1",
-                  geozone: Geozone.sample)
+      user.update!(residence_verified_at: Time.current,
+                   confirmed_phone: Faker::PhoneNumber.phone_number,
+                   document_number: unique_document_number,
+                   document_type: "1",
+                   geozone: Geozone.sample)
     end
     if level == 3
-      user.update(verified_at: Time.current, document_number: unique_document_number)
+      user.update!(verified_at: Time.current, document_number: unique_document_number)
     end
   end
 end

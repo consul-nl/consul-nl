@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :map do
-    association :budget
+    budget
   end
 end

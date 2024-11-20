@@ -14,7 +14,7 @@ namespace :budgets do
   desc "Updates custom links for budgets"
   task custom_links: :environment do
     Budget.find_each do |budget|
-      unless budget.main_link_url.present? && budget.main_link_text.present?
+      if budget.main_link_url.blank? || budget.main_link_text.blank?
         if budget.main_button_url.present?
           budget.main_link_url = budget.main_button_url
           budget.save!
@@ -27,7 +27,8 @@ namespace :budgets do
     end
 
     Budget::Phase.find_each do |phase|
-      if Budget.find_by(id: phase.budget_id) && !(phase.main_link_url.present? && phase.main_link_text.present?)
+      if Budget.find_by(id: phase.budget_id) &&
+         !(phase.main_link_url.present? && phase.main_link_text.present?)
         if phase.main_button_url.present?
           phase.main_link_url = phase.main_button_url
           phase.save!

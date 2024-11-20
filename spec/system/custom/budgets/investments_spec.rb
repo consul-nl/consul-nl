@@ -204,11 +204,18 @@ describe "Budget Investments" do
   end
 
   scenario "Show feasible explanation only when valuation finished" do
-    investment = create(:budget_investment, :feasible, budget: budget, heading: heading,
-                                                       feasibility_explanation: "Local government is competent in this")
+    investment = create(:budget_investment,
+                        :feasible,
+                        budget: budget,
+                        heading: heading,
+                        feasibility_explanation: "Local government is competent in this")
 
-    investment_2 = create(:budget_investment, :feasible, :finished, budget: budget, heading: heading,
-                                                                    feasibility_explanation: "The feasible explanation")
+    investment_2 = create(:budget_investment,
+                          :feasible,
+                          :finished,
+                          budget: budget,
+                          heading: heading,
+                          feasibility_explanation: "The feasible explanation")
 
     user = create(:user)
     login_as(user)

@@ -1696,8 +1696,23 @@ describe "Budget Investments" do
     end
 
     scenario "Shows the polygon associated to the current heading" do
-      triangle = '{ "geometry": { "type": "Polygon", "coordinates": [[-0.1,51.5],[-0.2,51.4],[-0.3,51.6]] } }'
-      rectangle = '{ "geometry": { "type": "Polygon", "coordinates": [[-0.1,51.5],[-0.2,51.5],[-0.2,51.6],[-0.1,51.6]] } }'
+      triangle = <<~JSON
+        {
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[-0.1,51.5],[-0.2,51.4],[-0.3,51.6]]
+          }
+        }
+      JSON
+
+      rectangle = <<~JSON
+        {
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[-0.1,51.5],[-0.2,51.5],[-0.2,51.6],[-0.1,51.6]]
+          }
+        }
+      JSON
 
       park = create(:geozone, geojson: triangle, color: "#03ee03")
       square = create(:geozone, geojson: rectangle, color: "#ff04ff")

@@ -194,7 +194,8 @@ describe "Voter" do
 
         visit poll_path(poll)
 
-        expect(page).to have_content "You have already participated in this poll. If you vote again it will be overwritten."
+        expect(page).to have_content "You have already participated in this poll. " \
+                                     "If you vote again it will be overwritten."
         within("#poll_question_#{question.id}_answers") do
           expect(page).not_to have_link(answer_yes.title)
           expect(page).to have_content("Your vote has been registered correctly.")
