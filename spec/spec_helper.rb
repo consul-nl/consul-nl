@@ -227,4 +227,4 @@ RSpec.configure do |config|
 end
 
 # Parallel build helper configuration for CI
-Knapsack::Adapters::RSpecAdapter.bind
+KnapsackPro::Adapters::RSpecAdapter.bind
