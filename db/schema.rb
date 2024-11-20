@@ -329,6 +329,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_135357) do
     t.text "summary"
     t.string "name"
     t.string "main_link_text"
+    t.string "main_button_text"
     t.string "main_link_url"
     t.index ["budget_phase_id"], name: "index_budget_phase_translations_on_budget_phase_id"
     t.index ["locale"], name: "index_budget_phase_translations_on_locale"
@@ -341,6 +342,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_135357) do
     t.datetime "starts_at", precision: nil
     t.datetime "ends_at", precision: nil
     t.boolean "enabled", default: true
+    t.string "main_button_url"
     t.string "main_link_url"
     t.index ["ends_at"], name: "index_budget_phases_on_ends_at"
     t.index ["kind"], name: "index_budget_phases_on_kind"
@@ -363,6 +365,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_135357) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "name"
     t.string "main_link_text"
+    t.string "main_button_text"
     t.string "main_link_url"
     t.index ["budget_id"], name: "index_budget_translations_on_budget_id"
     t.index ["locale"], name: "index_budget_translations_on_locale"
@@ -409,6 +412,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_135357) do
     t.string "voting_style", default: "knapsack"
     t.boolean "published"
     t.boolean "hide_money", default: false
+    t.string "main_button_url"
     t.string "main_link_url"
   end
 
