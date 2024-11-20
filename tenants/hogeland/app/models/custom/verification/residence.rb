@@ -16,9 +16,9 @@ class Verification::Residence
 
     user.take_votes_if_erased_document(document_number, document_type)
 
-    user.update(document_number:       document_number,
-                document_type:         document_type,
-                date_of_birth:         date_of_birth.in_time_zone.to_datetime,
+    user.update(document_number: document_number,
+                document_type: document_type,
+                date_of_birth: date_of_birth.in_time_zone.to_datetime,
                 residence_verified_at: Time.current,
                 verified_at: Time.current)
   end
@@ -30,7 +30,8 @@ class Verification::Residence
     end
 
     def allowed_postal_code
-      errors.add(:postal_code, I18n.t("verification.residence.new.error_not_allowed_postal_code")) unless valid_postal_code?
+      errors.add(:postal_code,
+                 I18n.t("verification.residence.new.error_not_allowed_postal_code")) unless valid_postal_code?
     end
 
     def valid_postal_code?

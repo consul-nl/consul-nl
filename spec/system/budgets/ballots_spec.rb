@@ -164,10 +164,9 @@ describe "Ballots" do
         stub_const("#{Budgets::InvestmentsController}::PER_PAGE", 1)
 
         create(:budget_investment, :selected, :with_map_location,
-          heading: new_york,
-          price: 10000,
-          title: "More bridges",
-        )
+               heading: new_york,
+               price: 10000,
+               title: "More bridges",)
         create(
           :budget_investment, :selected, :with_map_location,
           heading: new_york,

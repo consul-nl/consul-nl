@@ -15,4 +15,3 @@ class SiteCustomization::Image
     "welcome_process" => [370, 185]
   }.freeze
 end
-

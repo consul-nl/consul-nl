@@ -27,16 +27,14 @@ namespace :budgets do
     end
 
     Budget::Phase.find_each do |phase|
-      if Budget.find_by(id: phase.budget_id)
-        unless phase.main_link_url.present? && phase.main_link_text.present?
-          if phase.main_button_url.present?
-            phase.main_link_url = phase.main_button_url
-            phase.save!
-          end
-          if phase.main_button_text.present?
-            phase.main_link_text = phase.main_button_text
-            phase.save!
-          end
+      if Budget.find_by(id: phase.budget_id) && !(phase.main_link_url.present? && phase.main_link_text.present?)
+        if phase.main_button_url.present?
+          phase.main_link_url = phase.main_button_url
+          phase.save!
+        end
+        if phase.main_button_text.present?
+          phase.main_link_text = phase.main_button_text
+          phase.save!
         end
       end
     end

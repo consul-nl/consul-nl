@@ -15,7 +15,7 @@ describe "Proposals" do
 
       click_link "View selected proposals"
 
-      expect(page).not_to have_selector(".view-mode")
+      expect(page).not_to have_css(".view-mode")
       expect(page).not_to have_button("View mode")
     end
 
@@ -281,7 +281,7 @@ describe "Proposals" do
 
       visit proposals_path
       click_link "Highest rated"
-      expect(page).to have_selector("a.is-active", text: "Highest rated")
+      expect(page).to have_css("a.is-active", text: "Highest rated")
 
       within "#proposals" do
         expect(best_proposal.title).to appear_before(medium_proposal.title)
@@ -299,7 +299,7 @@ describe "Proposals" do
 
       visit proposals_path
       click_link "Newest"
-      expect(page).to have_selector("a.is-active", text: "Newest")
+      expect(page).to have_css("a.is-active", text: "Newest")
 
       within "#proposals" do
         expect(best_proposal.title).to appear_before(medium_proposal.title)
@@ -347,7 +347,7 @@ describe "Proposals" do
 
         click_link "Recommendations"
 
-        expect(page).to have_selector("a.is-active", text: "Recommendations")
+        expect(page).to have_css("a.is-active", text: "Recommendations")
 
         within "#proposals-list" do
           expect(best_proposal.title).to appear_before(medium_proposal.title)
@@ -393,7 +393,7 @@ describe "Proposals" do
       fill_in "search", with: "Title content"
       click_button "Search"
 
-      expect(page).to have_selector("a.is-active", text: "Relevance")
+      expect(page).to have_css("a.is-active", text: "Relevance")
 
       within("#proposals") do
         expect(all(".proposal")[0].text).to match "Title content"
@@ -416,7 +416,7 @@ describe "Proposals" do
 
       click_link "Newest"
 
-      expect(page).to have_selector("a.is-active", text: "Newest")
+      expect(page).to have_css("a.is-active", text: "Newest")
 
       within("#proposals") do
         expect(all(".proposal")[0].text).to match "Show you got"
@@ -440,7 +440,7 @@ describe "Proposals" do
       fill_in "search", with: "Show you got"
       click_button "Search"
       click_link "Recommendations"
-      expect(page).to have_selector("a.is-active", text: "Recommendations")
+      expect(page).to have_css("a.is-active", text: "Recommendations")
 
       within("#proposals") do
         expect(all(".proposal")[0].text).to match "Show you got"

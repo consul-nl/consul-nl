@@ -17,7 +17,7 @@ class PagesController < ApplicationController
       "Lijst058" => 7,
       "D66" => 8,
       "CU" => 9,
-      "FvD" => 10,
+      "FvD" => 10
     }
 
     @raad_sorted = {
@@ -81,16 +81,16 @@ class PagesController < ApplicationController
       42 => 1,
 
       # Generieke link
-      9 => 1,
+      9 => 1
     }
 
     if @custom_page.present?
       if @custom_page.id == 10
         @cards = @custom_page.cards
-          .sort_by { |card| @raad_sorted[card.id] || Float::INFINITY }
-          .group_by { |card| card.label }
-          .sort_by { |label, cards| @parties_sorted[label] || Float::INFINITY }
-          .to_h
+                             .sort_by { |card| @raad_sorted[card.id] || Float::INFINITY }
+                             .group_by { |card| card.label }
+                             .sort_by { |label, cards| @parties_sorted[label] || Float::INFINITY }
+                             .to_h
       else
         @cards = @custom_page.cards
       end

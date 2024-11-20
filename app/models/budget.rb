@@ -159,7 +159,6 @@ class Budget < ApplicationRecord
     current_phase&.balloting_or_later?
   end
 
-
   def enabled_phases_amount
     phases.enabled.count
   end
