@@ -955,8 +955,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_135357) do
 
   create_table "maps", id: :serial, force: :cascade do |t|
     t.integer "budget_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["budget_id"], name: "index_maps_on_budget_id"
   end
 
