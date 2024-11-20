@@ -15,25 +15,25 @@ env:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     services:
       postgres:
-        image: postgres:10.10
-        ports: [ "5432:5432" ]
+        image: postgres:13.16
+        ports: ["5432:5432"]
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         env:
           POSTGRES_USER: consul
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: password
     env:
       PGUSER: consul
-      POSTGRES_HOST: postgres
+      PGPASSWORD: password
       RAILS_ENV: test
     strategy:
       fail-fast: false
       matrix:
-        ci_node_total: [ 5 ]
-        ci_node_index: [ 0, 1, 2, 3, 4 ]
+        ci_node_total: [5]
+        ci_node_index: [0, 1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -46,6 +46,8 @@ jobs:
           node-version-file: ".node-version"
       - name: Install node packages
         run: npm clean-install
+      - name: Install ImageMagick
+        run: sudo apt-get install imagemagick
       - name: Copy secrets and database files
         run: for i in config/*.example; do cp "$i" "${i/.example}"; done
       - name: Setup database
@@ -54,9 +56,12 @@ jobs:
         run: bundle exec rake assets:precompile > /dev/null 2>&1
       - name: Run test suite
         env:
-          CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
-          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-        run: bundle exec rake knapsack:rspec
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
+          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+          KNAPSACK_PRO_LOG_LEVEL: info
+        run: bin/knapsack_pro_rspec
       - name: Coveralls Parallel
         if: ${{ env.TEST_COVERAGE == 1 }}
         uses: coverallsapp/github-action@master
@@ -73,7 +78,7 @@ jobs:
   coveralls:
     permissions:
       contents: none
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: tests
     steps:
       - name: Finish coveralls
