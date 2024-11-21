@@ -41,7 +41,7 @@ shared_examples "admin nested documentable" do |login_as_name, documentable_fact
         visit send(path, arguments)
         last_document = all("#nested-documents .document").last
         within last_document do
-          click_on "Remove document"
+          click_link "Remove document"
         end
 
         expect(page).to have_css "#new_document_link"
@@ -51,7 +51,7 @@ shared_examples "admin nested documentable" do |login_as_name, documentable_fact
         create(:document, documentable: documentable)
         do_login_for user_to_login, management: management
         visit send(path, arguments)
-        click_on "Remove document"
+        click_link "Remove document"
 
         expect(page).not_to have_css ".document"
       end

@@ -2,7 +2,7 @@ en:
   devise_views:
     mailer:
       confirmation_instructions:
-        confirm_link: "Click on %{link} to complete the registration of your account."
+        confirm_link_html: "Click on %{link} to complete the registration of your account."
         link: "Confirm my account"
     shared:
       sign_in: "Sign in to an account"

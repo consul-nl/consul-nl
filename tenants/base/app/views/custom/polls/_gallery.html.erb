@@ -1,12 +1,12 @@
-<div id="answer_<%= answer.id %>_gallery" class="orbit margin-bottom" role="region"
-     aria-label="<%= answer.title %>" data-orbit data-auto-play="false" data-use-m-u-i="false">
-  <button type="button" data-toggle="answer_<%= answer.id %> zoom_<%= answer.id %>" class="zoom-link hide-for-small-only">
-    <span id="zoom_<%= answer.id %>" class="icon-search-plus" data-toggler="icon-search-plus icon-search-minus"></span>
+<div id="option_<%= option.id %>_gallery" class="orbit margin-bottom" role="region"
+     aria-label="<%= option.title %>" data-orbit data-auto-play="false" data-use-m-u-i="false">
+  <button type="button" data-toggle="option_<%= option.id %> zoom_<%= option.id %>" class="zoom-link hide-for-small-only">
+    <span id="zoom_<%= option.id %>" class="icon-search-plus" data-toggler="icon-search-plus icon-search-minus"></span>
     <span class="show-for-sr"><%= t("polls.show.zoom_plus") %></span>
   </button>
 
   <div class="orbit-wrapper">
-    <% if answer.images.count > 1 %>
+    <% if option.images.count > 1 %>
       <div class="orbit-controls">
         <button class="orbit-previous">
           <span class="show-for-sr"><%= t("shared.orbit.previous_slide") %></span>&#9664;&#xFE0E;
@@ -18,7 +18,7 @@
     <% end %>
 
     <ul class="orbit-container">
-      <% answer.images.reverse.each_with_index do |image, index| %>
+      <% option.images.reverse.each_with_index do |image, index| %>
         <li class="orbit-slide <%= is_active_class(index) %>">
           <figure class="orbit-figure">
             <%= link_to image.attachment, target: "_blank" do %>
@@ -32,9 +32,9 @@
       <% end %>
     </ul>
   </div>
-  <% if answer.images.count > 1 %>
+  <% if option.images.count > 1 %>
     <nav class="orbit-bullets">
-      <% answer.images.each_with_index do |image, index| %>
+      <% option.images.each_with_index do |image, index| %>
         <button class="<%= is_active_class(index) %>" data-slide="<%= index %>">
           <span class="show-for-sr"><%= image.title.unicode_normalize %></span>
         </button>

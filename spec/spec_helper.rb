@@ -1,7 +1,7 @@
 require "factory_bot_rails"
 require "email_spec"
 require "devise"
-require "knapsack"
+require "knapsack_pro"
 
 Dir["./spec/factory_bot/**/*.rb"].sort.each { |f| require f }
 Dir["./spec/models/concerns/*.rb"].each { |f| require f }
@@ -69,13 +69,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do
-    Bullet.start_request
     allow(InvisibleCaptcha).to receive(:timestamp_threshold).and_return(0)
-  end
-
-  config.after(:each, type: :system) do
-    Bullet.perform_out_of_channel_notifications if Bullet.notification?
-    Bullet.end_request
   end
 
   config.before(:each, :admin, type: :system) do
@@ -193,6 +187,11 @@ RSpec.configure do |config|
     savon.unmock!
   end
 
+  config.before(:each, :with_cache) do
+    allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache.lookup_store(:memory_store))
+    Rails.cache.clear
+  end
+
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options.
   config.example_status_persistence_file_path = "spec/examples.txt"
@@ -228,4 +227,4 @@ RSpec.configure do |config|
 end
 
 # Parallel build helper configuration for CI
-Knapsack::Adapters::RSpecAdapter.bind
+KnapsackPro::Adapters::RSpecAdapter.bind

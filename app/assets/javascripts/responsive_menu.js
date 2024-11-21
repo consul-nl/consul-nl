@@ -1,13 +1,13 @@
-(function () {
+(function() {
   "use strict";
   App.ResponsiveMenu = {
-    toggleAriaExpanded: function () {
+    toggleAriaExpanded: function() {
       var div = $("#menu-button");
       div.attr("aria-expanded", !JSON.parse(div.attr("aria-expanded")));
     },
-    initialize: function () {
+    initialize: function() {
       $("#menu-button").on({
-        click: function () {
+        click: function() {
           App.ResponsiveMenu.toggleAriaExpanded();
         },
       });
