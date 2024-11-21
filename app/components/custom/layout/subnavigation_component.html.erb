@@ -1,7 +1,7 @@
 <nav>
   <h1 class="show-for-sr"><%= t("layouts.header.navigation") %></h1>
   <ul class="dropdown menu" data-dropdown-menu>
-    <%= helpers.content_block("subnavigation_left") %>
+    <%= raw content_block("subnavigation_left") %>
 
     <% if feature?(:debates) && Setting["show_navbar.debates"] %>
       <li>
@@ -63,6 +63,6 @@
       </li>
     <% end %>
 
-    <%= helpers.content_block("subnavigation_right") %>
+    <%= raw content_block("subnavigation_right") %>
   </ul>
 </nav>
