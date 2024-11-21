@@ -2,8 +2,8 @@
   <% budgets = Budget.open_budgets_for(current_user) %>
   <% if budgets.count > 1 %>
     <%= layout_menu_link_to t("layouts.header.budgets"),
-                              "#", controller_name == "budgets" || controller_name == "investments",
-                              accesskey: "5", title: t("shared.go_to_page") + t("layouts.header.budgets") %>
+                            "#", controller_name == "budgets" || controller_name == "investments",
+                            accesskey: "5", title: t("shared.go_to_page") + t("layouts.header.budgets") %>
     <ul>
       <% budgets.each do |budget| %>
         <li>

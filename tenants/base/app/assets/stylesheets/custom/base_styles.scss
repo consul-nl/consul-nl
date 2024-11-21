@@ -13,12 +13,10 @@
       a {
         display: flex;
         flex-direction: column;
+      }
 
-        .figure-card {
-          img {
-            object-fit: cover;
-          }
-        }
+      .figure-card img {
+        object-fit: cover;
       }
     }
   }

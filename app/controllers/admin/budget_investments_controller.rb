@@ -100,8 +100,8 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
       attributes = [:external_url, :heading_id, :administrator_id, :tag_list,
                     :valuation_tag_list, :incompatible, :visible_to_valuators, :selected,
                     :milestone_tag_list, valuator_ids: [], valuator_group_ids: [],
-                    image_attributes: image_attributes,
-                    documents_attributes: document_attributes]
+                                         image_attributes: image_attributes,
+                                         documents_attributes: document_attributes]
       [*attributes, translation_params(Budget::Investment)]
     end
 

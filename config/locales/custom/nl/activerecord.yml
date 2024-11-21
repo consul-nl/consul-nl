@@ -155,6 +155,8 @@ nl:
       sdg/target:
         code: "Code"
         title: "Titel"
+      widget/card:
+        order: Positie
     errors:
       models:
         sdg/local_target:
