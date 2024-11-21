@@ -13,7 +13,7 @@ Tenant.run_on_each do
   SitemapGenerator::Sitemap.default_host = root_url(Tenant.current_url_options)
   SitemapGenerator::Sitemap.sitemaps_path = Tenant.subfolder_path
 
-  SitemapGenerator::Sitemap.create! do
+  SitemapGenerator::Sitemap.create do
     if Setting["feature.raad"]
       add raad_path
     end
