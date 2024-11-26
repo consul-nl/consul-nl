@@ -92,7 +92,7 @@ class PagesController < ApplicationController
                              .sort_by { |label, cards| @parties_sorted[label] || Float::INFINITY }
                              .to_h
       else
-        @cards = @custom_page.cards
+        @cards = @custom_page.cards.sort_by_order
       end
       render action: :custom_page
     else
