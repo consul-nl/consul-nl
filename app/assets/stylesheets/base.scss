@@ -783,7 +783,7 @@ body > header,
       > a::before {
         border: inset 6px;
         border-bottom-width: 0;
-        border-color: var(--brand) transparent transparent;
+        border-color: currentColor transparent transparent;
         border-top-style: solid;
         content: "";
         display: block;
