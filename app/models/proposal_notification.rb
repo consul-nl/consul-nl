@@ -74,6 +74,6 @@ class ProposalNotification < ApplicationRecord
   private
 
     def set_author
-      update(author_id: proposal.author_id) if proposal
+      update!(author_id: proposal.author_id) if proposal
     end
 end

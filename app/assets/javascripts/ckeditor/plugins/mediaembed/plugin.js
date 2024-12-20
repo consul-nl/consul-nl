@@ -7,14 +7,13 @@
  * @author Fabian Vogelsteller [frozeman.de]
  * @version 0.5
  */
-(function () {
+(function() {
   "use strict";
   CKEDITOR.plugins.add("mediaembed", {
     icons: "mediaembed",
     hidpi: true,
-    init: function (editor) {
-      var me = this;
-      CKEDITOR.dialog.add("MediaEmbedDialog", function (instance) {
+    init: function(editor) {
+      CKEDITOR.dialog.add("MediaEmbedDialog", function(instance) {
         return {
           title: "Embed Media",
           minWidth: 550,
@@ -29,16 +28,16 @@
                   type: "textarea",
                   label: "Iframe Code",
                   autofocus: "autofocus",
-                  setup: function (element) {},
-                  commit: function (element) {},
+                  setup: function() {},
+                  commit: function() {},
                 },
               ],
             },
           ],
-          onOk: function () {
+          onOk: function() {
             var div = instance.document.createElement("div");
             div.setHtml(
-              this.getContentElement("iframe", "embedArea").getValue(),
+              this.getContentElement("iframe", "embedArea").getValue()
             );
             instance.insertElement(div);
           },
@@ -49,7 +48,7 @@
         "MediaEmbed",
         new CKEDITOR.dialogCommand("MediaEmbedDialog", {
           allowedContent: "iframe[*]",
-        }),
+        })
       );
 
       editor.ui.addButton("MediaEmbed", {

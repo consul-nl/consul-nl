@@ -1,6 +1,6 @@
 class Admin::Settings::ParticipationProcessesTabComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "admin", "settings", "participation_processes_tab_component").to_s
+load Rails.root.join("app", "components", "admin", "settings", "participation_processes_tab_component.rb")
 
 class Admin::Settings::ParticipationProcessesTabComponent
   def show_navbar_settings
