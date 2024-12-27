@@ -27,11 +27,13 @@
   font-style: normal;
 }
 
-$brand: #2272b7;
-$brand-secondary: #2272b7;
+$brand-secondary: #fd6727;
+$brand: #d84304;
 
-$footer: rgb(128, 161, 182);
-$footer-text-color: rgb(35, 31, 32);
+$text: #000;
+
+$footer: $brand;
+$footer-text-color: $text;
 
 $base-font-size: 18px;
 $body-font-family: "Formata", sans-serif;
@@ -39,7 +41,6 @@ $header-font-weight: 700;
 $hover: rgb(17, 24, 39);
 $hover-secondary: scale-color($brand-secondary, $lightness: -20%);
 
-$text: #231f20;
 
 $social-background: $text;
 $social-color: #fff;
@@ -50,6 +51,7 @@ $social-color-hover: $text;
 html {
   --brand: #{$brand};
   --brand-secondary: #{$brand-secondary};
+  --brand-contrast: #000;
 
   --footer: #{$footer};
 
@@ -60,9 +62,11 @@ html {
   --button-secondary-background: #f1f1f1;
   --button-secondary-color: var(#{$text}, inherit);
 
-  --small-border-radius: 0px;
-  --medium-border-radius: 0px;
-  --large-border-radius: 0px;
+  --small-border-radius: 0;
+  --medium-border-radius: 0;
+  --large-border-radius: 0;
 
-  --subnavigation: #f2f5f7;
+  --subnavigation: var(--brand);
+  --subnavigation-contrast: var(--brand-contrast);
+  --subnavigation-contrast-hover: var(--brand-contrast);
 }
