@@ -70,7 +70,8 @@ nl:
   form:
     debate: "discussie"
     proposal: "initiatief"
-    not_saved: "\n\n Let op: bekijk de rode tekst voor meer informatie of acties."
+    budget/investment: "idee"
+    not_saved: "zorgden ervoor dat je %{resource} niet geplaatst kan worden. <br>Bekijk de rode tekst om te zien wat aangepast moet worden."
     budget/investment: "idee"
   proposals:
     proposal:
@@ -213,7 +214,6 @@ nl:
       cant_answer_not_logged_in: "Je moet %{signin} of je %{signup} om verder te gaan"
       cant_answer_wrong_geozone: "Deze peiling is niet actief voor jouw gebied"
       comments_tab: "Reacties"
-      more_info_options: "Meer informatie over de antwoordmogelijkheden"
       info_menu: "Vragen?"
   comments:
     comment:
@@ -289,6 +289,10 @@ nl:
       org_name: "CONSUL"
       contact_title: "Neem contact met ons op"
       privacy: "Privacyverklaring"
+      contact_email: "noreply@consul.dev"
+      contact: "noreply@consul.dev"
+      facebook: "facebook/consul"
+      facebook_url: "https://facebook.com/consul"
     dashboard:
       proposal_header:
         published: "Gepubliceerd"
@@ -465,6 +469,10 @@ nl:
         sent: "Mail verzonden"
       new:
         title: "E-mail om te delen"
+  proposal_notifications:
+    new:
+      info_about_receivers: "Dit bericht wordt naar <strong>%{count} mensen</strong> gestuurd en is zichtbaar op de %{proposal_page}.<br>Meldingen worden niet direct gestuurd, maar de gebruikers ontvangen periodiek een email met alle meldingen omtrent jouw initiatief."
+      proposal_page: "pagina van je initiatief"
   omniauth:
     facebook:
       sign_in: "Inloggen via Facebook"
