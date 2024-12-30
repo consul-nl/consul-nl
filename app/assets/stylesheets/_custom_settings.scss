@@ -1,5 +1,28 @@
-// Add custom variables in this file. For example, define a new variable
-// called `$important-link` which you can use in your custom CSS files.
+// Custom settings
 //
-// To override existing variables, use the file named
-// `_consul_custom_overrides.scss` instead
+
+$brand:             #bd0040;
+$brand-secondary:   #244994;
+$dark:              darken($brand, 10%);
+$link:              $brand-secondary;
+
+$outline-focus:     3px solid #bd0040;
+
+@font-face {
+  font-family: "Frutiger";
+  font-style: normal;
+  font-weight: normal;
+  src: font-url("frutiger-webfont.woff2") format("woff2"),
+       font-url("frutiger-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Frutiger";
+  font-weight: bold;
+  font-style: bold;
+  src: font-url("frutiger_bold-webfont.woff2") format("woff2"),
+       font-url("frutiger_bold-webfont.woff") format("woff");
+}
+
+$body-font-family: "Frutiger", "Source Sans Pro", "Helvetica", "Arial", sans-serif !important;
+$base-font-size: 18px;

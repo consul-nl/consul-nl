@@ -1,8 +1,149 @@
-// Override and add customized styles in this file.
+// Customized styles
 //
-// You can also create SCSS files in the app/assets/stylesheets/custom/
-// folder and they will be loaded automatically.
+
 :root {
   --brand: #{$brand};
   --brand-secondary: #{$brand-secondary};
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+a {
+  font-family: $body-font-family;
+}
+
+p {
+
+  a {
+
+    &:not(.button) {
+      text-decoration: underline !important;
+    }
+  }
+}
+
+form select,
+form [type]:not([type="button"],
+[type=checkbox],
+[type=file],
+[type=radio],
+[type=submit]):not(.close-button) {
+  border: 2px solid #8397a5;
+}
+
+.home-page,
+.custom-page {
+
+  .card .figure-card figcaption h3 {
+    font-size: 1.25rem;
+    overflow-wrap: anywhere;
+  }
+}
+
+.ssb-linkedin {
+  @include has-fa-icon(linkedin, brands);
+  background: #0e76a8;
+
+  &:hover,
+  &:focus {
+    color: #0e76a8;
+  }
+}
+
+.menu-button {
+  color: $brand;
+}
+
+.home-page .jumbo {
+  margin-right: 0;
+
+  @include breakpoint(large) {
+    min-height: 0;
+  }
+
+  h1 {
+    font-size: rem-calc(36);
+
+    @include breakpoint(large) {
+      font-size: rem-calc(50);
+    }
+  }
+}
+
+.view-mode .button {
+
+  &:hover {
+
+    &::before {
+      color: #fff;
+    }
+  }
+}
+
+.top-links {
+  background-color: $dark;
+}
+
+.top-bar {
+  padding: 0;
+}
+
+.budget-phases {
+
+  .tabs-title {
+
+    &.current-phase-tab [aria-selected="true"] {
+
+      &:hover {
+        background: $dark;
+        color: #fff;
+
+        &::after {
+          border-left-color: $dark;
+        }
+      }
+    }
+  }
+
+  .phase-title {
+
+    &.current-phase-tab a {
+
+      &:hover {
+        color: $text;
+
+        &::after {
+          border-left-color: $light-gray;
+        }
+      }
+    }
+  }
+}
+
+.budget-phase-content h2 {
+  text-align: left;
+}
+
+.map .map-marker .map-icon {
+  background: $brand;
+}
+
+.icon-check {
+  color: $brand !important;
+}
+
+.comment-votes button,
+.comment-votes form,
+.in-favor-against button {
+  color: #808080;
+}
+
+.debate .debate-description,
+.proposal .proposal-description,
+.budget-investment .investment-project-description {
+  height: rem-calc(96);
 }
