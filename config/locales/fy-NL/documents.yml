@@ -1,0 +1,7 @@
+fy-NL:
+  documents:
+    title: "Dokuminten"
+    form:
+      title: "Dokuminten"
+      note: "Jo kinne maksimaal (%{max_documents_allowed} %{accepted_content_types}) dokuminten tafoegje mei in maksimale grutte fan elk %{max_file_size} MB."
+      add_new_document: "Dokumint tafoegje"

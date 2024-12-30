@@ -1,0 +1,56 @@
+fy-NL:
+  devise:
+    password_expired:
+      expire_password: "Dit wachtwurd is spitigernôch ferrûn"
+      change_required: "Dit wachtwurd is spitigernôch ferrûn"
+      change_password: "Wizigje jo wachtwurd"
+      new_password: "Nij wachtwurd"
+      updated: "Wachtwurd is oanpast"
+    confirmations:
+      confirmed: "Jo akkount is aktivearre"
+      send_instructions: "Jo krije fia e-mail ynstruksjes om jo akkount te aktivearjen"
+      send_paranoid_instructions: "As jo e-mailadres by ús bekend is, krije jo dêrop ynstruksjes hoe’t jo jo akkount aktivearje kinne."
+      user:
+        already_confirmed: "Dyn e-mailadres is al ferifiearre. Do kinst dêr no mei ynlogge"
+    failure:
+      already_authenticated: "Jo binne al oanmeld"
+      inactive: "Jo akkount is noch net aktivearre"
+      invalid: "Net jildich %{authentication_keys} of wachtwurd"
+      locked: "Jo akkount is beskoattele"
+      last_attempt: "Jo kinne it noch ien kear besykje foardat jo akkount blokkearre wurdt."
+      not_found_in_database: "Net jildich %{authentication_keys} of wachtwurd"
+      timeout: "Oei! Jo sesje is ferrûn. Meldt jo op ‘en nij oan om fierder te gean"
+      unauthenticated: "Loch yn om fierder te gean. Noch gjin akkount? Meitsje dy ienfâldich oan fia ‘oanmelde’"
+      unconfirmed: "Jo akkount is noch net aktivearre. Klik op de link yn jo e-mail om jo akkount te aktivearjen"
+    mailer:
+      confirmation_instructions:
+        subject: "Befêstigje myn profyl"
+      reset_password_instructions:
+        subject: "Wachtwurd op ‘en nij ynstelle"
+      unlock_instructions:
+        subject: "Ynstruksje foar it ûntskoatteljen fan de akkount"
+    omniauth_callbacks:
+      failure: "It wie net mooglik om jo as %{kind} te autorisearjen omdat \"%{reason}\""
+      success: "Mei sukses oanmeld fia %{kind}"
+    passwords:
+      no_token: "Jo kinne net op dizze side komme sûnder in \"wachtwurd reset e-mail\""
+      send_instructions: "Jo krije fia e-mail ynstruksjes hoe’t jo jo akkount ûntskoattelje kinne."
+      send_paranoid_instructions: "As jo e-mailadres by ús bekend is, krije jo ynstruksjes oer hoe’t jo wer mei jo akkount ynlogge kinne."
+      updated: "Jo wachtwurd is wizige. Jo binne oanmeld!"
+      updated_not_active: "Jo wachtwurd is wizige"
+    registrations:
+      destroyed: "Spitich dat jo fuortgean! Jo akkount is mei sukses wiske. Wy hoopje jo nochris in kear werom te sjen."
+      signed_up: "Jo hawwe in akkount"
+      signed_up_but_inactive: "Jo hawwe in akkount. Jo koene allinne net automatysk oanmeld wurde omdat jo akkount noch net aktivearre is. Klik dêrfoar op de link dy't nei jo e-mailadres stjoerd is. Gjin mail krige? Nim dan kontakt op mei stimfan@fryslan.frl"
+      signed_up_but_locked: "Jo hawwe in akkount. Jo koene allinne net automatysk oanmeld wurde omdat jo akkount blokkearre is. Nim dêrfoar kontakt op mei stimfan@fryslan.frl"
+      signed_up_but_unconfirmed: "Jo krije fia de e-mail ynstruksjes oer hoe’t jo jo akkount aktivearje kinne. Gjin mail krige? Nim dan kontakt op mei stimfan@fryslan.frl "
+      update_needs_confirmation: "Jo hawwe jo e-mailadres mei sukses wizige, mar wy moatte jo nije mailadres noch ferifiearje. Kontrolearje jo e-mail en klik op de link yn de mail om jo mailadres te ferifiearjen."
+      updated: "Dyn akkountgegevens binne opslein"
+    sessions:
+      signed_in: "Jo binne ynlogd"
+      signed_out: "Jo binne útlogd"
+      already_signed_out: "Jo binne ôfmeld"
+    unlocks:
+      send_instructions: "Jo krije fia de e-mail ynstruksjes oer hoe’t jo jo akkount ûntskoattelje kinne. Gjin mail krige? Nim dan kontakt op mei stimfan@fryslan.frl"
+      send_paranoid_instructions: "As jo e-mailadres by ús bekend is, krije jo fia de e-mail ynstruksjes oer hoe’t jo jo akkount ûntskoattelje kinne. Komme jo net fierder? Nim dan kontakt op mei stimfan@fryslan.frl "
+      unlocked: "Jo akkount is mei sukses ûntskoattele. Jo kinne josels wer oanmelde!"
