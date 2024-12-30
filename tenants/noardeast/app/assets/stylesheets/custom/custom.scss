@@ -1,0 +1,78 @@
+// Custom styles
+// 1. General
+// 2. Polls
+//
+
+// 1. General
+// --------------------
+
+@font-face {
+  font-family: "Noardeast Caps";
+  font-style: normal;
+  font-weight: 300;
+  src: font-url("noardeast_caps-webfont.woff2") format("woff2");
+  src: font-url("noardeast_caps-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Anivers";
+  font-style: normal;
+  font-weight: normal;
+  src: font-url("anivers_regular.woff") format("woff");
+}
+
+body,
+p,
+a {
+  font-family: "Arial", "Montserrat", sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Noardeast Caps", "Arial", "Montserrat", sans-serif !important;
+}
+
+.top-bar-title {
+  background: transparent;
+
+  &::before {
+    content: none;
+  }
+}
+
+.home-page .header-card,
+.home-page .jumbo {
+
+  h3 {
+    font-family: "Arial", "Montserrat", sans-serif !important;
+  }
+}
+
+.home-page .jumbo {
+
+  @include breakpoint(large) {
+    min-height: 0;
+  }
+
+  h1 {
+    font-size: rem-calc(36);
+
+    @include breakpoint(large) {
+      font-size: rem-calc(50);
+    }
+  }
+}
+
+// 2. Polls
+// --------------------
+
+.polls-show {
+
+  h1 {
+    font-size: rem-calc(34);
+  }
+}
