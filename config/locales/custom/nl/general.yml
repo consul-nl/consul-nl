@@ -289,10 +289,6 @@ nl:
       org_name: "CONSUL"
       contact_title: "Neem contact met ons op"
       privacy: "Privacyverklaring"
-      contact_email: "noreply@consul.dev"
-      contact: "noreply@consul.dev"
-      facebook: "facebook/consul"
-      facebook_url: "https://facebook.com/consul"
     dashboard:
       proposal_header:
         published: "Gepubliceerd"
