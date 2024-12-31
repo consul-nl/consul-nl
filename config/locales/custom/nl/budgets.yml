@@ -183,6 +183,11 @@ nl:
         different_heading_assigned: "Je hebt al gestemd in een andere groep: %{heading_link}"
       share:
         message: "Dit is een goed idee voor de Oosterparkwijk! Vanaf 18 november kan je stemmen op dit idee"
+      new:
+        recommendations_title: "Ter inspiratie een aantal vragen:"
+        recommendation_one: "Wat vind jij belangrijk in jouw wijk?"
+        recommendation_two: "Waar word jij blij van in jouw wijk?"
+        recommendation_three: "Als er iets zou moeten veranderen in jouw wijk, waar denk je dan aan?"
     show:
       see_all_investments: "Bekijk alle ideeën"
       investments_list: "Ideeën"
