@@ -1,5 +1,8 @@
 nl:
   admin:
+    budget_investments:
+      feasibility:
+        feasible: "Haalbaar"
     header:
       title: "Beheerderspagina"
     actions:
@@ -12,7 +15,7 @@ nl:
       edit: "Bewerk"
       configure: "Configureren"
       delete: "Verwijder"
-      confirm_delete: 'Weet je zeker dat je "%{name}" wilt verwijderen? Dit kan niet ongedaan worden gemaakt.'
+      confirm_delete: "Weet je zeker dat je \"%{name}\" wilt verwijderen? Dit kan niet ongedaan worden gemaakt."
       confirm_hide_content: "Weet je dit zeker? Deze actie verbergt deze content. Je kunt deze actie niet ongedaan maken."
       confirm_hide_author: "Weet je dit zeker? Deze actie verbergt alle content van deze auteur. Ook zal de auteur geblokkeerd worden en niet meer kunnen inloggen. Je kan deze actie niet ongedaan maken."
       confirm_mark_featured: "Weet je dit zeker? Deze actie markeert deze discussie als uitgelicht. Hierdoor wordt het vastgepind aan de bovenkant van de discussie-pagina."
@@ -79,7 +82,6 @@ nl:
         verify: "Accepteren"
     proposals:
       index:
-        select: "Selecteer"
         title: "Initiatieven"
     hidden_proposals:
       index:
@@ -97,10 +99,10 @@ nl:
         title_budget_type: "Type burgerbegroting"
         new_button: "Creëer nieuwe begroting"
         new_single_title_html: "<strong>Enkelvoudig</strong> budget"
-        new_single_description: 'Hier creëer je een proces met één groep, wijk of thema. Je hebt als het ware één zak geld. Bijvoorbeeld 25.000 euro voor de "Oosterparkwijk", of 10.000 voor cultuur.'
+        new_single_description: "Hier creëer je een proces met één groep, wijk of thema. Je hebt als het ware één zak geld. Bijvoorbeeld 25.000 euro voor de \"Oosterparkwijk\", of 10.000 voor cultuur."
         new_single_button: "Creëer enkelvoudig budget"
         new_multiple_title_html: "<strong>Meervoudig</strong> budget"
-        new_multiple_description: 'Hier creëer je een proces met meerdere groepen, wijken of thema''s. Je hebt als het ware meerdere zakken geld. Bijvoorbeeld 25.000 voor "Oosterparkwijk", 30.000 voor het "Centrum", 28.000 voor de "Westerparkwijk" en de hele stad. Of voor verschillende thema''s zoals sport, cultuur of gezondheid.'
+        new_multiple_description: "Hier creëer je een proces met meerdere groepen, wijken of thema's. Je hebt als het ware meerdere zakken geld. Bijvoorbeeld 25.000 voor \"Oosterparkwijk\", 30.000 voor het \"Centrum\", 28.000 voor de \"Westerparkwijk\" en de hele stad. Of voor verschillende thema's zoals sport, cultuur of gezondheid."
         new_multiple_button: "Creeër meervoudig budget"
         table_name: "Titel"
         table_phase: "Fase"
@@ -124,10 +126,9 @@ nl:
         title_multiple: "Nieuw meervoudig budget"
       edit:
         title: "Bewerk begroting"
-        drafting: 'Deze burgerbegroting is in concept. Alleen admins kunnen het bekijken. Wanneer het proces is gepubliceerd, is het zichtbaar voor alle gebruikers. Het is dan niet mogelijk het weer terug te zetten naar concept. Klik op "Publiceer" rechtsboven om de begroting te publiceren.'
+        drafting: "Deze burgerbegroting is in concept. Alleen admins kunnen het bekijken. Wanneer het proces is gepubliceerd, is het zichtbaar voor alle gebruikers. Het is dan niet mogelijk het weer terug te zetten naar concept. Klik op \"Publiceer\" rechtsboven om de begroting te publiceren."
         preview: "Preview"
         publish: "Publiceer"
-        active: "Actief"
         administrators:
           zero: "Selecteer admin"
         valuators:
@@ -153,6 +154,7 @@ nl:
           max_number_headings: "Maximaal aantal rubrieken waarop een gebruiker kan stemmen:"
           add_group: "Groep toevoegen"
           add_heading: "Rubriek toevoegen"
+        image_description: "Wanneer een afbeelding is geüpload, wordt deze gebruikt als banner voor de burgerbegroting gebruikt. Zoniet, dan wordt de standaard kleur gebruikt als banner."
         duration: "Periode"
         phase: "Fase"
         phase_content: "Bewerk inhoud"
@@ -201,7 +203,6 @@ nl:
       name: "Naam kop"
       price: "Budget"
       population: "Populatie"
-      allow_custom_content: "Contentblokken toestaan"
       form:
         population_info: "Het veld rubriek wordt gebruikt voor statistische doeleinden. Na afloop van de begroting kan worden weergegeven door welk percentage is gestemd. Het veld is optioneel, dus je kunt het leeg laten als het niet van toepassing is."
         content_blocks_info: "Als dit is aangevinkt, kun je op maat gemaakte content toevoegen. Via Instellingen Costum content blocks. Deze content zal dan verschijnen bij de ideeën pagina."
@@ -220,7 +221,7 @@ nl:
     polls:
       index:
         title: "Alle peilingen"
-        no_polls: "Geen peilingen"
+        no_polls: "Gein peilingen"
         create: "Maak peiling"
         name: "Titel peiling"
         dates: "Periode"
@@ -346,6 +347,7 @@ nl:
       selected_investment_authors: "Indieners geselecteerde ideeën huidige burgerbegroting"
       winner_investment_authors: "Indieners winnende ideeën huidige burgerbegroting"
       not_supported_on_current_budget: "Gebruikers die geen initiatieven hebben gesteund in huidige burgerbegroting"
+      beta_testers: "Beta testers"
     system_emails:
       budget_investment_created:
         title: "Idee burgerbegroting ingediend"
@@ -396,7 +398,6 @@ nl:
           slug: "Landingspagina"
         cards:
           create_card: "Tegel maken"
-          order_help: "Vul de positie in waarop de tegel moet worden weergegeven."
     homepage:
       header_title: "Header"
       create_header: "Header maken"
@@ -446,7 +447,7 @@ nl:
         documents: "Documenten"
         images: "(Afbeeldingen) huisstijl"
         content_blocks: "Aangepaste blokken"
-        information_texts: "Informatieteksten"
+        information_texts: "Informatie teksten"
         information_texts_menu:
           basic: "Systeemmeldingen"
           budgets: "Ideeën"
@@ -479,12 +480,10 @@ nl:
       flash:
         updated: "Waarde succesvol aangepast"
       index:
-        show_navbar: "Toon feature in de navigatiebalk"
         title: "Instellingen"
         general: "Algemene instellingen"
         update_setting: "Bewerk"
         participation_processes: "Modules"
-        show_navbar: "Toon in de navigatiebalk"
         images_and_documents: "Afbeeldingen en documenten"
         feature_flags: "Opties"
         features:
@@ -528,19 +527,13 @@ nl:
       learn_more: "Meer informatie"
       example_url: "https://consulproject.org"
       back: "Go back"
-      search:
-        search: "Zoek"
-        label:
-          local_census_records: "Zoeken op documentnummer"
     dashboard:
       index:
         title: "Admin"
-        description: Welkom op de beheeromgeving van %{org}.
-        info: |-
-          <p>Kom je er niet uit? Aarzel niet om je vraag te stellen op de Slack omgeving (<a href="https://consul.slack.com">https://consul.slack.com</a>) van CONSUL of om de admin guide te lezen (<a href="https://consulproject.org/docs/consul_administration_guide_en.pdf">https://consulproject.org/docs/consul_administration_guide_en.pdf</a>)'</p>
+        description: 'Welkom op het beheerder gedeelte van %{org}<br>Kom je er niet uit? Aarzel niet om je vraag te stellen op de Slack omgeving (<a href="https://consul.slack.com">https://consul.slack.com</a>) van CONSUL of om de admin guide te lezen (<a href="https://consulproject.org/docs/consul_administration_guide_en.pdf">https://consulproject.org/docs/consul_administration_guide_en.pdf</a>)'
       actions:
         index:
-          description: "Wanneer een gebruiker een initiatief of idee indient, kan hij op een aparte pagina verschillende middelen  krijgen waarmee hij campagne kan voeren voor zijn initiatief of idee."
+          description: "Wanneer een gebruiker een initiatief indient, kan hij op een aparte pagina verschillende middelen krijgen waarmee hij campagne kan voeren voor zijn initiatief."
           create: "Creëer promotie"
           edit: "Bewerk"
           delete: "Verwijder"
@@ -615,8 +608,6 @@ nl:
         name: "Naam"
       index:
         title: "Gebruikers"
-        filters:
-          active: Actief
     officials:
       index:
         title: "Bijzondere rollen"
@@ -641,8 +632,8 @@ nl:
     maps:
       index:
         title: "Kaart instellen"
-        help: 'Hier kun je aanpassen hoe de kaart wordt weergegeven aan gebruikers. Versleep de markering op de kaart of klik ergens op de kaart om een locatie te selecteren. Stel de gewenste zoom in. Om op te slaan klik op de knop "Kaart opslaan".'
-        how_to_enable: 'Om gebruikers de kaart te laten zien, moet je de geolocatie van initiatieven en ideeën inschakelen op het tabblad "functies".'
+        help: "Hier kun je aanpassen hoe de kaart wordt weergegeven aan gebruikers. Versleep de markering op de kaart of klik ergens op de kaart om een locatie te selecteren. Stel de gewenste zoom in. Om op te slaan klik op de knop \"Kaart opslaan\"."
+        how_to_enable: "Om gebruikers de kaart te laten zien, moet je de geolocatie van initiatieven en ideeèn inschakelen op het tabblad \"functies\"."
         budget: "Ideeën"
         default_map: "Standaard kaart"
         new_button: "Creëer nieuwe kaart"

@@ -14,9 +14,7 @@
         <h3><%= card.title %></h3>
       </figcaption>
     </figure>
-    <% if card.description.present? %>
-      <p class="description"><%= card.description %></p>
-    <% end %>
+    <p class="description" data-equalizer-watch><%= card.description %></p>
     <p><%= card.link_text %></p>
   <% end %>
 </div>
