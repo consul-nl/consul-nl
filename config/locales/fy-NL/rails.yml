@@ -28,6 +28,9 @@ fy-NL:
       - oktober
       - novimber
       - desimber
+  time:
+    formats:
+      datetime: "%d-%m-%Y · %H:%M:%S"
   datetime:
     distance_in_words:
       x_days:
