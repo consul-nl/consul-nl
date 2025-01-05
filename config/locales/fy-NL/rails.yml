@@ -28,9 +28,18 @@ fy-NL:
       - oktober
       - novimber
       - desimber
+    formats:
+      default: "%d-%m-%Y"
+      long: "%e %B %Y"
+      short: "%b %d"
   time:
     formats:
-      datetime: "%d-%m-%Y · %H:%M:%S"
+      datetime: "%Y-%m-%d %H:%M:%S"
+      default: "%a %d %b %Y %H:%M:%S %Z"
+      long: "%d %B %Y %H:%M"
+      short: "%d %b %H:%M"
+      short_datetime: "%Y-%m-%d %H:%M"
+      api: "%Y-%m-%d %H"
   datetime:
     distance_in_words:
       x_days:
