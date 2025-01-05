@@ -1,0 +1,115 @@
+//
+// 0. Global styles
+// 1. Budgets
+// 2. Polls
+//
+
+// 0. Global styles
+// --------------------
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+a {
+  font-family: "Arial", "Montserrat", sans-serif !important;
+}
+
+h1 {
+  color: $brand;
+}
+
+.auth-page {
+
+  .logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 50%;
+    padding-top: $line-height * 2;
+  }
+}
+
+.home-page .jumbo {
+
+  @include breakpoint(large) {
+    h1 {
+      font-size: rem-calc(48);
+    }
+  }
+}
+
+.top-bar {
+  padding: 0;
+}
+
+.footer {
+  background: $brand;
+}
+
+.home-page .card a,
+.custom-page .card a {
+  background: #dcecf2;
+}
+
+.home-page .card,
+.custom-page .card {
+
+  &.budget .description {
+    margin-bottom: $line-height;
+
+    &::after {
+      background: none;
+    }
+  }
+}
+
+// 1. Budgets
+// --------------------
+
+.budget-info {
+
+  .single-heading h2,
+  .heading-amount {
+    font-size: rem-calc(36);
+  }
+}
+
+.budget-phases .tabs-title.current-phase-tab [aria-selected="true"] {
+  &:hover {
+    color: #fff;
+
+    &::after {
+      border-left-color: $brand-secondary;
+    }
+  }
+}
+
+.budget-phases .phase-title.current-phase-tab a {
+
+  &:hover {
+    color: #000;
+
+    &::after {
+      border-left-color: #e6e6e6;
+    }
+  }
+}
+
+// 2. Polls
+// --------------------
+
+.poll-question h3,
+.question-list-label {
+  display: block;
+}
+
+.poll-question-answers form,
+.poll-question .button {
+  width: 100%;
+}
+
+.polls-results-stats table th {
+  word-wrap: break-word;
+}

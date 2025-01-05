@@ -6,7 +6,7 @@ class Image < ApplicationRecord
       # Custom code
       large: { resize: "x475" },
       medium: { gravity: "center", resize: "300x300^", crop: "300x300+0+0" },
-      thumb: { gravity: "center", resize: "140x245^", crop: "140x245+0+0" },
+      thumb: { gravity: "center", resize: "140x245^", crop: "140x245+0+0" }
     }
   end
 
@@ -25,7 +25,7 @@ class Image < ApplicationRecord
   end
 
   def self.accepted_content_types
-    Setting["uploads.images.content_types"]&.split(" ") || ["image/jpeg"]
+    Setting["uploads.images.content_types"]&.split || ["image/jpeg"]
   end
 
   def self.humanized_accepted_content_types

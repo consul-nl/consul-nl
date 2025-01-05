@@ -5,7 +5,7 @@ shared_examples_for "globalizable" do |factory_name|
     if factory_name == :budget_phase
       create(:budget).phases.last
     else
-      create(factory_name)
+      create!(factory_name)
     end
   end
   let(:fields) { record.translated_attribute_names }
@@ -45,7 +45,7 @@ shared_examples_for "globalizable" do |factory_name|
 
     it "Does not create invalid translations in the database" do
       if required_fields.any?
-        record.update(translations_attributes: [{ locale: :fr }])
+        record.update!(translations_attributes: [{ locale: :fr }])
 
         expect(record.translations.map(&:locale)).to match_array %i[en es fr]
 
@@ -82,7 +82,7 @@ shared_examples_for "globalizable" do |factory_name|
 
     it "Does not save invalid translations" do
       if required_fields.any?
-        record.update(translations_attributes: [
+        record.update!(translations_attributes: [
           { id: record.translations.find_by(locale: :es).id, attribute => "" }
         ])
 

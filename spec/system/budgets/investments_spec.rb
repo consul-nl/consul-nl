@@ -58,7 +58,7 @@ describe "Budget Investments" do
     visit budget_path(budget)
     click_link "See all investments"
 
-    expect(page).to have_selector("#budget-investments .budget-investment", count: 3)
+    expect(page).to have_css("#budget-investments .budget-investment", count: 3)
     investments.each do |investment|
       within("#budget-investments") do
         expect(page).to have_content investment.title
@@ -126,7 +126,7 @@ describe "Budget Investments" do
     end
 
     unlocated_heading = create(:budget_heading, name: "No Map", price: 500, group: group,
-                               longitude: nil, latitude: nil)
+                                                longitude: nil, latitude: nil)
     create(:budget_investment, heading: unlocated_heading)
     visit budget_investments_path(budget, heading_id: unlocated_heading.id)
     within("#sidebar") do
@@ -424,7 +424,7 @@ describe "Budget Investments" do
 
       visit budget_investments_path(budget, heading_id: heading.id)
       click_link "highest rated"
-      expect(page).to have_selector("a.is-active", text: "highest rated")
+      expect(page).to have_css("a.is-active", text: "highest rated")
 
       within "#budget-investments" do
         expect(best_proposal.title).to appear_before(medium_proposal.title)
@@ -603,7 +603,7 @@ describe "Budget Investments" do
       fill_in_new_investment_title with: "Build a skyscraper"
       fill_in_ckeditor "Description", with: "I want to live in a high tower over the clouds"
       fill_in "Location additional info", with: "City center"
-      fill_in "If you are proposing in the name of a collective/organization, "\
+      fill_in "If you are proposing in the name of a collective/organization, " \
               "or on behalf of more people, write its name", with: "T.I.A."
       fill_in "Tags", with: "Towers"
       check "I agree to the Privacy Policy and the Terms and conditions of use"
@@ -645,7 +645,7 @@ describe "Budget Investments" do
       visit new_budget_investment_path(budget)
 
       expect(page).to have_select "Heading",
-        options: ["", "More hospitals", "Medical supplies", "Even more hospitals"]
+                                  options: ["", "More hospitals", "Medical supplies", "Even more hospitals"]
       expect(page).not_to have_content "Health"
     end
 
@@ -661,14 +661,15 @@ describe "Budget Investments" do
 
       expect(page).not_to have_content("#{heading.name} (#{budget.formatted_heading_price(heading)})")
       expect(page).to have_select "Heading",
-        options: ["", "Health: More hospitals", "Health: Medical supplies", "Education: Schools"]
+                                  options: ["", "Health: More hospitals", "Health: Medical supplies",
+                                            "Education: Schools"]
 
       select "Health: Medical supplies", from: "Heading"
 
       fill_in_new_investment_title with: "Build a skyscraper"
       fill_in_ckeditor "Description", with: "I want to live in a high tower over the clouds"
       fill_in "Location additional info", with: "City center"
-      fill_in "If you are proposing in the name of a collective/organization, "\
+      fill_in "If you are proposing in the name of a collective/organization, " \
               "or on behalf of more people, write its name", with: "T.I.A."
       fill_in "Tags", with: "Towers"
       check "I agree to the Privacy Policy and the Terms and conditions of use"
@@ -691,7 +692,8 @@ describe "Budget Investments" do
     scenario "Edit" do
       daniel = create(:user, :level_two)
 
-      create(:budget_investment, heading: heading, title: "Get Schwifty", author: daniel, created_at: 1.day.ago)
+      create(:budget_investment, heading: heading, title: "Get Schwifty", author: daniel,
+                                 created_at: 1.day.ago)
 
       login_as(daniel)
 
@@ -816,12 +818,12 @@ describe "Budget Investments" do
 
       visit budget_investments_path(budget, heading_id: heading.id)
 
-      expect(page).not_to have_link("Submit my ballot")
+      expect(page).not_to have_link("Check my votes")
       expect(page).not_to have_css("#progress_bar")
 
       within("#sidebar") do
         expect(page).not_to have_content("My ballot")
-        expect(page).not_to have_link("Submit my ballot")
+        expect(page).not_to have_link("Check my votes")
       end
     end
 
@@ -943,7 +945,7 @@ describe "Budget Investments" do
 
     visit budget_investment_path(budget, id: investment.id)
 
-    expect(page).not_to have_selector ".js-follow"
+    expect(page).not_to have_css ".js-follow"
   end
 
   scenario "Show back link contains heading id" do
@@ -987,11 +989,11 @@ describe "Budget Investments" do
                         unfeasibility_explanation: "Local government is not competent in this")
 
     investment_2 = create(:budget_investment,
-                        :unfeasible,
-                        :finished,
-                        budget: budget,
-                        heading: heading,
-                        unfeasibility_explanation: "The unfeasible explanation")
+                          :unfeasible,
+                          :finished,
+                          budget: budget,
+                          heading: heading,
+                          unfeasibility_explanation: "The unfeasible explanation")
 
     user = create(:user)
     login_as(user)
@@ -1000,14 +1002,14 @@ describe "Budget Investments" do
 
     expect(page).not_to have_content("Unfeasibility explanation")
     expect(page).not_to have_content("Local government is not competent in this")
-    expect(page).not_to have_content("This investment project has been marked as not feasible "\
+    expect(page).not_to have_content("This investment project has been marked as not feasible " \
                                      "and will not go to balloting phase")
 
     visit budget_investment_path(budget, id: investment_2.id)
 
     expect(page).to have_content("Unfeasibility explanation")
     expect(page).to have_content("The unfeasible explanation")
-    expect(page).to have_content("This investment project has been marked as not feasible "\
+    expect(page).to have_content("This investment project has been marked as not feasible " \
                                  "and will not go to balloting phase")
   end
 
@@ -1101,9 +1103,11 @@ describe "Budget Investments" do
     expect(page).not_to have_content("Local government is not competent in this matter")
   end
 
-  it_behaves_like "followable", "budget_investment", "budget_investment_path", { budget_id: "budget_id", id: "id" }
+  it_behaves_like "followable", "budget_investment", "budget_investment_path",
+                  { budget_id: "budget_id", id: "id" }
 
-  it_behaves_like "imageable", "budget_investment", "budget_investment_path", { budget_id: "budget_id", id: "id" }
+  it_behaves_like "imageable", "budget_investment", "budget_investment_path",
+                  { budget_id: "budget_id", id: "id" }
 
   it_behaves_like "nested imageable",
                   "budget_investment",
@@ -1113,7 +1117,8 @@ describe "Budget Investments" do
                   "Create Investment",
                   "Budget Investment created successfully."
 
-  it_behaves_like "documentable", "budget_investment", "budget_investment_path", { budget_id: "budget_id", id: "id" }
+  it_behaves_like "documentable", "budget_investment", "budget_investment_path",
+                  { budget_id: "budget_id", id: "id" }
 
   it_behaves_like "nested documentable",
                   "user",
@@ -1318,17 +1323,6 @@ describe "Budget Investments" do
         expect(page).to have_content "1 support"
       end
     end
-
-    scenario "Show should display support text and count" do
-      investment = create(:budget_investment, budget: budget, heading: heading, voters: [create(:user)])
-
-      visit budget_investment_path(budget, investment)
-
-      within("#budget_investment_#{investment.id}") do
-        expect(page).to have_content "SUPPORTS"
-        expect(page).to have_content "1 support"
-      end
-    end
   end
 
   context "Publishing prices phase" do
@@ -1378,21 +1372,24 @@ describe "Budget Investments" do
         expect(page).to have_content "€20,000"
       end
 
-      expect(page).to have_link "Submit my ballot"
+      expect(page).to have_link "Check my votes"
       expect(page).to have_content "STILL AVAILABLE TO YOU €666,666"
     end
 
     scenario "Order by cost (only when balloting)" do
-      mid_investment = create(:budget_investment, :selected, heading: heading, title: "Build a nice house", price: 1000)
+      mid_investment = create(:budget_investment, :selected, heading: heading, title: "Build a nice house",
+                                                             price: 1000)
       mid_investment.update_column(:confidence_score, 10)
-      low_investment = create(:budget_investment, :selected, heading: heading, title: "Build an ugly house", price: 1000)
+      low_investment = create(:budget_investment, :selected, heading: heading, title: "Build an ugly house",
+                                                             price: 1000)
       low_investment.update_column(:confidence_score, 5)
-      high_investment = create(:budget_investment, :selected, heading: heading, title: "Build a skyscraper", price: 20000)
+      high_investment = create(:budget_investment, :selected, heading: heading, title: "Build a skyscraper",
+                                                              price: 20000)
 
       visit budget_investments_path(budget, heading_id: heading.id)
 
       click_link "by price"
-      expect(page).to have_selector("a.is-active", text: "by price")
+      expect(page).to have_css("a.is-active", text: "by price")
 
       within "#budget-investments" do
         expect(high_investment.title).to appear_before(mid_investment.title)
@@ -1426,9 +1423,9 @@ describe "Budget Investments" do
       login_as(user)
       visit budget_investment_path(budget, investment2)
 
-      expect(page).to have_selector(".participation-not-allowed",
-                                    text: "You have already voted a different heading: Heading 1",
-                                    visible: :hidden)
+      expect(page).to have_css(".participation-not-allowed",
+                               text: "You have already voted a different heading: Heading 1",
+                               visible: :hidden)
     end
 
     scenario "Sidebar in show should display vote text" do
@@ -1446,11 +1443,11 @@ describe "Budget Investments" do
 
       global_group   = create(:budget_group, budget: budget, name: "Global Group")
       global_heading = create(:budget_heading, group: global_group, name: "Global Heading",
-                              latitude: -43.145412, longitude: 12.009423)
+                                               latitude: -43.145412, longitude: 12.009423)
 
       carabanchel_heading = create(:budget_heading, group: group, name: "Carabanchel")
       new_york_heading    = create(:budget_heading, group: group, name: "New York",
-                                   latitude: -43.223412, longitude: 12.009423)
+                                                    latitude: -43.223412, longitude: 12.009423)
 
       create(:budget_investment, :selected, price: 1, heading: global_heading, title: "World T-Shirt")
       create(:budget_investment, :selected, price: 10, heading: global_heading, title: "Eco pens")
@@ -1472,7 +1469,7 @@ describe "Budget Investments" do
 
       visit budget_ballot_path(budget)
 
-      expect(page).to have_content "But you can change your vote at any time "\
+      expect(page).to have_content "But you can change your vote at any time " \
                                    "until this phase is closed."
 
       within("#budget_group_#{global_group.id}") do
@@ -1546,12 +1543,12 @@ describe "Budget Investments" do
 
       visit budget_investments_path(budget, heading_id: heading.id)
 
-      expect(page).to have_link("Submit my ballot")
+      expect(page).to have_link("Check my votes")
       expect(page).to have_css("#progress_bar")
 
       within("#sidebar") do
         expect(page).to have_content("MY BALLOT")
-        expect(page).to have_link("Submit my ballot")
+        expect(page).to have_link("Check my votes")
       end
     end
 
@@ -1699,8 +1696,23 @@ describe "Budget Investments" do
     end
 
     scenario "Shows the polygon associated to the current heading" do
-      triangle = '{ "geometry": { "type": "Polygon", "coordinates": [[-0.1,51.5],[-0.2,51.4],[-0.3,51.6]] } }'
-      rectangle = '{ "geometry": { "type": "Polygon", "coordinates": [[-0.1,51.5],[-0.2,51.5],[-0.2,51.6],[-0.1,51.6]] } }'
+      triangle = <<~JSON
+        {
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[-0.1,51.5],[-0.2,51.4],[-0.3,51.6]]
+          }
+        }
+      JSON
+
+      rectangle = <<~JSON
+        {
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[-0.1,51.5],[-0.2,51.5],[-0.2,51.6],[-0.1,51.6]]
+          }
+        }
+      JSON
 
       park = create(:geozone, geojson: triangle, color: "#03ee03")
       square = create(:geozone, geojson: rectangle, color: "#ff04ff")

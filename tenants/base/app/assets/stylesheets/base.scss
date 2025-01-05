@@ -155,13 +155,14 @@ aside {
   padding-top: $line-height * 2;
 
   a {
-    color: var(--brand);
+    color: var(--header-link-color, var(--brand));
     font-weight: bold;
   }
 
   h1,
   .icon {
     font-size: rem-calc(40);
+    color: var(--header-color);
   }
 
   .icon {
@@ -510,12 +511,11 @@ form {
   select,
   textarea,
   [type]:not(
-      [type="button"],
-      [type="checkbox"],
-      [type="file"],
-      [type="radio"],
-      [type="submit"]
-    ):not(.close-button),
+    [type="button"],
+    [type="checkbox"],
+    [type="file"],
+    [type="radio"],
+    [type="submit"]):not(.close-button),
   .cke {
     border: 2px solid $border-forms;
   }
@@ -596,7 +596,7 @@ body > header,
 }
 
 .top-bar-title {
-  background: var(--brand);
+  /* background: var(--brand); */
   margin: 0;
   position: relative;
 
@@ -699,15 +699,12 @@ body > header,
 }
 
 .subnavigation {
-  background: $light;
-
   @include breakpoint(medium) {
     padding: $line-height / 2 0;
   }
 }
 
 .subnavigation a {
-  color: $text;
   font-size: 16px;
   position: relative;
   font-weight: $button-font-weight;
@@ -720,8 +717,8 @@ body > header,
     }
 
     &.is-active::after {
-      background: var(--brand);
-      bottom: -12px;
+      background: var(--subnavigation-contrast);
+      bottom: -13px;
       content: "";
       height: 4px;
       left: 0;
@@ -732,7 +729,7 @@ body > header,
 
   &:hover,
   &.is-active {
-    color: var(--brand);
+    color: var(--subnavigation-contrast-hover, var(--brand));
   }
 }
 
@@ -786,7 +783,7 @@ body > header,
       > a::before {
         border: inset 6px;
         border-bottom-width: 0;
-        border-color: var(--brand) transparent transparent;
+        border-color: currentColor transparent transparent;
         border-top-style: solid;
         content: "";
         display: block;
@@ -3302,7 +3299,7 @@ a {
 
 .budget-subheader {
   .current-phase {
-    color: $label;
+    color: var(--label);
     text-transform: uppercase;
   }
 
@@ -3785,3 +3782,4 @@ a {
     }
   }
 }
+

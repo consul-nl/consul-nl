@@ -1,0 +1,77 @@
+fy-NL:
+  mailers:
+    no_reply: "Dizze mail is troch in e-mailadres ferstjoerd dêr’t net op reagearre wurde kin"
+    unsubscribe: "As jo dit soarte fan e-mails net mear ûntfange wolle, feroarje dan de ynstellingen op de \"%{link}\" side."
+    unsubscribe_link: "Myn Profyl"
+    comment:
+      hi: "Bêste"
+      new_comment_by: "Jo hawwe in nije reaksje fan <strong>%{commenter}</strong>"
+      subject: "Immen hat op jo idee %{commentable} reagearre"
+      title: "Immen hat op jo idee reagearre"
+      new_comment_by_html: "Der is in nije reaksje op jo idee"
+    config:
+      manage_email_subscriptions: "Wolle jo soksoarte mails net mear ûntfange? Feroarje dan hjir jo ynstellingen"
+    email_verification:
+      click_here_to_verify: "Dizze link"
+      subject: "Befêstigje jo e-mailadres"
+      thanks: "Betanke!"
+      title: "Befêstigje jo akkount troch de neikommende link te brûken"
+    reply:
+      hi: "Bêste"
+      new_reply_by: "Der is in nije reaksje fan <strong>%{commenter}</strong> op jo reaksje"
+      subject: "Der hat immen op jo reaksje reagearre"
+      title: "Der hat immen op jo reaksje reagearre"
+      new_reply_by_html: "<strong>%{commenter}</strong> hat op jo reaksje reagearre"
+    proposal_notification_digest:
+      info: "Dit binne nije meldingen fan inisjativen dy’t jo yn %{org_name} stipe hawwe."
+      title: "Meldingen yn %{org_name}"
+      share: "Inisjatyf diele"
+      comment: "Reagearje op it inisjatyf"
+      unsubscribe: "As jo hjir gjin e-mails fan krije wolle, gean dan nei %{account} en wiskje it finkje by \"E-mails by meldingen ûntfange\""
+      unsubscribe_account: "Myn profyl"
+    direct_message_for_receiver:
+      subject: "Jo hawwe in nij priveeberjocht krige"
+      reply: "Reagearje op %{sender}"
+      unsubscribe: "As jo gjin priveeberjochten krije wolle, sjoch dan ris by %{account} en wiskje it finkje by \"e-mails oer priveeberjochten krije\""
+      unsubscribe_account: "Myn profyl"
+      title: "Jo hawwe in nij priveeberjocht krige."
+    direct_message_for_sender:
+      subject: "Jo hawwe in priveeberjocht stjoerd."
+      title_html: "Jo hawwe it neikommende priveeberjocht stjoerd nei <strong>%{receiver}</strong>:"
+    user_invite:
+      ignore: "Hawwe jo dizze útnûging sûnder te freegjen krigen? Gjin soargen, dan kinne jo dizze mail negearje."
+      text: "Jo kinne jo ynskriuwe foar Stim fan Fryslân! Klik dêrfoar op de neikommende link:"
+      thanks: "Betanke"
+      title: "Wolkom op de %{org}"
+      button: "Skriuw dy yn"
+      subject: "Wolkom op de %{org_name}"
+    budget_investment_created:
+      subject: "Betanke foar it dielen fan jo idee!"
+      title: "Betanke foar it dielen fan jo idee!"
+      follow_link: "Stim Fan Fryslân"
+      sincerely: "Mei freonlike groetnis,"
+      intro: "Bêste <strong>%{author}</strong>"
+      text: "Betanke foar it dielen fan jo idee <strong>%{investment}</strong> foar <strong>%{budget}</strong>"
+      follow: "Wy hâlde jo op ‘e hichte fan it proses. Dat kinne jo ek folgje op <strong>%{link}</strong>"
+      share: "diel op sosjale media"
+    budget_investment_unfeasible:
+      hi: "Bêste dielnimmer,"
+      new_href: "Dat kin hjir"
+      sincerely: "Groetnis fan Stim fan Fryslân"
+      sorry: "Hawwe jo noch fragen, mail dan nei stimfan@fryslan.frl"
+      subject: "Spitich, jo idee is net te dwaan"
+      new: "De provinsje hat nei jo idee sjoen. Spitigernôch docht bliken dat jo idee net mooglik is. Wy lizze ek út wêrom: %{url}"
+      contact: "Hawwe jo fragen of wolle jo help by jo idee? Mail dan nei %{email}, wy tinke graach mei jo mei."
+    budget_investment_selected:
+      subject: "Lokwinske, idee '%{code}' giet troch nei de stimomloop"
+      hi: "Bêste dielnimmer,"
+      share: "De provinsje hat alle yntsjinne ideeën besjoen en sjoen hoefolle at it likernôch kostje sil. Lokwinske, jo idee is mooglik! Jo kinne no begjinne mei jo lytse kampanje. Diel jo idee op social media en mei jo buorlju. In soad sukses!"
+      share_button: "Diel jo idee"
+      thanks: "Betanke foar it meidwaan. Hawwe jo noch fragen, mail dan nei stimfan@fryslan.frl"
+      sincerely: "Groetnis fan Stim fan Fryslân"
+      title: "Lokwinske, jo idee giet troch nei de stimomloop!"
+    budget_investment_unselected:
+      subject: "Spitigernôch hat jo idee it net helle"
+      hi: "Bêste dielnimmer,"
+      thanks: "Spitigernôch hat jo idee net genôch stipe krige om troch te gean. Tige betanke foar it dielen fan jo idee."
+      sincerely: "Groetnis fan Stim fan Fryslân"
