@@ -1,0 +1,87 @@
+fy-NL:
+  activerecord:
+    models:
+      comment:
+        one: "Reaksje"
+        other: "Reaksjes"
+    attributes:
+      organization:
+        name: "Namme fan organisaasje of kollektyf"
+        responsible_name: "Ferantwurdlike"
+      poll:
+        name: "Namme"
+        starts_at: "Begjindatum"
+        ends_at: "Eindatum"
+      user:
+        password_confirmation: "Wachtwurd befêstigje"
+        password: "Wachtwurd"
+        current_password: "Hjoeddeisk wachtwurd"
+        phone_number: "Telefoannûmer"
+        redeemable_code: "Ferifikaasjekoade fia e-mai ûntfange"
+        email_digest: "Untfang in gearfetting fan notifikaasjes fan inisjativen"
+        email_on_comment: "Stjoer my in mail as immen op myn diskusjes reagearret"
+        email_on_comment_reply: "Stjoer my in mail as immen op myn reaksje reagearret"
+        email_on_direct_message: "Untfang e-mails oer priveeberjochten"
+        newsletter: "Untfang nijsbrieven fan de website"
+        public_activity: "Meitsje myn aktiviteit iepenbier"
+        public_interests: "Meitsje de ûnderwerpen/labels dy’t ik folgje iepenbier"
+        recommended_debates: "Lit oanrekommandaasjes foar diskusje sjen"
+        recommended_proposals: "Lit oanrekommandaasjes foar foarstellen sjen"
+        login: "E-mailadres of brûkersnamme"
+        email: "E-mailadres"
+        username: "Brûkersnamme"
+      debate/translation:
+        title: "Titel diskusje"
+        description: "Omskriuwing"
+      proposal/translation:
+        title: "Titel inisjatyf"
+        description: "Omskriuwing"
+        summary: "Gearfetting inisjatyf"
+        retired_explanation: "Taljochting"
+      budget/translation:
+        name: "Titel"
+      budget/investment:
+        location: "Hjir kinne jo mear fertelle oer de lokaasje"
+        organization_name: "As jo in idee yntsjinje út namme fan in stifting, koöperaasje of organisaasje, fier dan hjir de namme yn"
+      budget/investment/translation:
+        title: "Titel idee"
+        description: "Omskriuwing"
+    errors:
+      models:
+        debate:
+          attributes:
+            tag_list:
+              less_than_or_equal_to: "It tal labels/ûnderwerpen moat lytser of gelyk oan %{count} wêze"
+        direct_message:
+          attributes:
+            max_per_day:
+              invalid: "Jo hawwe it maksimum oan priveeberjochten foar ien dei berikt"
+        image:
+          attributes:
+            attachment:
+              min_image_width: "Breedte ôfbylding moat op syn minst %{required_min_width}px wêze"
+              min_image_height: "Hichte ôfbylding moat op syn minst %{required_min_height}px"
+        newsletter:
+          attributes:
+            segment_recipient:
+              invalid: "Jo kinne dizze minsken gjin berjocht stjoere"
+        admin_notification:
+          attributes:
+            segment_recipient:
+              invalid: "It ûnderdiel ûntfangers is net jildich"
+        map_location:
+          attributes:
+            map:
+              invalid: "Lokaasje mei net leech wêze. Set in markearring op ‘e kaart of set in finkje as de lokaasje net nedich is"
+        signature:
+          attributes:
+            document_number:
+              already_voted: "Jo hawwe al op dit idee stimd"
+        site_customization/image:
+          attributes:
+            image:
+              image_height: "Hichte moat %{required_height}px wêze"
+        comment:
+          attributes:
+            valuation:
+              cannot_comment_valuation: "Jo kinne net op in beoardieling reagearje"
