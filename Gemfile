@@ -7,6 +7,7 @@ gem "acts_as_votable", "~> 0.14.0"
 gem "ahoy_matey", "~> 5.0.2"
 gem "airbrake", "~> 13.0.4"
 gem "ancestry", "~> 4.3.3"
+gem "appsignal"
 gem "audited", "~> 5.4.3"
 gem "autoprefixer-rails", "~> 10.4.16"
 gem "bing_translator", "~> 6.2.0"
@@ -62,6 +63,7 @@ gem "view_component", "~> 3.11.0"
 gem "whenever", "~> 1.0.0", require: false
 gem "wicked_pdf", "~> 2.8.0"
 gem "wkhtmltopdf-binary", "~> 0.12.6"
+
 
 group :development, :test do
   gem "debug", "~> 1.9.2"

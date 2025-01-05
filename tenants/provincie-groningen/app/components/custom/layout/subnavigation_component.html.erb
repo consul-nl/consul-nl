@@ -1,0 +1,30 @@
+<nav>
+  <h1 class="show-for-sr"><%= t("layouts.header.navigation") %></h1>
+  <ul class="dropdown menu" data-dropdown-menu>
+    <%== content_block("subnavigation_left") %>
+
+    <% if feature?(:budgets) %>
+      <li>
+        <% if budgets.count > 1 %>
+          <%= layout_menu_link_to t("layouts.header.budgets"), "#",
+                                  controller_name == "budgets" || controller_name == "investments",
+                                  accesskey: "5" %>
+          <ul>
+            <% budgets.each do |budget| %>
+              <li>
+                <%= link_to budget.name, url_for(budget) %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <%= layout_menu_link_to t("layouts.header.budgets"),
+                                  budgets_path,
+                                  controller_name == "budgets" || controller_name == "investments",
+                                  accesskey: "5" %>
+        <% end %>
+      </li>
+    <% end %>
+
+    <%== content_block("subnavigation_right") %>
+  </ul>
+</nav>
