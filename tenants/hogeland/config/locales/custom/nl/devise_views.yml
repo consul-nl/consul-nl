@@ -3,7 +3,7 @@ nl:
     mailer:
       confirmation_instructions:
         title: "Bevestig je account door de volgende link te gebruiken"
-        confirm_link: "Klik op %{link} om de registratie van je account af te ronden."
+        confirm_link_html: "Klik op %{link} om de registratie van je account af te ronden."
         link: "deze link"
         text: "Met deze email registreer je je account. Als je dit niet hebt aangevraagd, klik dan niet op de link en negeer deze mail."
     menu:

@@ -74,3 +74,20 @@ footer {
 .button, button {
   font-weight: bold;
 }
+
+
+.is-dropdown-submenu-item a {
+  color: var(--brand);
+
+  &:hover {
+    color: #00101d;
+  }
+}
+
+.subnavigation .dropdown.menu > li.is-dropdown-submenu-parent > a::before {
+  border-top-color: white;
+}
+
+.subnavigation .dropdown.menu > li.is-active > a::before {
+  border-top-color: var(--brand);
+}

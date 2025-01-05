@@ -3,11 +3,10 @@ require "rails_helper"
 describe "Home" do
   scenario "if there are cards, the 'featured' title will render" do
     create(:widget_card,
-      title: "Card text",
-      description: "Card description",
-      link_text: "Link text",
-      link_url: "consul.dev"
-    )
+           title: "Card text",
+           description: "Card description",
+           link_text: "Link text",
+           link_url: "consul.dev")
 
     visit root_path
 

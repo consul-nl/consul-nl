@@ -396,6 +396,7 @@ nl:
           slug: "Landingspagina"
         cards:
           create_card: "Tegel maken"
+          order_help: "Vul de positie in waarop de tegel moet worden weergegeven."
     homepage:
       header_title: "Header"
       create_header: "Header maken"

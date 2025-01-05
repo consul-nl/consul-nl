@@ -116,7 +116,7 @@ describe "Ballots" do
         within("#sidebar") do
           expect(page).to have_content "Bring back King Kong"
           expect(page).to have_content "€10,000"
-          expect(page).to have_link "Submit my ballot"
+          expect(page).to have_link "Check my votes"
         end
 
         add_to_ballot("Paint cabs black")
@@ -127,7 +127,7 @@ describe "Ballots" do
         within("#sidebar") do
           expect(page).to have_content "Paint cabs black"
           expect(page).to have_content "€20,000"
-          expect(page).to have_link "Submit my ballot"
+          expect(page).to have_link "Check my votes"
         end
       end
 
@@ -143,7 +143,7 @@ describe "Ballots" do
         within("#sidebar") do
           expect(page).to have_content investment.title
           expect(page).to have_content "€10,000"
-          expect(page).to have_link "Submit my ballot"
+          expect(page).to have_link "Check my votes"
         end
 
         within("#budget_investment_#{investment.id}") do
@@ -156,7 +156,7 @@ describe "Ballots" do
         within("#sidebar") do
           expect(page).not_to have_content investment.title
           expect(page).not_to have_content "€10,000"
-          expect(page).to have_link "Submit my ballot"
+          expect(page).to have_link "Check my votes"
         end
       end
 
@@ -164,10 +164,9 @@ describe "Ballots" do
         stub_const("#{Budgets::InvestmentsController}::PER_PAGE", 1)
 
         create(:budget_investment, :selected, :with_map_location,
-          heading: new_york,
-          price: 10000,
-          title: "More bridges",
-        )
+               heading: new_york,
+               price: 10000,
+               title: "More bridges",)
         create(
           :budget_investment, :selected, :with_map_location,
           heading: new_york,
@@ -429,7 +428,7 @@ describe "Ballots" do
       add_to_ballot("Sully monument")
 
       within(".budget-heading") do
-        click_link "Submit my ballot"
+        click_link "Check my votes"
       end
 
       expect(page).to have_content("You have voted one investment")
@@ -450,7 +449,7 @@ describe "Ballots" do
       visit budget_investments_path(budget, heading_id: new_york.id)
 
       within(".budget-heading") do
-        click_link "Submit my ballot"
+        click_link "Check my votes"
       end
 
       expect(page).to have_content("You have voted 0 investments")
@@ -700,7 +699,7 @@ describe "Ballots" do
         expect(page).not_to have_content investment_1.price
         expect(page).not_to have_content investment_2.price
         expect(page).not_to have_content "€"
-        click_link "Submit my ballot"
+        click_link "Check my votes"
       end
 
       expect(page).to have_content investment_1.title

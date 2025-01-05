@@ -1,0 +1,228 @@
+fy-NL:
+  budgets:
+    ballots:
+      show:
+        title: "Jo kar"
+        no_balloted_group_yet: "Jo hawwe noch net stimd"
+        remove: "Ferwiderje kar"
+        voted_info_2: "Jo kinne jo stim altyd oanpasse oant de faze ôfsluten wurdt"
+        zero: "Jo hawwe op gjin inkel idee stimd."
+        voted:
+          one: "Jo hawwe op <span>1</span>ideeën stimd"
+          other: "Jo hawwe op <span>%{count}</span> ideeën stimd"
+        voted_info: "Jo stim is befêstige"
+        back: "Werom"
+        amount_spent:
+          knapsack:	"Utjûn <span>%{count}</span>"
+          approval:
+            zero: "Stimmen útbrocht <span>%{count}</span>"
+            one: "Stimmen útbrocht <span>%{count}</span>"
+            other: "Stimmen útbrocht <span>%{count}</span>"
+        remaining: "Jo kinne noch <span>%{amount}</span> spandearje"
+        amount_limit:
+          approval:
+            one: "Jo kinne op <span>1</span> idee stimme"
+            other: "Jo kinne op <span>%{count}</span> ideeën stimme"
+        amount_available:
+          knapsack: "Jo kinne noch <span>%{count}</span> útjaan."
+          approval:
+            zero: "Jo kinne noch <span>%{count}</span> stimmen útbringe."
+            one: "Jo kinne noch <span>%{count}</span> stim útbringe."
+            other: "Jo kinne noch <span>%{count}</span> stimmen útbringe."
+      reasons_for_not_balloting:
+        not_logged_in: "Jo moatte %{signin} of %{signup} om fierder te gean."
+        organization: "Organisaasjes meie net stimme."
+        not_selected: "Op ideeen dy't net selektearre binne kin net stimd wurde."
+        no_ballots_allowed: "De seleksje rûnte is foarby"
+        change_ballot: "Wizigje jo stim"
+        casted_offline: "Jo hawwe al offline meidien"
+        not_enough_money: "Jo kinne dit no net mear besteegje. As jo wolle kinne jo jo stim altyd noch oanpasse by de stimfaze."
+        different_heading_assigned: "Jo hawwe al stimd in in oare groep: %{heading_link}"
+        not_enough_available_votes: "Jo hawwe jo maksimaal oantal stimmen berikt."
+    groups:
+      show:
+        title: "Kies in mooglikheid"
+        unfeasible_title: "Net-stimbere ideeën"
+        unfeasible: "Besjoch net-stimbere ideeën"
+        unselected: "Besjoch ideeën net-selektearre foar stimronde"
+    phase:
+      drafting: "Konsept (net publyk sichtber)"
+    index:
+      empty_budgets: "Der binne gjin budzjetten"
+      section_header:
+        help: "Taljochting"
+      all_phases: "Fazen"
+      map: "Alle ideeën op ‘e kaart"
+      finished_budgets: "Ofrûne prosessen"
+      see_results: "Besjoch de útslach"
+      section_footer:
+        title: "Oer dit proses"
+        description: "Beslis mei oar it ferdielen fan jild tusken ferskate ideeën en projekten."
+      milestones: "Mylpeallen"
+      current_phase: "Hjoeddeiske faze"
+      supports_info:
+        title: "Jo kinne no ideeën <strong>steunen</strong>!"
+        next: "Stypje de ideeën dy’t jo graach útfierd sjen wolle."
+        remember: "Jo meie safolle ferskillende ideeën stypje as dat jo wolle."
+        different: "Mar... jo kinne elk idee mar ien kear stypje. En stipe is definityf."
+        supported: "Oant no ta  hawwe jo <strong>%{count} ideeën</strong> stipe."
+        supported_one: "Oant no ta hawwe jo <strong>1 idee</strong> stipe."
+        supported_not_logged_in: Log yn om <strong>projecten te stypjen </strong>"
+        time: "Jo kinne noch oant %{phase_end_date} ideeën stypje."
+        share: "Jo kinne ideeën dy’t jo stipe hawwe diele op sosjale media. Sa krije de ideeën mear oandacht en faaks mear stipe."
+        scrolling: "Bliuw skrollen om alle ideeën te sjen."
+      unfeasible_investment_proyects: "Ideeën dêr't op stimd wurde kin"
+      investment_proyects: "List fan alle kiezen ûnderwerpen"
+      next_phase: "Folgjende faze"
+      prev_phase: "Foarige faze"
+    investments:
+      new:
+        recommendations_title: "Beskriuw:"
+        recommendation_one: "Jou in koarte beskriuwing fan it idee hoe jo tinke de Fryske taal yn jo omjouwing takomst te jaan."
+        recommendation_two: "Hoe goed slút jo idee oan op wat de provinsje Fryslân graach foar de Fryske taal berikke wol? De provinsje wol graach in mear sichtber en fanselssprekkend plak foar it Frysk yn Fryslân. It Frysk as ien fan dé Europeeske talen."
+        recommendation_three: "Foar hokker bedrach tusken de 100 en 15.000 euro is jo idee te realisearjen? Wa moat hjir wat foar dwaan?"
+        recommendation_four: "Hoe grut is it effekt fan it útfieren fan jo idee? Foar jo wyk, jo doarp, stêd of de hiele provinsje?"
+      form:
+        tag_category_label:	"Kategorieën."
+        tags_instructions: "Do kinst oanjaan wêr't dyn idee oer giet troch dizze in ûnderwerp of in label te jaan. Do kinst in eigen tafoege, of de besteande brûke."
+        tags_label:	"Underwerpen /labels"
+        tags_placeholder:	"Fier de kategory yn dy’t jo brûke wolle, skieden mei komma's (‘,’)"
+        map_location:	"Lokaasje"
+        map_location_instructions: "Klik op 'e kaart om de lokaasje oan te jaan. Jo kinne de kaart bewege."
+        map_remove_marker: "Lokaasje fuort helje"
+        map_skip_checkbox: "Dit idee hat gjin eigen lokaasje of ik kin de lokaasje net"
+        title: "Diel in idee"
+        edit_permission: "Do moast sels in idee yntsjinne hawwe om it bewurkje te kinnen."
+        updated_notice:	"Jo idee is oanpast."
+      index:
+        unfeasible: "Net-stimbere ideeën"
+        by_heading: "Ideeën foar %{heading}"
+        search_form:
+          button: "Sykje"
+          placeholder: "Sykje ideeën..."
+          title: "Sykje"
+        sidebar:
+          my_ballot: "Myn stimmen"
+          change_ballot: "As jo jo betinke kinne jo jo stim yn %{check_ballot} fuort helje en op 'e nij begjinne."
+          check_ballot_link: "Besjoch myn stimmen"
+          zero: "Jo hawwe noch net op in idee stimd."
+          verified_only: "%{verify} jo akkount om in idee yn te tsjinjen. "
+          create: "Tsjinje jo idee yn"
+          not_logged_in: "Om in idee yn te tsjinjen moatte jo %{sign_in} of %{sign_up}."
+          voted:
+            one: "Jo hawwe op <strong>1 idee</strong> stimd dat yn totaal %{amount_spent} kost."
+            other: "Jo hawwe op <strong>%{count} ideeën</strong> stimd dy’t yn totaal %{amount_spent} koste."
+          voted_info:
+            knapsack:
+              one: "Jo hawwe op <strong>%{count} ideeën</strong> stimd dy’t in totaal %{amount_spent} koste."
+              other: "Jo hawwe op <strong>%{count} ideeën</strong> stimd dy’t yn totaal %{amount_spent} koste."
+            approval:
+              one: "<strong>Jo hawwe op 1 idee stimd </strong>"
+              other: "<strong>Jo hawwe op %{count} ideeën stimd</strong>"
+          voted_info_link: "Jo stim wizigje"
+          different_heading_assigned: "Jo hawwe al stimd yn in oare groep: %{heading_link}"
+          sign_in: "Ynlogge"
+          sign_up: "Akkount oanmeitsje"
+          verify_account: "Jo account ferifiearje"
+          change_vote_info:
+            knapsack: "Jo kinne oant %{phase_end_date}. It is net ferplicht om al it budzjet te besteegjen."
+            approval: "Jo kinne %{link} oant %{phase_end_date}."
+          change_vote_link: "Jo stim wizigje"
+        orders:
+          random: "Folchoarder net fan belang"
+          confidence_score: "best beoardiele"
+          price: "Op bedrach"
+        search_results:
+          one: "Mei de tekst <strong>'%{search_term}'</strong>"
+          other: "Mei de tekst <strong>'%{search_term}'</strong>"
+        filter: "Filterje ideeën op"
+        filters:
+          not_unfeasible: "Noch te beoardieljen"
+          feasible: "helber"
+          unfeasible: "Net helber"
+          unselected: "Net selektearre"
+          selected: "Selektearre"
+          winners: "Winnende"
+        read_more: "Besjoch idee"
+      share:
+        message: "Dat is in goed idee foar de Provinsje Fryslân."
+      show:
+        author_deleted: "Brûker fuort helje"
+        price_explanation: "Taljochting kosten."
+        unfeasibility_explanation: "Utlis oer geskiktens idee"
+        share: "Diel"
+        supports: "Stypje"
+        votes: "Stimme"
+        price: "Priis"
+        comments_tab: "Reaksjes"
+        milestones_tab: "Mylpeallen"
+        author: "Auteur"
+        project_winner: "Keazen idee"
+        see_price_explanation: "Utlis fan de priis fan it idee"
+        location:	"Lokaasje: <strong>%{location}</strong>"
+        organization_name: "Idee yntsjinne troch: <strong>%{name}</strong>"
+        project_selected: "Dit idee <strong>is selektearre </strong> foar de stimfaze."
+        project_not_selected: "Dit idee is net selektearre foar de stimfaze."
+        project_unfeasible: "Dit idee is markearre as net stimber en giet net troch nei de stimronde."
+        feasibility_explanation: "Utlis oer geskiktens idee"
+      wrong_price_format: "Allinne hiele sifers"
+      investment:
+        add: "Stim op dit idee"
+        already_added: "Jo hawwe dit idee al tafoege."
+        already_supported: "Jo hawwe dit idee al stipe. Diel it!"
+        support_title: "Stimme"
+        confirm_group:
+          one: "Jo kinne ideeën yn %{count} groep stypje. As jo fierder gean is dat definityf. Jo kinne dan net mear yn oare groepen stipe jaan. Binne jo hjir wis fan?"
+          other: "Jo kinne ideeën yn %{count} groep stypje. As jo fierder gean is dat definityf. Jo kinne dan net mear yn oare groepen stipe jaan. Binne jo hjir wis is fan?"
+        supports:
+          zero: "Noch gjin stipe"
+          one: "1 stipebestjûging"
+          other: "%{count} stipebestjûgingen"
+        give_support: "Stipe"
+        price_title: "priis"
+        remove_support: "Stipe fuort helje"
+      header:
+        check_ballot: "Besjoch myn stimmen"
+        change_ballot: "As jo jo betinke kinne jo jo stimmen yn %{check_ballot} ferwiderje en op ‘e nij begjinne."
+        check_ballot_link: "Besjoch myn stimmen"
+        price: "Dit proses hat in budzjet fan"
+        different_heading_assigned: "Jo hawwe al stimd yn in oare groep: %{heading_link}"
+    show:
+      see_results: "Besjoch de útslach."
+      see_all_investments: "Besjoch alle ideeën"
+      unfeasible: "Besjoch de net stimbere ideeën"
+      unfeasible_title: "Net stimbere Ideeën"
+      unselected: "Besjoch de Ideeën dy’t net selektearre binne foar de stimronde"
+      unselected_title: "Ideeën dy’t net selektearre binne foar de stimronde"
+    results:
+      link: "De útslach"
+      page_title: "De útslach"
+      heading: "De útslach"
+      heading_selection_title: "Per gebiet"
+      ballot_lines_count: "Stimme"
+      hide_discarded_link: "Ferbergje net keazen ideeën"
+      show_all_link: "Lit alle ideeën sjen"
+      price: "Priis"
+      amount_available: "Beskikbere bedrach"
+      accepted: "Befestigje jo stim:"
+      investment_proyects: "List fan alle keazen ideeën"
+      unfeasible_investment_proyects: "List fan alle keazen ideeën"
+      not_selected_investment_proyects: "List fan alle ideeën dy’t net selektearre binne foar stimming"
+    executions:
+      link: "Mylpeallen"
+      page_title:	"%{budget} – Mylpeallen"
+      heading: "Mylpeallen"
+      heading_selection_title: "Per gebiet"
+      no_winner_investments: "Der binne gjin winnende ideeën"
+      filters:
+        status:
+          label: "Projektstatus"
+          all: "Alle (%{count})"
+        milestone_tag:
+          label: "Label mylpeal"
+          all: "Alle (%{count})"
+    progress_bar:
+      you_have_assigned: "Jo hawwe"
+      assigned: "Utjûn"
+      available: "Beskikbere bedrach:"
+    no_image_alt: "Idee sunder ôfbylding"
