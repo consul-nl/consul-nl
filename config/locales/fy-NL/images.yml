@@ -1,0 +1,6 @@
+fy-NL:
+  images:
+    form:
+      title: "Ofbylding"
+      note: "Jo kinne in %{accepted_content_types} bestân uploade mei in maksimale grutte fan %{max_file_size} MB"
+      add_new_image: "Ofbylding tafoegje"

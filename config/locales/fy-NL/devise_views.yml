@@ -1,0 +1,131 @@
+fy-NL:
+  devise_views:
+    confirmations:
+      new:
+        email_label: "e-mail"
+        submit: "Stjoer op ‘en nij ynstruksjes"
+        title: "Stjoer op ‘en nij ferifikaasje ynstruksjes"
+      show:
+        new_password_confirmation_label: "Werhelje wachtwurd"
+        new_password_label: "Nij wachtwurd"
+        please_set_password: "Kies in nij wachtwurd (foar ynlogge mei e-mail hjirboppe)"
+        submit: "Befêstigje"
+        title: "Befêstigje myn akkount"
+    mailer:
+      confirmation_instructions:
+        confirm_link: "Befêstigje myn oanmelding"
+        text: "Tige tank foar it oanmelden op it partisipaasjeplatfoarm Stim fan Fryslân. Befêstigje hjirûnder jo e-mail adres en lit jo stim hearre."
+        title: "Wolkom"
+        welcome: "Wolkom"
+      reset_password_instructions:
+        change_link: "Feroarje wachtwurd"
+        hello: "Hallo"
+        ignore_text: "Negearje dizze mail as jo net in nij wachtwurd oanfrege hawwe."
+        info_text: "Jo wachtwurd wurdt net oanpast oant dat jo op de link klikke."
+        text: "Wy hawwe in fersyk foar it wizigjen fan jo wachtwurd krigen. Jo kinne dat dwaan fia de neikommende link:"
+        title: "Pas wachtwurd oan"
+      unlock_instructions:
+        hello: "Hallo"
+        info_text: "Jo akkount is blokkearre fanwegen in te grut tal kearen dat it mislearre is om yn te loggen"
+        instructions_text: "Klik op dizze link om jo akkount te deblokkearjen:"
+        title: "Jo akkount is blokkearre"
+        unlock_link: "Deblokkearje myn akkount"
+    menu:
+      login_items:
+        login: "Ynlogge"
+        logout: "Utlogge"
+        signup: "Akkount oanmeitsje"
+    organizations:
+      registrations:
+        new:
+          email_label: "E-mail"
+          organization_name_label: "Namme fan organisaasje of kollektyf"
+          password_confirmation_label: "Befêstigje wachtwurd"
+          password_label: "Wachtwurd"
+          phone_number_label: "Telefoannûmer"
+          responsible_name_label: "Folsleine namme fan de fertsjintwurdiger fan it kollektyf"
+          responsible_name_note: "Dit is de persoan dy’t út namme fan de feriening of it kollektyf inisjativen yntsjinnet"
+          submit: "Akkount oanmeitsje"
+          title: "As organisaasje of kollektyf in akkount oanmeitsje"
+        success:
+          back_to_index: "Begrepen; werom nei haadside"
+          title: "Oanmelde fan organisaasje of kollektyf"
+          instructions_1: "Wy nimme sa gau mooglik kontakt mei jo op om it kollektyf of de feriening te ferifiearjen."
+          instructions_2: "Wy hawwe in mail mei in befêstigingslink stjoerd nei it e-mailadres dat opjûn is."
+          instructions_3: "Klik op de link om it akkount te befêstigjen. Dêrnei kinne jo as kollektyf of feriening meidwaan."
+          thank_you: "Betanke foar in akkount oanmeitsje as kollektyf of feriening op de webside."
+    passwords:
+      edit:
+        change_submit: "Feroarje it wachtwurd"
+        password_confirmation_label: "Befêstigje it nije wachtwurd"
+        password_label: "Nij wachtwurd"
+        title: "Feroarje it wachtwurd"
+      new:
+        email_label: "E-mail"
+        send_submit: "Stjoer ynstruksjes"
+        title: "Wachtwurd fergetten?"
+    sessions:
+      new:
+        login_label: "E-mail of brûkersnamme"
+        password_label: "Wachtwurd"
+        remember_me: "Unthâld my"
+        submit: "Ynlogge"
+        title: "Ynlogge"
+    shared:
+      links:
+        login: "Ynlogge"
+        new_confirmation: "Gjin aktivearringsynstruksje foar jo akkount krigen, ek net yn jo spam?"
+        new_password: "Wachtwurd fergetten?"
+        new_unlock: "Gjin ynstruksjes foar it deblokkearjen krige?"
+        signin_with_provider: "Loch yn mei %{provider}"
+        signup: "Gjin akkount? %{signup_link}"
+        signup_link: "Akkount oanmeitsje"
+      sign_in: "Ynlogge mei besteand akkount"
+      sign_up: "Oanmelde mei nij akkount"
+      not_organization: "Fertsjintwurdigje jo in organisaasje of in kollektyf? Meld jo dan %{link} oan."
+      not_organization_link: "hjir"
+    unlocks:
+      new:
+        email_label: E-mail
+        submit: "Stjoer de ynstruksjes om te deblokkearjen op ‘en nij."
+        title: "Stjoer ynstruksjes om te deblokkearjen."
+    users:
+      registrations:
+        delete_form:
+          erase_reason_label: "Reden"
+          info: "Dit kinne jo net ûngedien meitsje. Befêstigje dat jo dit echt wolle."
+          info_reason: "Wat is de reden? (opsjoneel)"
+          submit: "Wiskje myn akkount"
+          title: "Wiskje akkount"
+        edit:
+          current_password_label: "Hjoeddeisk wachtwurd"
+          edit: "Bewurkje"
+          email_label: "E-mail"
+          leave_blank: "Lit leech as jo it net oanpasse wolle"
+          need_current: "Jo hjoeddeiske wachtwurd"
+          password_confirmation_label: "Befêstigje nij wachtwurd"
+          password_label: "Nij wachtwurd"
+          update_submit: "Update"
+          waiting_for: "Yn ôfwachting fan befêstiging:"
+        new:
+          cancel: "Annulearje it ynloggen"
+          email_label: "E-mail"
+          organization_signup: "Fertsjintwurdigje jo in organisaasje of kollektyf? Meld jo dan %{signup_link} oan."
+          organization_signup_link: "Hjir"
+          password_confirmation_label: "Befêstigje wachtwurd"
+          password_note: "Dizze moat út minimaal 8 tekens bestean"
+          submit: "Oanmelde"
+          terms: "Ik bin in ynwenner fan de provinsje Fryslân of in \"Fries om utens\" en ik akseptearje de %{terms}."
+          terms_title: "Ik bin in ynwenner fan de provinsje Fryslân of in \"Fries om utens\" en ik akseptearje de %{terms}."
+          terms_link: "spulregels"
+          title: "Oanmelde"
+          username_is_available: "Brûkersnamme is beskikber"
+          username_is_not_available: "Brûkersnamme is beset"
+          username_label: "Brûkersnamme"
+          username_note: "De namme dy’t hjir opjûn wurdt sil foar oare brûkers sichtber wêze."
+        success:
+          back_to_index: "Begrepen; werom nei haadside"
+          title: "Ferifiearje jo e-mailadres"
+          instructions_1: "Besjoch jo mailboks – wy hawwe in mail stjoerd mei in link om jo e-mailadres te ferifiearjen."
+          instructions_2: "As jo dit ferifiearre hawwe, kinne jo meidwaan op it partisipaasjeplatfoarm Stim fan Fryslân"
+          thank_you: "Betanke foar it ynfoljen fan jo gegevens. Om jo oanmelding folslein te meitsjen moatte jo jo e-mailadres ferifiearje."
