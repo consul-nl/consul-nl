@@ -1,6 +1,6 @@
 # Deploying a Consul instance
 
-__TODO: explain about creating and applying tenants__
+## TODO: explain about creating and applying tenants
 
 Make sure correct ssh certificate is loaded:
 
@@ -17,5 +17,3 @@ sh deploy.sh [-p] {tenant_name}
 ```
 
 where the `-p` flag denotes that you're deploying to production.
-
-

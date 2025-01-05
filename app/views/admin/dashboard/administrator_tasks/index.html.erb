@@ -28,7 +28,7 @@
             <%= task.source.action.title %>
           </td>
           <td>
-            <% unless task.executed_at? || task.source.proposal.nil?  %>
+            <% unless task.executed_at? || task.source.proposal.nil? %>
               <%= render Admin::TableActionsComponent.new(
                 task,
                 actions: [:edit],

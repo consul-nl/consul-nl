@@ -1,0 +1,17 @@
+fy-NL:
+  admin:
+    legislation:
+      processes:
+        proposals:
+          select_order: "Sortearje op"
+    dashboard:
+      actions:
+        new:
+          back: "Werom"
+        edit:
+          back: "Werom"
+    geozones:
+      edit:
+        back: "Werom"
+      new:
+        back: "Werom"

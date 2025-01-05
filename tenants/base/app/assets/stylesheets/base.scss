@@ -511,12 +511,11 @@ form {
   select,
   textarea,
   [type]:not(
-      [type="button"],
-      [type="checkbox"],
-      [type="file"],
-      [type="radio"],
-      [type="submit"]
-    ):not(.close-button),
+    [type="button"],
+    [type="checkbox"],
+    [type="file"],
+    [type="radio"],
+    [type="submit"]):not(.close-button),
   .cke {
     border: 2px solid $border-forms;
   }
@@ -784,7 +783,7 @@ body > header,
       > a::before {
         border: inset 6px;
         border-bottom-width: 0;
-        border-color: var(--brand) transparent transparent;
+        border-color: currentColor transparent transparent;
         border-top-style: solid;
         content: "";
         display: block;

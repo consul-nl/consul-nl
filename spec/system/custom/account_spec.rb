@@ -15,7 +15,7 @@ describe "Account" do
     expect(page).to have_current_path(account_path, ignore_query: true)
 
     within(".account") do
-      expect(page).to have_selector("input[value='Manuela Colau']")
+      expect(page).to have_css("input[value='Manuela Colau']")
       expect(page).to have_selector(avatar("Manuela Colau"), count: 1)
     end
   end
@@ -26,8 +26,8 @@ describe "Account" do
     visit account_path
 
     within(".account") do
-      expect(page).to have_selector("input[value='Manuela Corp']")
-      expect(page).not_to have_selector("input[value='Manuela Colau']")
+      expect(page).to have_css("input[value='Manuela Corp']")
+      expect(page).not_to have_css("input[value='Manuela Colau']")
 
       expect(page).to have_selector(avatar("Manuela Corp"), count: 1)
     end
@@ -44,7 +44,7 @@ describe "Account" do
     expect(page).to have_current_path(account_path, ignore_query: true)
 
     within(".account") do
-      expect(page).to have_selector("input[value=\"Manuela Colau\"]")
+      expect(page).to have_css("input[value=\"Manuela Colau\"]")
       expect(page).to have_selector(avatar("Manuela Colau"), count: 1)
     end
   end
