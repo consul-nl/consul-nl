@@ -3,7 +3,8 @@
 # https://docs.appsignal.com/ruby/configuration/options.html
 Appsignal.configure do |config|
   config.activate_if_environment("development", "preproduction", "production", "staging")
-  config.name = "Consul"
+
+  config.name = Rails.application.secrets.server_name
 
   # The application's Push API key
   config.push_api_key = Rails.application.secrets.appsignal_push_key
