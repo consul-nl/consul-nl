@@ -50,6 +50,7 @@ button,
 .button {
   font-weight: $button-font-weight;
   min-height: $line-height * 2;
+  width: fit-content;
 }
 
 .input-group-button {
