@@ -4,9 +4,7 @@
 $base-font-size:    rem-calc(16);
 $border:            #cbc7c7;
 $border-forms:      #949494;
-$brand:             #004a83;
 $brand-secondary:   #0054ad;
-$dark:              #2d313b;
 $delete:            #b30000;
 $focus-middle:      #f9f9f9;
 $focus-outer:       #193146;
@@ -18,12 +16,18 @@ $hover-secondary:   darken($brand-secondary, 20%);
 $info:              #065b93;
 $label:             #00469f;
 $light:             #f2f5f7;
-$like:              #21a562;
 $link-dark:         #493d57;
-$link-hover:        $brand;
 $link-soft:         #a099a8;
-$text:              #000;
 $unlike:            #da262b;
+
+$brand:       #9144a5;
+$dark:        darken($brand, 20%);
+$green:       #00c4a8;
+
+$text:        #505050;
+
+$link:        #9144a5;
+$link-hover:  #505050;
 
 // Custom variables
 // ----------------
