@@ -292,6 +292,7 @@ nl:
       contact_title: "Neem contact met ons op"
       consul_url: "https://github.com/consul-nl/consul-nl"
       privacy: "Privacyverklaring"
+      consul_url: "https://github.com/consul-nl/consul-nl"
       contact_email: "noreply@consul.dev"
     dashboard:
       proposal_header:
