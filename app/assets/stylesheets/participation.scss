@@ -212,17 +212,11 @@
 
   .debate-description,
   .proposal-description {
-    font-size: rem-calc(15);
     line-height: rem-calc(30);
   }
 
   ul,
   ol {
-
-    li {
-      font-size: rem-calc(15);
-      margin-bottom: rem-calc(15);
-    }
 
     .order-links > li {
       font-size: inherit;
