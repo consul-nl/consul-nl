@@ -503,11 +503,6 @@ aside {
   }
 }
 
-.ssb-twitter,
-.ssb-facebook {
-  color: #fff !important;
-}
-
 .ssb-twitter {
   @include has-fa-icon(x-twitter, brands);
   background: #000;
