@@ -7,6 +7,7 @@ gem "acts_as_votable", "~> 0.14.0"
 gem "ahoy_matey", "~> 5.0.2"
 gem "airbrake", "~> 13.0.4"
 gem "ancestry", "~> 4.3.3"
+gem "appsignal"
 gem "audited", "~> 5.4.3"
 gem "autoprefixer-rails", "~> 10.4.16"
 gem "bing_translator", "~> 6.2.0"
@@ -42,6 +43,7 @@ gem "paranoia", "~> 2.6.3"
 gem "pg", "~> 1.5.6"
 gem "pg_search", "~> 2.3.6"
 gem "puma", "~> 5.6.8"
+gem 'rack-attack'
 gem "recipient_interceptor", "~> 0.3.1"
 gem "redcarpet", "~> 3.6.0"
 gem "responders", "~> 3.1.1"
@@ -62,6 +64,7 @@ gem "view_component", "~> 3.11.0"
 gem "whenever", "~> 1.0.0", require: false
 gem "wicked_pdf", "~> 2.8.0"
 gem "wkhtmltopdf-binary", "~> 0.12.6"
+
 
 group :development, :test do
   gem "debug", "~> 1.9.2"
