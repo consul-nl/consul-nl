@@ -280,6 +280,12 @@ aside {
 .communities-show,
 .topic-show,
 .milestone-content {
+  ul {
+    br {
+      display: none;
+    }
+  }
+
   aside h2 {
     border-top: 0;
     color: $label;
