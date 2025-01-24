@@ -1657,7 +1657,7 @@ footer {
   background: none;
   border: 1px solid var(--brand);
   box-shadow: none;
-  color: var(--brand-secondary);
+  color: $delete;
 
   &::before {
     left: 20px;
