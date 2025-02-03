@@ -1,0 +1,5 @@
+production:
+  ignore_errors:
+    - ActionDispatch::Http::MimeNegotiation::InvalidType
+    - ActionController::InvalidAuthenticityToken
+    - ActionController::UnknownFormat

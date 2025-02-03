@@ -24,6 +24,12 @@
 $link:       $anchor-color;
 $link-hover: $anchor-color-hover;
 
+iframe {
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+}
+
 html {
   font-size: unset;
 }
@@ -46,6 +52,7 @@ button,
 .button {
   font-weight: bold;
   min-height: $line-height * 2;
+  width: fit-content;
 }
 
 .input-group-button {
@@ -505,9 +512,9 @@ aside {
   }
 }
 
-.ssb-twitter,
-.ssb-facebook {
-  color: #fff !important;
+.ssb-twitter {
+  @include has-fa-icon(x-twitter, brands);
+  background: #000;
 }
 
 form {
@@ -1704,7 +1711,7 @@ footer {
   background: none;
   border: 1px solid $brand;
   box-shadow: none;
-  color: $brand-secondary;
+  color: $delete;
 
   &::before {
     left: 20px;
