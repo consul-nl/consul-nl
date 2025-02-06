@@ -1,0 +1,698 @@
+//
+// 0. Global styles
+// 1. Header
+// 2. Homepage and custom pages
+// 3. Footer
+// 4. Budgets
+// 5. Legislation
+// 6. Comments
+// 7. Admin
+// 8. Debates
+// 9. Related content
+// 10. Proposals
+// 11. Polls
+// 12. Icons
+//
+
+// 0. Global styles
+// --------------------
+
+body {
+
+  .top-bar-title {
+    background: #fff;
+
+    @include breakpoint(large) {
+
+      a {
+        height: auto;
+      }
+    }
+
+    &::before {
+      background: #fff;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: inherit !important;
+}
+
+.footer-image {
+  display: none;
+}
+
+.button {
+  background: $brand-light;
+  min-height: $line-height * 2;
+}
+
+.menu {
+
+  &.simple {
+
+    li {
+
+      &.is-active {
+
+        &::after {
+          border-bottom: 4px solid $title-border;
+        }
+      }
+    }
+  }
+}
+
+.no-bullet.submenu {
+
+  *::selection {
+    color: inherit;
+    background: none;
+  }
+
+  li {
+
+    a,
+    a * {
+      color: $brand-light;
+
+      &.is-active {
+
+        &::after {
+          border-bottom: 4px solid $title-border;
+        }
+      }
+    }
+  }
+}
+
+.section-help {
+  background: $brand-secondary;
+}
+
+.tabs {
+
+  .tabs-title {
+
+    > a {
+
+      &[aria-selected="true"]::after,
+      .is-active::after {
+        border-bottom: 4px solid $title-border;
+      }
+    }
+  }
+}
+
+// 1. Header
+// --------------------
+
+.top-bar {
+
+  .subnavigation {
+
+    .menu > li {
+
+      a,
+      .button {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.subnavigation .dropdown {
+
+  &.menu > li {
+
+    &.is-dropdown-submenu-parent > a {
+
+      &::before {
+        border-color: #fff transparent transparent;
+      }
+    }
+  }
+
+  .is-dropdown-submenu a {
+    color: $text;
+  }
+}
+
+.top-bar .menu > li a,
+.top-bar .menu > li .button {
+  font-weight: normal;
+}
+
+.subnavigation {
+  background: $brand;
+
+  a {
+    color: #fff;
+
+    @include breakpoint(medium) {
+
+      &.is-active::after {
+        background: #fff;
+      }
+    }
+
+    &:hover,
+    &.is-active {
+      color: #fff;
+    }
+  }
+}
+
+.subnavigation {
+
+  .dropdown.menu > li {
+
+    &.is-active > a {
+      color: #fff;
+    }
+  }
+}
+
+// 2. Homepage and custom pages
+// ----------------------------
+
+.home-page {
+
+  .jumbo {
+
+    @include breakpoint(large) {
+      background-position: right -150px bottom 0;
+      min-height: 0;
+    }
+
+    h1 {
+      font-size: rem-calc(36);
+
+      @include breakpoint(large) {
+        font-size: rem-calc(50);
+      }
+    }
+
+    .button {
+      position: relative;
+
+      &::after {
+        content: "\f054";
+        font-family: "Font Awesome 5 Free";
+        font-weight: bold;
+        position: absolute;
+        right: 24px;
+        top: 19px;
+      }
+    }
+  }
+
+  .lead {
+    font-size: rem-calc(20);
+    font-weight: bold;
+    margin: $line-height 0;
+
+    @include breakpoint(medium) {
+      font-size: rem-calc(24);
+      margin: $line-height * 2 0;
+    }
+  }
+
+  h3 {
+
+    &.title {
+      border-bottom: 0;
+      border-top: 4px solid $title-border;
+    }
+  }
+}
+
+.figure-card .gradient {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 1%, rgba(0, 0, 0, 1) 200%);
+}
+
+.home-page .card,
+.custom-page .card {
+  flex-grow: initial;
+
+  a {
+    background: $brand-secondary;
+  }
+
+  h4,
+  p {
+
+    &:last-child {
+      color: $text;
+      text-decoration: underline;
+    }
+  }
+
+  .phase {
+    color: $text;
+  }
+
+  .completed {
+    color: $text;
+  }
+
+  &.budget .description {
+
+    &::after {
+      background: linear-gradient(to bottom, rgba($brand-secondary, 0), rgba($brand-secondary, 1) 50%);
+    }
+
+    p {
+      text-decoration: none;
+    }
+  }
+}
+
+
+.custom-page .card a .description {
+  min-height: rem-calc(286);
+}
+
+.feed-content-list {
+
+  .row {
+    margin: 0 auto;
+  }
+
+  .proposal {
+    border: 1px solid $border;
+    border-top: 0;
+    padding: $line-height 0;
+
+    &:first-of-type {
+      border-top: 1px solid $border;
+      border-top-left-radius: rem-calc(12);
+      border-top-right-radius: rem-calc(12);
+    }
+
+    &:last-child {
+      border-bottom-left-radius: rem-calc(12);
+      border-bottom-right-radius: rem-calc(12);
+    }
+  }
+
+  .feed-image {
+    border: 1px solid $border;
+    position: relative;
+
+    img {
+      position: absolute;
+      top: -50%;
+    }
+  }
+
+  .feed-description {
+
+    a {
+      color: $brand;
+      display: inline-block;
+      margin-bottom: $line-height / 2;
+    }
+
+    p {
+      font-size: $base-font-size;
+    }
+  }
+}
+
+.home-page-steps {
+
+  h2 {
+    font-size: rem-calc(36);
+
+    @include breakpoint(medium) {
+      font-size: rem-calc(60);
+    }
+  }
+}
+
+// 3. Footer
+// --------------------
+
+.footer {
+  background: $brand;
+  padding-top: $line-height * 3;
+
+  p {
+    text-align: left;
+  }
+
+  .footer-title {
+    color: #fff;
+  }
+
+  .social {
+
+    [class^="fa"] {
+      color: #fff;
+    }
+
+    a {
+      color: #fff;
+    }
+  }
+}
+
+// 4. Budgets
+// --------------------
+
+.expanded {
+
+  &.budget {
+    background: $brand;
+
+    &:not(.button) .button {
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      min-width: 30%;
+    }
+  }
+}
+
+.budget-phases {
+
+  .tabs-title {
+
+    &.current-phase-tab [aria-selected="true"] {
+      color: #fff;
+    }
+  }
+
+  .phase-title {
+
+    &.current-phase-tab a {
+      color: $text;
+    }
+  }
+
+  .tabs-title > a {
+
+    &:hover {
+      background: $brand;
+      color: #fff;
+
+      &::after {
+        border-left-color: $brand;
+      }
+    }
+
+    &.current-phase {
+      background: $brand-light;
+
+      &::after {
+        border-left-color: $brand-light;
+      }
+    }
+
+    &[aria-selected="true"],
+    &.is-active {
+      background: $brand;
+
+      &::after {
+        border-bottom: 84px solid transparent;
+        border-left-color: $brand;
+      }
+    }
+
+    &[aria-selected="true"] {
+
+      &.current-phase {
+        background: $brand-light;
+
+        &::after {
+          border-left-color: $brand-light;
+        }
+      }
+    }
+  }
+
+  .budget-prev-phase,
+  .budget-next-phase {
+
+    &::before {
+      background: $brand-light;
+    }
+  }
+
+  .button {
+    margin-top: $line-height * 2;
+    padding-right: $line-height * 1.5;
+    position: relative;
+
+    &::after {
+      content: "\f054";
+      font-family: "Font Awesome 5 Free";
+      font-weight: bold;
+      position: absolute;
+      right: 12px;
+      top: 19px;
+    }
+  }
+
+
+}
+
+.jumbo-budget {
+  border-bottom: 2px solid $border;
+
+  &.budget-heading {
+    border-bottom: 2px solid $border;
+  }
+}
+
+.budget-investment.index .panel img {
+  border-bottom-left-radius: 0;
+  width: 100%;
+}
+
+.budget-investment-index-list {
+
+  .budget-investment {
+    margin-bottom: 0;
+
+    &.index .read-more {
+      bottom: 0;
+      display: block;
+      float: none;
+      left: 0;
+      margin-top: 0;
+      padding-right: $line-height / 2;
+      position: absolute;
+      text-align: right;
+      width: 100%;
+    }
+  }
+}
+
+.budget-investment-new {
+
+  .recommendations li::before {
+    color: $brand-secondary;
+  }
+}
+
+.budget-info,
+.budget-investment-index-list {
+
+  h2 {
+    font-size: rem-calc(20);
+    margin: $line-height / 2 0;
+  }
+}
+
+// 5. Legislation
+// --------------------
+
+.legislation-content {
+  background: $light;
+}
+
+.draft-panels .draft-allegation .draft-panel {
+  color: $text;
+}
+
+// 6. Comments
+// --------------------
+
+.comments {
+
+  h3 {
+    border-bottom: 4px solid $title-border;
+  }
+}
+
+// 7. Admin
+// --------------------
+
+
+.newsletter-body-content {
+
+  li {
+    font-size: $base-font-size;
+  }
+}
+
+// 8. Debates
+// --------------------
+
+.debate-new .header,
+.proposal-form .header,
+.budget-investment-new .header {
+  background: $brand-secondary;
+  color: $text;
+
+  a {
+    color: inherit;
+  }
+
+  .header-icon {
+    color: #fff;
+  }
+
+  &::before {
+    background: $brand-secondary;
+  }
+
+  &::before,
+  &::after {
+    border-color: $brand-secondary;
+    color: $brand-secondary;
+  }
+}
+
+.debate .panel h3 a {
+  color: $text;
+
+  &:hover {
+    color: $brand;
+  }
+}
+
+// 9. Related content
+// --------------------
+
+
+// 10. Proposals
+// --------------------
+
+.additional-content {
+
+  .tabs {
+    border-bottom: 4px solid $title-border;
+  }
+}
+
+// 11. Polls
+// --------------------
+
+.poll-more-info-options {
+
+  .option {
+    min-height: rem-calc(400);
+  }
+
+  .column:nth-child(odd),
+  .columns:nth-child(odd) {
+    border-right: 0;
+  }
+}
+
+.poll-question .button {
+  text-align: left;
+  width: 100%;
+}
+
+.polls-results-stats table th {
+  font-size: rem-calc(14);
+  word-break: break-word;
+}
+
+// 12. Icons
+// --------------------
+
+.debate-content h3,
+.debate-show h1,
+.proposal-content h3,
+.proposal-show h1,
+.poll h4,
+.polls-show h1 {
+  position: relative;
+
+  &::before {
+    color: $border;
+    font-family: "Font Awesome 5 Free";
+    font-size: rem-calc(30);
+    font-weight: normal;
+    position: absolute;
+    left: 0;
+  }
+}
+
+.debate-content h3,
+.debate-show h1 {
+
+  &::before {
+    content: "\f27a";
+  }
+}
+
+.proposal-content h3,
+.proposal-show h1 {
+
+  &::before {
+    content: "\f0eb";
+    font-size: rem-calc(36);
+  }
+}
+
+.poll h4,
+.polls-show h1 {
+
+  &::before {
+    content: "\f080";
+    font-size: rem-calc(36);
+  }
+}
+
+.debate-content h3,
+.debate-show h1,
+.debate-info,
+.proposal-content h3,
+.proposal-show h1,
+.proposal-info,
+.poll h4,
+.polls-show h1 {
+  padding-left: $line-height * 2;
+}
+
+.debate-show h1,
+.polls-show h1 {
+
+  &::before {
+    top: 10px;
+  }
+}
+
+.proposal-show h1 {
+
+  &::before {
+    top: 7px;
+  }
+}

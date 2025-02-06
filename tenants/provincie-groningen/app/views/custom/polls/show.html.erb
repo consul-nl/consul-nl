@@ -34,6 +34,10 @@
       <% @questions.each_with_index do |question, index| %>
         <%= render Polls::Questions::QuestionComponent.new(@questions, question, index) %>
       <% end %>
+
+      <% if @poll.id == 75 %>
+        <%= link_to "Volgende vraag >", debate_path(43), class: "button" %>
+      <% end %>
     </div>
   </div>
 
