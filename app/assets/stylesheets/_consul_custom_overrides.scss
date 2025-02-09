@@ -27,8 +27,8 @@
   font-style: normal;
 }
 
-$brand: #d84304;
-$brand-secondary: #d84304;
+$brand: #d34203;
+$brand-secondary: #d34203;
 
 $text: #141414;
 
@@ -66,7 +66,7 @@ html {
   --medium-border-radius: 0;
   --large-border-radius: 0;
 
-  --subnavigation: #d84304;
+  --subnavigation: var(--brand);
   --subnavigation-contrast: #fff;
   --subnavigation-contrast-hover: #fff;
 }
