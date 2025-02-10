@@ -43,6 +43,7 @@ gem "paranoia", "~> 2.6.3"
 gem "pg", "~> 1.5.6"
 gem "pg_search", "~> 2.3.6"
 gem "puma", "~> 5.6.8"
+gem 'rack-attack'
 gem "recipient_interceptor", "~> 0.3.1"
 gem "redcarpet", "~> 3.6.0"
 gem "responders", "~> 3.1.1"
