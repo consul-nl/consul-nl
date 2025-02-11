@@ -134,6 +134,10 @@ form [type]:not([type="button"],
   height: rem-calc(96);
 }
 
-.top-bar-title a {
+.top-bar h1.top-bar-title a {
   height: 5rem;
+
+  img {
+    height: 100%;
+  }
 }
