@@ -1,12 +1,9 @@
 // Custom settings
 //
 
-$brand:             #bd0040;
-$brand-secondary:   #244994;
-$dark:              darken($brand, 10%);
 $link:              $brand-secondary;
 
-$outline-focus:     3px solid #bd0040;
+$outline-focus:     3px solid #ffbb35;
 
 @font-face {
   font-family: "Frutiger";
