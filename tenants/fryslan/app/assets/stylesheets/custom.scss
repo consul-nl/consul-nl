@@ -4,6 +4,23 @@
 :root {
   --brand: #{$brand};
   --brand-secondary: #{$brand-secondary};
+
+  --button: #{$button};
+  --button-text: #{$button-text};
+
+  --button-background-hover: #211e52;
+  --button-background-hover-contrast: #98d7e8;
+
+  --current-phase: #{$button};
+  --current-phase-contrast: #{$button-text};
+
+  --current-phase-hover: #211e52;
+  --current-phase-hover-contrast: #98d7e8;
+
+  --dark: #{$dark};
+  --dark-contrast: #98d7e8;
+
+  --top-bar-title: #98d7e8;
 }
 
 body,
@@ -85,43 +102,12 @@ form [type]:not([type="button"],
 }
 
 .top-links {
-  background-color: $dark;
+  background-color: var(--dark);
+  color: var(--dark-contrast);
 }
 
 .top-bar {
   padding: 0;
-}
-
-.budget-phases {
-
-  .tabs-title {
-
-    &.current-phase-tab [aria-selected="true"] {
-
-      &:hover {
-        background: $dark;
-        color: #fff;
-
-        &::after {
-          border-left-color: $dark;
-        }
-      }
-    }
-  }
-
-  .phase-title {
-
-    &.current-phase-tab a {
-
-      &:hover {
-        color: $text;
-
-        &::after {
-          border-left-color: $light-gray;
-        }
-      }
-    }
-  }
 }
 
 .budget-phase-content h2 {
@@ -146,4 +132,12 @@ form [type]:not([type="button"],
 .proposal .proposal-description,
 .budget-investment .investment-project-description {
   height: rem-calc(96);
+}
+
+.top-bar h1.top-bar-title a {
+  height: 5rem;
+
+  img {
+    height: 100%;
+  }
 }
