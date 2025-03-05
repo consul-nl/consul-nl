@@ -86,14 +86,14 @@ class PagesController < ApplicationController
 
     if @custom_page.present?
       if @custom_page.id == 10
-        @cards = @custom_page.cards
-                             .sort_by { |card| @raad_sorted[card.id] || Float::INFINITY }
-                             .group_by(&:label)
-                             .sort_by { |label, cards| @parties_sorted[label] || Float::INFINITY }
-                             .to_h
+        @cards = @custom_page.cards.sort_by_order
+          .group_by(&:label)
+          .sort_by { |label, cards| @parties_sorted[label] || Float::INFINITY }
+          .to_h
       else
         @cards = @custom_page.cards.sort_by_order
       end
+
       render action: :custom_page
     else
       render action: params[:id].split(".").first

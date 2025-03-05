@@ -609,7 +609,7 @@ body > header,
 }
 
 .top-bar-title {
-  /* background: var(--brand); */
+  background: var(--top-bar-title, none);
   margin: 0;
   position: relative;
 
@@ -618,7 +618,7 @@ body > header,
     padding-top: $line-height;
 
     &::before {
-      background: none;
+      background: var(--top-bar-title, none);
       content: "";
       height: 100%;
       left: -999%;
@@ -1368,27 +1368,6 @@ footer {
     padding-top: $line-height;
   }
 
-  .tabs-title.current-phase-tab {
-    color: #fff;
-
-    a {
-      background: var(--brand-secondary);
-      color: #fff;
-
-      &::after {
-        border-left-color: var(--brand-secondary);
-      }
-
-      &:hover {
-        background: $dark;
-
-        &::after {
-          border-left-color: $dark;
-        }
-      }
-    }
-  }
-
   .budget-prev-phase,
   .budget-next-phase {
     &::before {
@@ -1657,7 +1636,7 @@ footer {
   background: none;
   border: 1px solid var(--brand);
   box-shadow: none;
-  color: var(--brand-secondary);
+  color: $delete;
 
   &::before {
     left: 20px;
@@ -3461,7 +3440,7 @@ a {
     &[aria-selected="true"],
     &.is-active {
       background: $dark;
-      color: #fff;
+      color: var(--dark-contrast, #fff);
       font-weight: normal;
 
       &::after {
@@ -3796,3 +3775,27 @@ a {
   }
 }
 
+
+.budget-phases {
+  .tabs-title.current-phase-tab {
+    color: var(--current-phase-contrast, #fff);
+
+    a {
+      background: var(--current-phase, var(--brand-secondary));
+      color: var(--current-phase-contrast, #fff);
+
+      &::after {
+        border-left-color: var(--current-phase, var(--brand-secondary));
+      }
+
+      &:hover {
+        background: var(--current-phase-hover, $dark);
+        color: var(--current-phase-hover-contrast, #fff);
+
+        &::after {
+          border-left-color: var(--current-phase-hover, $dark);
+        }
+      }
+    }
+  }
+}

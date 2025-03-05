@@ -4,6 +4,7 @@ class Image < ApplicationRecord
   def self.styles
     {
       # Custom code
+      xlarge: { resize: "x1400" },
       large: { resize: "x475" },
       medium: { gravity: "center", resize: "300x300^", crop: "300x300+0+0" },
       thumb: { gravity: "center", resize: "140x245^", crop: "140x245+0+0" }
