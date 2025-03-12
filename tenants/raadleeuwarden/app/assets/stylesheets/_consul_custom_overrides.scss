@@ -27,11 +27,13 @@
   font-style: normal;
 }
 
-$brand: #2272b7;
-$brand-secondary: #2272b7;
+$brand: #d34203;
+$brand-secondary: #d34203;
 
-$footer: rgb(128, 161, 182);
-$footer-text-color: rgb(35, 31, 32);
+$text: #141414;
+
+$footer: #f2f5f7;
+$footer-text-color: $text;
 
 $base-font-size: 18px;
 $body-font-family: "Formata", sans-serif;
@@ -39,7 +41,6 @@ $header-font-weight: 700;
 $hover: rgb(17, 24, 39);
 $hover-secondary: scale-color($brand-secondary, $lightness: -20%);
 
-$text: #231f20;
 
 $social-background: $text;
 $social-color: #fff;
@@ -52,17 +53,20 @@ html {
   --brand-secondary: #{$brand-secondary};
 
   --footer: #{$footer};
+  --footer-contrast: #{$footer-text-color};
 
-  --header-color: var(--brand);
+  --header-color: #{$text};
   --heading-border-color: #{$footer};
 
   --button-shadow: none;
   --button-secondary-background: #f1f1f1;
   --button-secondary-color: var(#{$text}, inherit);
 
-  --small-border-radius: 0px;
-  --medium-border-radius: 0px;
-  --large-border-radius: 0px;
+  --small-border-radius: 0;
+  --medium-border-radius: 0;
+  --large-border-radius: 0;
 
-  --subnavigation: #f2f5f7;
+  --subnavigation: var(--brand);
+  --subnavigation-contrast: #fff;
+  --subnavigation-contrast-hover: #fff;
 }
