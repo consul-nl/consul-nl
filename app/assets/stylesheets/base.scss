@@ -124,7 +124,7 @@ main {
 
 .button {
   &:hover {
-    background: $hover;
+    background: var(--button-background-hover, $hover);
   }
 
   &.hollow {
@@ -3307,7 +3307,7 @@ a {
 }
 
 .budget-phases {
-  background: $light;
+  background: var(--budget-phases-background, $light);
   padding-bottom: $line-height * 2;
 
   @include breakpoint(small only) {
@@ -3356,7 +3356,7 @@ a {
 
     &::after {
       border: 83px solid transparent;
-      border-left-color: $light;
+      border-left-color: var(--budget-phases-background, $light);
       border-left-width: 20px;
       border-right-width: 0;
       content: "";
@@ -3387,15 +3387,12 @@ a {
   }
 
   .tabs-title > a {
-    background: #fff;
-    color: #000;
     min-height: rem-calc(140);
     padding: $line-height * 2 $line-height * 1.5;
     padding-left: $line-height * 2;
 
     &::after {
       border: 83px solid transparent;
-      border-left-color: #fff;
       border-left-width: 20px;
       border-right-width: 0;
       content: "";
@@ -3405,15 +3402,6 @@ a {
       top: 0;
       width: 0;
       z-index: 2;
-    }
-
-    &:hover {
-      background: #e6e6e6;
-      color: #000;
-
-      &::after {
-        border-left-color: #e6e6e6;
-      }
     }
 
     &:focus {
@@ -3777,6 +3765,25 @@ a {
 
 
 .budget-phases {
+  .tabs-title > a {
+    background: var(--phase-tab, #fff);
+    color: var(--phase-tab-contrast, #000);
+
+    &::after {
+      border-left-color: var(--phase-tab, #fff);
+    }
+
+    &:hover {
+      background: #e6e6e6;
+      color: #000;
+
+      &::after {
+        border-left-color: #e6e6e6;
+      }
+    }
+
+  }
+
   .tabs-title.current-phase-tab {
     color: var(--current-phase-contrast, #fff);
 

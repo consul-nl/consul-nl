@@ -5,11 +5,11 @@
   --brand: #{$brand};
   --brand-secondary: #{$brand-secondary};
 
-  --button: #{$button};
-  --button-text: #{$button-text};
+  --button-background: #98d7e8;
+  --button-text: #{$brand};
 
-  --button-background-hover: #211e52;
-  --button-background-hover-contrast: #98d7e8;
+  --button-background-hover: #88bdcc;
+  --button-background-hover-contrast: var(--button-text);
 
   --current-phase: #{$button};
   --current-phase-contrast: #{$button-text};
@@ -22,8 +22,18 @@
 
   --top-bar-title: #98d7e8;
 
+  --title-border: #{$title-border};
+
   --footer: #{$footer};
   --footer-text-color: #{$footer-text-color};
+
+  --subnavigation: #ebf0f7;
+  --subnavigation-contrast: #211e52;
+  --subnavigation-contrast-hover: #{$brand};
+
+  --budget-phases-background: #faecd4;
+  --phase-tab: #ffbb35;
+  --phase-tab-contrast: var(--brand);
 }
 
 body,
@@ -58,10 +68,29 @@ form [type]:not([type="button"],
 .home-page,
 .custom-page {
 
-  .card .figure-card figcaption h3 {
-    font-size: 1.25rem;
-    overflow-wrap: anywhere;
+  .card {
+    .figure-card figcaption h3 {
+      font-size: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+
+    h4,
+    p {
+      &:last-child {
+        align-self: flex-end;
+        background: $button;
+        color: $button-text;
+        float: right;
+      }
+    }
   }
+}
+
+.investments-list .investments-list-item .read-more {
+  display: flex;
+  background: $button;
+  color: $button-text;
+  padding: 0 0.25rem;
 }
 
 .ssb-linkedin {
