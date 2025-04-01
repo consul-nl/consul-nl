@@ -67,8 +67,12 @@ form [type]:not([type="button"],
 
 .home-page,
 .custom-page {
-
   .card {
+    a {
+      display: flex;
+      flex-direction: column;
+    }
+
     .figure-card figcaption h3 {
       font-size: 1.25rem;
       overflow-wrap: anywhere;
@@ -81,6 +85,7 @@ form [type]:not([type="button"],
         background: $button;
         color: $button-text;
         float: right;
+        margin-top: auto;
       }
     }
   }
