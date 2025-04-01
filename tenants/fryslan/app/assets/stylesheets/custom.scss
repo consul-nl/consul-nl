@@ -34,6 +34,10 @@
   --budget-phases-background: #faecd4;
   --phase-tab: #ffbb35;
   --phase-tab-contrast: var(--brand);
+
+  --tag: #ffbb35;
+  --tag-color: var(--brand);
+  --tag-hover: #f7b736;
 }
 
 body,
@@ -177,4 +181,15 @@ form [type]:not([type="button"],
   img {
     height: 100%;
   }
+}
+
+.level-1,
+.level-2,
+.level-3,
+.level-4,
+.level-5,
+.is-author,
+.is-association {
+  background: var(--footer);
+  color: var(--footer-text-color);
 }
