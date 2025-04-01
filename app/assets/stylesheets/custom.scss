@@ -34,6 +34,10 @@
   --budget-phases-background: #faecd4;
   --phase-tab: #ffbb35;
   --phase-tab-contrast: var(--brand);
+
+  --tag: #ffbb35;
+  --tag-color: var(--brand);
+  --tag-hover: #f7b736;
 }
 
 body,
@@ -67,8 +71,12 @@ form [type]:not([type="button"],
 
 .home-page,
 .custom-page {
-
   .card {
+    a {
+      display: flex;
+      flex-direction: column;
+    }
+
     .figure-card figcaption h3 {
       font-size: 1.25rem;
       overflow-wrap: anywhere;
@@ -81,6 +89,7 @@ form [type]:not([type="button"],
         background: $button;
         color: $button-text;
         float: right;
+        margin-top: auto;
       }
     }
   }
@@ -172,4 +181,15 @@ form [type]:not([type="button"],
   img {
     height: 100%;
   }
+}
+
+.level-1,
+.level-2,
+.level-3,
+.level-4,
+.level-5,
+.is-author,
+.is-association {
+  background: var(--footer);
+  color: var(--footer-text-color);
 }
