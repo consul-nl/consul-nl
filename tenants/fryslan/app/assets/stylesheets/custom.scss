@@ -90,6 +90,8 @@ form [type]:not([type="button"],
         color: $button-text;
         float: right;
         margin-top: auto;
+        margin-right: 1rem;
+        font-size: 0.85rem;
       }
     }
   }
