@@ -1231,6 +1231,10 @@ footer {
       font-size: rem-calc(20);
       line-height: rem-calc(40);
       vertical-align: top;
+
+      &:hover {
+        color: $footer-text-color;
+      }
     }
   }
 }
