@@ -195,3 +195,18 @@ form [type]:not([type="button"],
   background: var(--footer);
   color: var(--footer-text-color);
 }
+
+.footer .logo {
+  max-width: 200px;
+}
+
+.subfooter {
+  display: flex;
+  align-items: flex-end;
+
+  .column {
+    ul {
+      margin-bottom: 0;
+    }
+  }
+}
