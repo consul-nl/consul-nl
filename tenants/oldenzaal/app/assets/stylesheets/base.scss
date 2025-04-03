@@ -24,6 +24,10 @@
 $link:       $anchor-color;
 $link-hover: $anchor-color-hover;
 
+:root {
+  --top-bar-title: $brand;
+}
+
 html {
   font-size: unset;
 }

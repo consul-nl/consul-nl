@@ -19,6 +19,9 @@
 
   @if $color == $brand {
     @include brand-background;
+
+    background-color: var(--button-background, var(--brand, $brand));
+    color: var(--button-text, var(--brand-contrast, #fff));
   } @else {
     @include background-with-text-contrast($color);
   }

@@ -1,28 +1,11 @@
 // Custom settings
 //
 
-$brand:             #bd0040;
-$brand-secondary:   #244994;
-$dark:              darken($brand, 10%);
 $link:              $brand-secondary;
 
-$outline-focus:     3px solid #bd0040;
+$outline-focus:     3px solid #ffbb35;
 
-@font-face {
-  font-family: "Frutiger";
-  font-style: normal;
-  font-weight: normal;
-  src: font-url("frutiger-webfont.woff2") format("woff2"),
-       font-url("frutiger-webfont.woff") format("woff");
-}
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 
-@font-face {
-  font-family: "Frutiger";
-  font-weight: bold;
-  font-style: bold;
-  src: font-url("frutiger_bold-webfont.woff2") format("woff2"),
-       font-url("frutiger_bold-webfont.woff") format("woff");
-}
-
-$body-font-family: "Frutiger", "Source Sans Pro", "Helvetica", "Arial", sans-serif !important;
+$body-font-family: "Open Sans", "Source Sans Pro", "Helvetica", "Arial", sans-serif !important;
 $base-font-size: 18px;

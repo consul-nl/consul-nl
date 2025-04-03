@@ -291,6 +291,7 @@ nl:
     footer:
       contact_title: "Neem contact met ons op"
       privacy: "Privacyverklaring"
+      consul_url: "https://github.com/consul-nl/consul-nl"
       contact_email: "noreply@consul.dev"
     dashboard:
       proposal_header:

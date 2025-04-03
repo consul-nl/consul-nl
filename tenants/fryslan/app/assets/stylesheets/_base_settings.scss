@@ -4,16 +4,19 @@
 $base-font-size:    rem-calc(16);
 $border:            #cbc7c7;
 $border-forms:      #949494;
-$brand:             #004a83;
-$brand-secondary:   #0054ad;
-$dark:              #2d313b;
+$brand:             #211e52;
+$brand-secondary:   #98d7e8;
+$dark:              #211e52;
 $delete:            #b30000;
 $focus-middle:      #f9f9f9;
 $focus-outer:       #193146;
-$footer:            #c9d8ff;
+
+$footer:            #211e52;
+$footer-text-color: #98d7e8;
+
 $highlight-soft:    #f0f3f6;
 $highlight-text:    #475252;
-$hover:             darken($brand, 20%);
+$hover:             #211e52;
 $hover-secondary:   darken($brand-secondary, 20%);
 $info:              #065b93;
 $label:             #00469f;
@@ -24,3 +27,10 @@ $link-hover:        $brand;
 $link-soft:         #a099a8;
 $text:              #000;
 $unlike:            #da262b;
+
+$button:            #ffbb35;
+$button-background: #ffbb35;
+$button-text:       #211e52;
+$button-background-hover: #88bdcc;
+
+$title-border:      #ffbb35;
