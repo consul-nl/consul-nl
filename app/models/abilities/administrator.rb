@@ -89,13 +89,7 @@ module Abilities
       can [:search, :create, :index, :destroy], ::Poll::Officer
       can [:create, :destroy, :manage], ::Poll::BoothAssignment
       can [:create, :destroy], ::Poll::OfficerAssignment
-      can :read, Poll::Question
-      can [:create], Poll::Question do |question|
-        question.poll.blank? || !question.poll.started?
-      end
-      can [:update, :destroy], Poll::Question do |question|
-        !question.poll.started?
-      end
+      can [:read, :create, :update, :destroy], Poll::Question
       can [:read, :order_options], Poll::Question::Option
       can [:create, :update, :destroy], Poll::Question::Option do |option|
         can?(:update, option.question)
