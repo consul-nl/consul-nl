@@ -10,6 +10,7 @@ class SiteCustomization::Image < ApplicationRecord
     "favicon" => [16, 16],
     "map" => [420, 500],
     "logo_email" => [400, 80],
+    "logo_footer" => [260, 80],
     "welcome_process" => [370, 185]
   }.freeze
 
