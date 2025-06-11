@@ -117,6 +117,8 @@ nl:
       translation_interface: "Vertaalinterface"
       remote_census: "Stel de verbinding naar de telling op afstand in (SOAP)"
       sdg: SDG
+      welcome_steps: "Welkomst stappen"
+      welcome_steps_description: "Toon een welkomstsectie met drie stappen op de homepage."
     remote_census:
       request:
         method_name: "Naam van de aanvraagmethode"

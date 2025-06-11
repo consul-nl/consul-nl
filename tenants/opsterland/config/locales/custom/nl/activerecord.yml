@@ -90,7 +90,7 @@ nl:
         feasibility_explanation: "Feasibility explanation (optioneel)"
         unfeasibility_explanation: "Unfeasibility explanation"
       budget/investment/translation:
-        title: "Titel van het idee"
+        title: "Titel"
         description: "Omschrijving"
       active_poll/translation:
         description: "Omschrijving"
