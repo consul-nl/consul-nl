@@ -29,6 +29,7 @@ end
 
 every 1.day, at: "1:00 am", roles: [:cron] do
   rake "files:remove_old_cached_attachments"
+  command "cd #{@path} && RAILS_ENV=#{@environment} bin/delayed_job -m -n 2 restart"
 end
 
 every 1.day, at: "3:00 am", roles: [:cron] do
