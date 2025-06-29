@@ -29,10 +29,16 @@ end
 
 every 1.day, at: "1:00 am", roles: [:cron] do
   rake "files:remove_old_cached_attachments"
+
 end
 
 every 1.day, at: "3:00 am", roles: [:cron] do
   rake "votes:reset_hot_score"
+end
+
+every 1.day, at: "3:30 am", roles: [:cron] do
+  command "cd #{@path} && touch tmp/restart.txt"
+  command "cd #{@path} && RAILS_ENV=#{@environment} bin/bundle exec bin/delayed_job -m -n 2 restart"
 end
 
 every 1.day, at: "4:00 am", roles: [:cron] do
