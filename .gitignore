@@ -39,6 +39,7 @@ tmp/
 .byebug_history
 .DS_Store
 .idea
+.opencode
 
 # Test results
 /spec/examples.txt
