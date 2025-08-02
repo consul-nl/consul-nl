@@ -1,6 +1,9 @@
 # config valid only for current version of Capistrano
 lock "~> 3.18.1"
 
+require "erb"
+require "stringio"
+
 def deploysecret(key, default: "")
   @deploy_secrets_yml ||= YAML.load_file("config/deploy-secrets.yml", aliases: true)[fetch(:stage).to_s]
   @deploy_secrets_yml.fetch(key.to_s, default)
@@ -183,8 +186,16 @@ namespace :delayed_job do
   task :install_systemd do
     on roles(:background) do
       within release_path do
-        # Copy systemd service files
-        execute "sudo cp config/systemd/delayed_job@.service /etc/systemd/system/"
+        # Process ERB template and upload
+        template_content = File.read("config/systemd/delayed_job@.service.erb")
+        template = ERB.new(template_content)
+        processed_content = template.result(binding)
+
+        # Upload processed content
+        upload! StringIO.new(processed_content), "/tmp/delayed_job@.service"
+        execute "sudo mv /tmp/delayed_job@.service /etc/systemd/system/"
+
+        # Copy target file (unchanged)
         execute "sudo cp config/systemd/delayed_job.target /etc/systemd/system/"
         execute "sudo systemctl daemon-reload"
       end
