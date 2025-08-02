@@ -181,12 +181,17 @@ namespace :delayed_job do
   task :install_systemd do
     on roles(:background) do
       within release_path do
+        # Debug: show current directory and file existence
+        execute "pwd"
+        execute "ls -la config/systemd/ || echo 'config/systemd directory not found'"
+
         # Process template by substituting RAILS_ENV
-        execute "sed 's/REPLACE_RAILS_ENV/#{fetch(:rails_env)}/g' config/systemd/delayed_job@.service.erb > /tmp/delayed_job@.service"
+        execute "sed 's/REPLACE_RAILS_ENV/#{fetch(:rails_env)}/g' #{release_path}/config/systemd/delayed_job@.service.erb > /tmp/delayed_job@.service"
+
         execute "sudo mv /tmp/delayed_job@.service /etc/systemd/system/"
 
         # Copy target file (unchanged)
-        execute "sudo cp config/systemd/delayed_job.target /etc/systemd/system/"
+        execute "sudo cp #{release_path}/config/systemd/delayed_job.target /etc/systemd/system/"
         execute "sudo systemctl daemon-reload"
       end
     end
