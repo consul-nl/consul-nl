@@ -61,6 +61,7 @@ namespace :deploy do
 
   after :updating, "install_node"
   after :updating, "install_ruby"
+  after :updating, "delayed_job:install_systemd"
 
   after "deploy:migrate", "add_new_settings"
 
