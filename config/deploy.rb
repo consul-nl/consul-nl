@@ -68,8 +68,6 @@ namespace :deploy do
   after "deploy:migrate", "add_new_settings"
 
   after :publishing, "setup_puma"
-  before "puma:smart_restart", "stop_puma_daemon"
-
   after :finished, "refresh_sitemap"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
