@@ -10,11 +10,11 @@ Type=simple
 User=deploy
 Group=deploy
 WorkingDirectory=/home/deploy/consul/current
-Environment=RAILS_ENV=production
+Environment=RAILS_ENV=<%= fetch(:rails_env) %>
 Environment=BUNDLE_GEMFILE=/home/deploy/consul/current/Gemfile
 
 # Run a single worker with identifier %i
-ExecStart=/home/deploy/consul/current/bin/bundle exec bin/delayed_job -i %i run
+ExecStart=/bin/bash -l -c 'source /home/deploy/.rvm/scripts/rvm && export PATH="/home/deploy/.fnm:$PATH" && eval "$(fnm env --use-on-cd)" && cd /home/deploy/consul/current && bundle exec bin/delayed_job -i %i run'
 
 # Restart policy for automatic recovery from crashes/OOM
 Restart=always
