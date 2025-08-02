@@ -56,7 +56,6 @@ set :puma_service_unit_env_vars, ["EXECJS_RUNTIME=Disabled"]
 
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
-set :delayed_job_monitor, true
 
 set :whenever_roles, -> { :app }
 
@@ -69,6 +68,8 @@ namespace :deploy do
   after "deploy:migrate", "add_new_settings"
 
   after :publishing, "setup_puma"
+  before "puma:smart_restart", "stop_puma_daemon"
+
   after :finished, "refresh_sitemap"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
@@ -78,7 +79,8 @@ namespace :deploy do
   end
 
   before "deploy:restart", "puma:smart_restart"
-  before "deploy:restart", "delayed_job:restart"
+  before "deploy:restart", "delayed_job:stop"
+  after "deploy:restart", "delayed_job:systemd_reload"
 end
 
 task :install_ruby do
@@ -176,4 +178,54 @@ task :setup_puma do
 
   after "setup_puma", "puma:systemd:config"
   after "setup_puma", "puma:systemd:enable"
+end
+
+namespace :delayed_job do
+  desc "Install systemd service files"
+  task :install_systemd do
+    on roles(:background) do
+      within release_path do
+        # Copy systemd service files
+        execute "sudo cp config/systemd/delayed_job@.service /etc/systemd/system/"
+        execute "sudo cp config/systemd/delayed_job.target /etc/systemd/system/"
+        execute "sudo systemctl daemon-reload"
+      end
+    end
+  end
+
+  desc "Enable and start delayed job systemd services"
+  task :systemd_enable do
+    on roles(:background) do
+      execute "sudo systemctl enable delayed_job.target"
+      execute "sudo systemctl start delayed_job.target"
+    end
+  end
+
+  desc "Reload delayed job systemd services after deployment"
+  task :systemd_reload do
+    on roles(:background) do
+      # Stop the old services
+      execute "sudo systemctl stop delayed_job.target || true"
+      # Reload systemd configuration
+      execute "sudo systemctl daemon-reload"
+      # Start the services with new code
+      execute "sudo systemctl start delayed_job.target"
+    end
+  end
+
+  desc "Stop delayed job systemd services"
+  task :systemd_stop do
+    on roles(:background) do
+      execute "sudo systemctl stop delayed_job.target"
+    end
+  end
+
+  desc "Show delayed job systemd status"
+  task :systemd_status do
+    on roles(:background) do
+      execute "sudo systemctl status delayed_job.target"
+      execute "sudo systemctl status delayed_job@0.service"
+      execute "sudo systemctl status delayed_job@1.service"
+    end
+  end
 end
