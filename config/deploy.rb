@@ -1,9 +1,6 @@
 # config valid only for current version of Capistrano
 lock "~> 3.18.1"
 
-require "erb"
-require "stringio"
-
 def deploysecret(key, default: "")
   @deploy_secrets_yml ||= YAML.load_file("config/deploy-secrets.yml", aliases: true)[fetch(:stage).to_s]
   @deploy_secrets_yml.fetch(key.to_s, default)
@@ -56,9 +53,6 @@ set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
 set :puma_systemctl_user, :user
 set :puma_enable_socket_service, true
 set :puma_service_unit_env_vars, ["EXECJS_RUNTIME=Disabled"]
-
-set :delayed_job_workers, 2
-set :delayed_job_roles, :background
 
 set :whenever_roles, -> { :app }
 
@@ -186,13 +180,8 @@ namespace :delayed_job do
   task :install_systemd do
     on roles(:background) do
       within release_path do
-        # Process ERB template and upload
-        template_content = File.read("config/systemd/delayed_job@.service.erb")
-        template = ERB.new(template_content)
-        processed_content = template.result(binding)
-
-        # Upload processed content
-        upload! StringIO.new(processed_content), "/tmp/delayed_job@.service"
+        # Process template by substituting RAILS_ENV
+        execute "sed 's/REPLACE_RAILS_ENV/#{fetch(:rails_env)}/g' config/systemd/delayed_job@.service.erb > /tmp/delayed_job@.service"
         execute "sudo mv /tmp/delayed_job@.service /etc/systemd/system/"
 
         # Copy target file (unchanged)
