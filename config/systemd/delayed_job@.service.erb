@@ -10,7 +10,7 @@ Type=simple
 User=deploy
 Group=deploy
 WorkingDirectory=/home/deploy/consul/current
-Environment=RAILS_ENV=<%= fetch(:rails_env) %>
+Environment=RAILS_ENV=REPLACE_RAILS_ENV
 Environment=BUNDLE_GEMFILE=/home/deploy/consul/current/Gemfile
 
 # Run a single worker with identifier %i
