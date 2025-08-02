@@ -6,15 +6,15 @@ Wants=postgresql.service
 PartOf=delayed_job.target
 
 [Service]
-Type=simple
+Type=exec
 User=deploy
 Group=deploy
 WorkingDirectory=/home/deploy/consul/current
 Environment=RAILS_ENV=REPLACE_RAILS_ENV
 Environment=BUNDLE_GEMFILE=/home/deploy/consul/current/Gemfile
 
-# Run a single worker with identifier %i
-ExecStart=/bin/bash -l -c 'source /home/deploy/.rvm/scripts/rvm && export PATH="/home/deploy/.fnm:$PATH" && eval "$(fnm env --use-on-cd)" && cd /home/deploy/consul/current && bundle exec bin/delayed_job -i %i run'
+# Run a single worker with identifier %i in foreground mode for systemd
+ExecStart=/bin/bash -l -c 'source /home/deploy/.rvm/scripts/rvm && export PATH="/home/deploy/.fnm:$PATH" && eval "$(fnm env --use-on-cd)" && cd /home/deploy/consul/current && bin/bundle exec ruby -r ./config/environment -e "Delayed::Worker.new(identifier: \"%i\").start"'
 
 # Restart policy for automatic recovery from crashes/OOM
 Restart=always
@@ -28,6 +28,11 @@ MemoryHigh=800M
 
 # Kill the process if it uses too much memory
 OOMPolicy=kill
+
+# Signal handling for graceful shutdown
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
 
 # Logging
 StandardOutput=journal
