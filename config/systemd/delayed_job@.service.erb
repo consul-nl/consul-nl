@@ -8,7 +8,7 @@ PartOf=delayed_job.target
 [Service]
 Type=exec
 User=deploy
-Group=deploy
+Group=wheel
 WorkingDirectory=/home/deploy/consul/current
 Environment=RAILS_ENV=REPLACE_RAILS_ENV
 Environment=BUNDLE_GEMFILE=/home/deploy/consul/current/Gemfile
