@@ -14,7 +14,7 @@ Environment=RAILS_ENV=production
 Environment=BUNDLE_GEMFILE=/home/deploy/consul/current/Gemfile
 
 # Run a single worker with identifier %i
-ExecStart=/home/deploy/consul/current/bin/delayed_job -i %i run
+ExecStart=/home/deploy/consul/current/bin/bundle exec bin/delayed_job -i %i run
 
 # Restart policy for automatic recovery from crashes/OOM
 Restart=always
