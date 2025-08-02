@@ -1,0 +1,42 @@
+[Unit]
+Description=Consul Delayed Job Worker %i
+Documentation=https://github.com/collectiveidea/delayed_job
+After=network.target postgresql.service
+Wants=postgresql.service
+PartOf=delayed_job.target
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/home/deploy/consul/current
+Environment=RAILS_ENV=production
+Environment=BUNDLE_GEMFILE=/home/deploy/consul/current/Gemfile
+
+# Run a single worker with identifier %i
+ExecStart=/home/deploy/consul/current/bin/delayed_job -i %i run
+
+# Restart policy for automatic recovery from crashes/OOM
+Restart=always
+RestartSec=10
+StartLimitInterval=300
+StartLimitBurst=5
+
+# Resource limits to prevent runaway memory usage
+MemoryMax=1G
+MemoryHigh=800M
+
+# Kill the process if it uses too much memory
+OOMPolicy=kill
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=delayed_job-%i
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=delayed_job.target
