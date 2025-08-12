@@ -35,6 +35,12 @@ every 1.day, at: "3:00 am", roles: [:cron] do
   rake "votes:reset_hot_score"
 end
 
+every 1.day, at: "3:30 am", roles: [:cron] do
+  command "cd #{@path} && touch tmp/restart.txt"
+  # Systemd handles delayed job restarts automatically, but we can restart manually if needed
+  # command "sudo systemctl restart delayed_job.target"
+end
+
 every 1.day, at: "4:00 am", roles: [:cron] do
   rake "backup:perform"
 end
@@ -44,6 +50,6 @@ every :sunday, at: "11pm" do
 end
 
 every :reboot do
-  # Number of workers must be kept in sync with capistrano's delayed_job_workers
-  command "cd #{@path} && RAILS_ENV=#{@environment} bin/delayed_job -m -n 2 restart"
+  # Ensure delayed job systemd services are running after reboot
+  command "sudo systemctl start delayed_job.target"
 end
