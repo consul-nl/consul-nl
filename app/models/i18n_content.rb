@@ -127,7 +127,7 @@ class I18nContent < ApplicationRecord
 
           if value.match(/translation missing/)
             next
-          elsif value == I18n.t(content[:id], locale: locale)
+          elsif value == I18n.t(content[:id], locale: locale) && I18nContent.find_by(key: content[:id])
             Globalize.with_locale(locale) do
               I18nContent.find_by(key: content[:id])&.update!(value: value)
             end
@@ -144,7 +144,7 @@ class I18nContent < ApplicationRecord
 
   def self.translation_params(enabled_translations)
     translated_attribute_names.product(enabled_translations).map do |attr_name, loc|
-      localized_attr_name_for(attr_name, loc)
+      "#{attr_name}_#{loc.to_s}"
     end
   end
 end
