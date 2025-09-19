@@ -8,7 +8,6 @@ class Widget::Card < ApplicationRecord
   translates :link_text,   touch: true
   include Globalizable
 
-  validates_translation :title, presence: true
   validates :link_url, presence: true, if: -> { !header? || link_text.present? }
   validates :order, numericality: { greater_than_or_equal_to: 1 }
 
