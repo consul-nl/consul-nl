@@ -16,15 +16,15 @@
   }
 
   .quiz-next {
-    background: #fbf2da;
+    background: #ffbb35;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.25rem;
 
     &:hover {
-      background: #f5be53;
-      color: inherit;
+      background: var(--brand, #211e52);
+      color: var(--brand-contrast, #fff);
     }
   }
 
