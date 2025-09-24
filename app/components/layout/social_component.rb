@@ -13,7 +13,8 @@ class Layout::SocialComponent < ApplicationComponent
         facebook: "https://www.facebook.com",
         youtube: "https://www.youtube.com",
         telegram: "https://www.telegram.me",
-        instagram: "https://www.instagram.com"
+        instagram: "https://www.instagram.com",
+        linkedin: "https://www.linkedin.com/company"
       }.select { |name, _| setting["#{name}_handle"].present? }
     end
 
