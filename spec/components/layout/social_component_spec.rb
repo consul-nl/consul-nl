@@ -8,6 +8,7 @@ describe Layout::SocialComponent do
       Setting["youtube_handle"] = "my_youtube_handle"
       Setting["telegram_handle"] = "my_telegram_handle"
       Setting["instagram_handle"] = "my_instagram_handle"
+      Setting["linkedin_handle"] = "my_linkedin_handle"
       Setting["org_name"] = "CONSUL"
 
       render_inline Layout::SocialComponent.new
@@ -18,6 +19,7 @@ describe Layout::SocialComponent do
       expect(page).to have_link "CONSUL YouTube", href: "https://www.youtube.com/my_youtube_handle"
       expect(page).to have_link "CONSUL Telegram", href: "https://www.telegram.me/my_telegram_handle"
       expect(page).to have_link "CONSUL Instagram", href: "https://www.instagram.com/my_instagram_handle"
+      expect(page).to have_link "CONSUL LinkedIn", href: "https://www.linkedin.com/company/my_linkedin_handle"
     end
 
     it "renders when a content block is present" do

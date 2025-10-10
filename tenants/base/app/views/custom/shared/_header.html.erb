@@ -1,9 +1,10 @@
 <% if header.present? %>
   <% if header.image.present? && header.background_image? %>
-    <div id="header_background_image" class="jumbo highlight"
+    <div id="header_background_image" class="header-card jumbo highlight"
          style="background-image: url(<%= polymorphic_path(header.image.attachment) %>)">
-
-      <%= render "shared/header_content", header: header %>
+      <div class="row">
+        <%= render "shared/header_content", header: header %>
+      </div>
     </div>
   <% elsif header.image.present? %>
     <div class="header-card jumbo highlight">

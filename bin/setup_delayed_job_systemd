@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Setup script for Delayed Job systemd services
+# Run this script on the production server to install and configure systemd services
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+echo "Setting up Delayed Job systemd services..."
+
+# Check if running as root or with sudo
+if [[ $EUID -eq 0 ]]; then
+    SUDO=""
+else
+    SUDO="sudo"
+    echo "Note: This script requires sudo privileges for systemd operations"
+fi
+
+# Copy systemd service files
+echo "Installing systemd service files..."
+$SUDO cp "$APP_ROOT/config/systemd/delayed_job@.service" /etc/systemd/system/
+$SUDO cp "$APP_ROOT/config/systemd/delayed_job.target" /etc/systemd/system/
+
+# Set proper permissions
+$SUDO chmod 644 /etc/systemd/system/delayed_job@.service
+$SUDO chmod 644 /etc/systemd/system/delayed_job.target
+
+# Reload systemd configuration
+echo "Reloading systemd configuration..."
+$SUDO systemctl daemon-reload
+
+# Enable services
+echo "Enabling delayed job services..."
+$SUDO systemctl enable delayed_job.target
+
+# Start services
+echo "Starting delayed job services..."
+$SUDO systemctl start delayed_job.target
+
+# Check status
+echo "Checking service status..."
+$SUDO systemctl status delayed_job.target --no-pager
+
+echo ""
+echo "✅ Delayed Job systemd services installed successfully!"
+echo ""
+echo "Useful commands:"
+echo "  Check status:    sudo systemctl status delayed_job.target"
+echo "  View logs:       sudo journalctl -u delayed_job.target -f"
+echo "  Restart:         sudo systemctl restart delayed_job.target"
+echo "  Stop:            sudo systemctl stop delayed_job.target"
+echo ""

@@ -41,7 +41,12 @@ echo "$REPO"
 echo "$branch"
 
 if [ "$production" = true ]; then
+  cap production delayed_job:install_systemd
+  cap production delayed_job:systemd_reload
+  # cap production delayed_job:systemd_status
   cap production deploy --trace
 else
+  cap staging delayed_job:install_systemd
+  cap staging delayed_job:systemd_reload
   cap staging deploy --trace
 fi
