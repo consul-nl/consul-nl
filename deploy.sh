@@ -42,6 +42,12 @@ echo "$branch"
 
 if [ "$production" = true ]; then
   cap production deploy --trace
+
+  cap production delayed_job:install_systemd
+  cap production delayed_job:systemd_reload
 else
   cap staging deploy --trace
+
+  cap staging delayed_job:install_systemd
+  cap staging delayed_job:systemd_reload
 fi
