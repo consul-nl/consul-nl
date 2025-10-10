@@ -54,10 +54,6 @@ set :puma_systemctl_user, :user
 set :puma_enable_socket_service, true
 set :puma_service_unit_env_vars, ["EXECJS_RUNTIME=Disabled"]
 
-set :delayed_job_workers, 2
-set :delayed_job_roles, :background
-set :delayed_job_monitor, true
-
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
@@ -65,6 +61,7 @@ namespace :deploy do
 
   after :updating, "install_node"
   after :updating, "install_ruby"
+  after :updating, "delayed_job:install_systemd"
 
   after "deploy:migrate", "add_new_settings"
 
@@ -78,7 +75,8 @@ namespace :deploy do
   end
 
   before "deploy:restart", "puma:smart_restart"
-  before "deploy:restart", "delayed_job:restart"
+  before "deploy:restart", "delayed_job:stop"
+  after "deploy:restart", "delayed_job:systemd_reload"
 end
 
 task :install_ruby do
@@ -176,4 +174,62 @@ task :setup_puma do
 
   after "setup_puma", "puma:systemd:config"
   after "setup_puma", "puma:systemd:enable"
+end
+
+namespace :delayed_job do
+  desc "Install systemd service files"
+  task :install_systemd do
+    on roles(:background) do
+      within release_path do
+        # Debug: show current directory and file existence
+        execute "pwd"
+        execute "ls -la config/systemd/ || echo 'config/systemd directory not found'"
+
+        # Process template by substituting RAILS_ENV
+        execute "sed 's/REPLACE_RAILS_ENV/#{fetch(:rails_env)}/g' #{release_path}/config/systemd/delayed_job@.service.erb > /tmp/delayed_job@.service"
+
+        execute "sudo mv /tmp/delayed_job@.service /etc/systemd/system/"
+
+        # Copy target file (unchanged)
+        execute "sudo cp #{release_path}/config/systemd/delayed_job.target /etc/systemd/system/"
+        execute "sudo systemctl daemon-reload"
+      end
+    end
+  end
+
+  desc "Enable and start delayed job systemd services"
+  task :systemd_enable do
+    on roles(:background) do
+      execute "sudo systemctl enable delayed_job.target"
+      execute "sudo systemctl start delayed_job.target"
+    end
+  end
+
+  desc "Reload delayed job systemd services after deployment"
+  task :systemd_reload do
+    on roles(:background) do
+      # Stop the old services
+      execute "sudo systemctl stop delayed_job.target || true"
+      # Reload systemd configuration
+      execute "sudo systemctl daemon-reload"
+      # Start the services with new code
+      execute "sudo systemctl start delayed_job.target"
+    end
+  end
+
+  desc "Stop delayed job systemd services"
+  task :systemd_stop do
+    on roles(:background) do
+      execute "sudo systemctl stop delayed_job.target"
+    end
+  end
+
+  desc "Show delayed job systemd status"
+  task :systemd_status do
+    on roles(:background) do
+      execute "sudo systemctl status delayed_job.target"
+      execute "sudo systemctl status delayed_job@0.service"
+      execute "sudo systemctl status delayed_job@1.service"
+    end
+  end
 end

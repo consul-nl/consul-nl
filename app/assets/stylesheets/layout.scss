@@ -1682,7 +1682,8 @@ table {
     &.is-author,
     &.is-admin,
     &.is-moderator {
-      background: rgba(70, 219, 145, 0.3);
+      background: #f2f5f7;
+      color: rgb(34, 34, 34);
       padding: calc(#{$line-height} / 4) calc(#{$line-height} / 2);
     }
 

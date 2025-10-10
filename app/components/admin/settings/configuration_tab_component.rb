@@ -20,6 +20,7 @@ class Admin::Settings::ConfigurationTabComponent < ApplicationComponent
       twitter_handle
       twitter_hashtag
       youtube_handle
+      linkedin_handle
       org_name
       meta_title
       meta_description

@@ -3,7 +3,7 @@
 }
 
 footer {
-  color: $text;
+  color: $footer-text-color;
 }
 
 .footer {
@@ -36,12 +36,21 @@ footer {
   }
 }
 
+
+
 .home-page,
-.custom-page {
+.custom-page,
+.sdg-goal-show,
+.sdg-goals-index {
+  h2,
+  h3 {
+    &.title {
+      border: 0;
+    }
+  }
+
   .card .figure-card figcaption h3 {
     min-height: unset;
-    background: white;
-    color: var(--brand);
     left: 0.75rem;
     right: 0.75rem;
     bottom: 0.75rem;
@@ -50,11 +59,12 @@ footer {
   }
 }
 
-.home-page .figure-card,
-.custom-page .figure-card {
-  .gradient {
-    display: none;
-  }
+.figure-card:not(.home-page .figure-card) .gradient {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 70%, rgb(0, 0, 0) 160%);
+}
+
+.budget-header.with-background-image::before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 30%, rgb(0, 0, 0) 120%);
 }
 
 h1,
@@ -96,7 +106,7 @@ h6 {
 
 .jumbo.header-card {
   color: #fff;
-  padding: 7.5rem 0;
+  padding: 10rem 0;
 
   h1, h2, h3, h4, h5, h6 {
     color: #fff;
@@ -115,4 +125,18 @@ footer > *:not(.subfooter) {
 footer .subfooter {
   margin: 0;
   padding: 0;
+}
+
+.is-dropdown-submenu-item a {
+  color: var(--brand);
+
+  &:hover,
+  &.is-active {
+    text-decoration: underline;
+    color: var(--brand);
+  }
+}
+
+.subnavigation .dropdown.menu > li.is-active > a {
+  color: white;
 }
