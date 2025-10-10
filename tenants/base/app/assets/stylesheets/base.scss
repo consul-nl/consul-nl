@@ -33,6 +33,12 @@
 $link: $anchor-color;
 $link-hover: $anchor-color-hover;
 
+iframe {
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+}
+
 html {
   font-size: unset;
 }
@@ -50,6 +56,7 @@ button,
 .button {
   font-weight: $button-font-weight;
   min-height: $line-height * 2;
+  width: fit-content;
 }
 
 .input-group-button {
@@ -117,7 +124,7 @@ main {
 
 .button {
   &:hover {
-    background: $hover;
+    background: var(--button-background-hover, $hover);
   }
 
   &.hollow {
@@ -279,6 +286,12 @@ aside {
 .communities-show,
 .topic-show,
 .milestone-content {
+  ul {
+    br {
+      display: none;
+    }
+  }
+
   aside h2 {
     border-top: 0;
     color: $label;
@@ -496,9 +509,9 @@ aside {
   }
 }
 
-.ssb-twitter,
-.ssb-facebook {
-  color: #fff !important;
+.ssb-twitter {
+  @include has-fa-icon(x-twitter, brands);
+  background: #000;
 }
 
 form {
@@ -596,7 +609,7 @@ body > header,
 }
 
 .top-bar-title {
-  /* background: var(--brand); */
+  background: var(--top-bar-title, none);
   margin: 0;
   position: relative;
 
@@ -605,7 +618,7 @@ body > header,
     padding-top: $line-height;
 
     &::before {
-      background: none;
+      background: var(--top-bar-title, none);
       content: "";
       height: 100%;
       left: -999%;
@@ -1218,6 +1231,10 @@ footer {
       font-size: rem-calc(20);
       line-height: rem-calc(40);
       vertical-align: top;
+
+      &:hover {
+        color: $footer-text-color;
+      }
     }
   }
 }
@@ -1247,8 +1264,8 @@ footer {
 
 .budget-header {
   background: var(--brand);
-  min-height: $line-height * 25;
-  padding-top: $line-height * 4;
+  min-height: $line-height * 13;
+  padding-top: $line-height * 2.5;
 
   &:not(.button) .button {
     background: rgba(0, 0, 0, 0.5);
@@ -1353,27 +1370,6 @@ footer {
 .budget-phases {
   header {
     padding-top: $line-height;
-  }
-
-  .tabs-title.current-phase-tab {
-    color: #fff;
-
-    a {
-      background: var(--brand-secondary);
-      color: #fff;
-
-      &::after {
-        border-left-color: var(--brand-secondary);
-      }
-
-      &:hover {
-        background: $dark;
-
-        &::after {
-          border-left-color: $dark;
-        }
-      }
-    }
   }
 
   .budget-prev-phase,
@@ -1644,7 +1640,7 @@ footer {
   background: none;
   border: 1px solid var(--brand);
   box-shadow: none;
-  color: var(--brand-secondary);
+  color: $delete;
 
   &::before {
     left: 20px;
@@ -3315,7 +3311,7 @@ a {
 }
 
 .budget-phases {
-  background: $light;
+  background: var(--budget-phases-background, $light);
   padding-bottom: $line-height * 2;
 
   @include breakpoint(small only) {
@@ -3364,7 +3360,7 @@ a {
 
     &::after {
       border: 83px solid transparent;
-      border-left-color: $light;
+      border-left-color: var(--budget-phases-background, $light);
       border-left-width: 20px;
       border-right-width: 0;
       content: "";
@@ -3395,15 +3391,12 @@ a {
   }
 
   .tabs-title > a {
-    background: #fff;
-    color: #000;
     min-height: rem-calc(140);
     padding: $line-height * 2 $line-height * 1.5;
     padding-left: $line-height * 2;
 
     &::after {
       border: 83px solid transparent;
-      border-left-color: #fff;
       border-left-width: 20px;
       border-right-width: 0;
       content: "";
@@ -3413,15 +3406,6 @@ a {
       top: 0;
       width: 0;
       z-index: 2;
-    }
-
-    &:hover {
-      background: #e6e6e6;
-      color: #000;
-
-      &::after {
-        border-left-color: #e6e6e6;
-      }
     }
 
     &:focus {
@@ -3448,7 +3432,7 @@ a {
     &[aria-selected="true"],
     &.is-active {
       background: $dark;
-      color: #fff;
+      color: var(--dark-contrast, #fff);
       font-weight: normal;
 
       &::after {
@@ -3783,3 +3767,46 @@ a {
   }
 }
 
+
+.budget-phases {
+  .tabs-title > a {
+    background: var(--phase-tab, #fff);
+    color: var(--phase-tab-contrast, #000);
+
+    &::after {
+      border-left-color: var(--phase-tab, #fff);
+    }
+
+    &:hover {
+      background: #e6e6e6;
+      color: #000;
+
+      &::after {
+        border-left-color: #e6e6e6;
+      }
+    }
+
+  }
+
+  .tabs-title.current-phase-tab {
+    color: var(--current-phase-contrast, #fff);
+
+    a {
+      background: var(--current-phase, var(--brand-secondary));
+      color: var(--current-phase-contrast, #fff);
+
+      &::after {
+        border-left-color: var(--current-phase, var(--brand-secondary));
+      }
+
+      &:hover {
+        background: var(--current-phase-hover, $dark);
+        color: var(--current-phase-hover-contrast, #fff);
+
+        &::after {
+          border-left-color: var(--current-phase-hover, $dark);
+        }
+      }
+    }
+  }
+}

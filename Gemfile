@@ -43,6 +43,7 @@ gem "paranoia", "~> 2.6.3"
 gem "pg", "~> 1.5.6"
 gem "pg_search", "~> 2.3.6"
 gem "puma", "~> 5.6.8"
+gem 'rack-attack'
 gem "recipient_interceptor", "~> 0.3.1"
 gem "redcarpet", "~> 3.6.0"
 gem "responders", "~> 3.1.1"
@@ -91,7 +92,6 @@ group :development do
   gem "capistrano-bundler", "~> 2.1.0", require: false
   gem "capistrano-npm", "~> 1.0.3", require: false
   gem "capistrano-rails", "~> 1.6.3", require: false
-  gem "capistrano3-delayed-job", "~> 1.7.6"
   gem "capistrano3-puma", "~> 5.2.0"
   gem "erb_lint", "~> 0.5.0", require: false
   gem "mdl", "~> 0.13.0", require: false

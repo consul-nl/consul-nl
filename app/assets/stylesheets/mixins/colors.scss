@@ -45,11 +45,9 @@
 
 @mixin brand-border($position: null, $width: 1px) {
   @if $position == null {
-    border: $width solid $brand;
-    border: $width solid var(--brand, $brand);
+    border: $width solid var(--title-border, var(--brand, $brand));
   } @else {
-    border-#{$position}: $width solid $brand;
-    border-#{$position}: $width solid var(--brand, $brand);
+    border-#{$position}: $width solid var(--title-border, var(--brand, $brand));
   }
 }
 

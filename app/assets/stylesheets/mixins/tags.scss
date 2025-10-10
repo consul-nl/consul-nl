@@ -14,9 +14,9 @@
 }
 
 %tag {
-  background: #ececec;
+  background: var(--tag, #ececec);
   border-radius: rem-calc(6);
-  color: color-pick-contrast(#ececec);
+  color: var(--tag-color, color-pick-contrast(#ececec));
   display: inline-block;
   font-size: $small-font-size;
   margin-bottom: calc(#{$line-height} / 3);
@@ -24,7 +24,7 @@
   text-decoration: none;
 
   &:hover {
-    background: #e0e0e0;
+    background: var(--tag-hover, #e0e0e0);
     text-decoration: none;
   }
 }
