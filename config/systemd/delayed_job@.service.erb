@@ -1,0 +1,47 @@
+[Unit]
+Description=Consul Delayed Job Worker %i
+Documentation=https://github.com/collectiveidea/delayed_job
+After=network.target postgresql.service
+Wants=postgresql.service
+PartOf=delayed_job.target
+
+[Service]
+Type=exec
+User=deploy
+Group=wheel
+WorkingDirectory=/home/deploy/consul/current
+Environment=RAILS_ENV=REPLACE_RAILS_ENV
+Environment=BUNDLE_GEMFILE=/home/deploy/consul/current/Gemfile
+
+# Run a single worker with identifier %i in foreground mode for systemd
+ExecStart=/bin/bash -l -c 'source /home/deploy/.rvm/scripts/rvm && export PATH="/home/deploy/.fnm:$PATH" && eval "$(fnm env --use-on-cd)" && cd /home/deploy/consul/current && bin/bundle exec ruby -r ./config/environment -e "Delayed::Worker.new(identifier: \"%i\").start"'
+
+# Restart policy for automatic recovery from crashes/OOM
+Restart=always
+RestartSec=10
+StartLimitInterval=300
+StartLimitBurst=5
+
+# Resource limits to prevent runaway memory usage
+MemoryMax=1G
+MemoryHigh=800M
+
+# Kill the process if it uses too much memory
+OOMPolicy=kill
+
+# Signal handling for graceful shutdown
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=delayed_job-%i
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=delayed_job.target

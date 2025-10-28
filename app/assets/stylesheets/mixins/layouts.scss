@@ -73,6 +73,10 @@
   &::before {
     @include full-width-cover($adjust-margin: $adjust-margin, $adjust-padding: $adjust-padding);
     background-color: inherit;
+    background-image: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
     z-index: -1;
   }
 }

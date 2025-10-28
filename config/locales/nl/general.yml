@@ -547,6 +547,9 @@ nl:
     show:
       vote_answer: "Stem %{answer}"
       voted: "U heeft %{answer} gestemd"
+    description:
+      unique: "Je kan maximaal 1 antwoord kiezen."
+      multiple: "Je kan maximaal %{maximum} antwoorden kiezen."
     read_more_about: "Lees meer over:"
   proposal_notifications:
     new:

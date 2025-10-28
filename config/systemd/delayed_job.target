@@ -1,0 +1,8 @@
+[Unit]
+Description=Consul Delayed Job Workers Target
+Documentation=https://github.com/collectiveidea/delayed_job
+After=network.target postgresql.service
+Wants=delayed_job@0.service delayed_job@1.service
+
+[Install]
+WantedBy=multi-user.target

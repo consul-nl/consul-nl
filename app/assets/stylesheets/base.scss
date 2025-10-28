@@ -1264,8 +1264,8 @@ footer {
 
 .budget-header {
   background: var(--brand);
-  min-height: $line-height * 25;
-  padding-top: $line-height * 4;
+  min-height: $line-height * 13;
+  padding-top: $line-height * 2.5;
 
   &:not(.button) .button {
     background: rgba(0, 0, 0, 0.5);
