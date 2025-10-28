@@ -87,7 +87,7 @@ h1 {
     color: #fff;
 
     &::after {
-      border-left-color: $brand-secondary;
+      border-left-color: var(--current-phase-hover, $brand-secondary);
     }
   }
 }
