@@ -22,6 +22,8 @@ nl:
     telegram_handle_description: "Als de accountnaam van dit medium is ingevuld, verschijnt het in te voettekst"
     instagram_handle: "Instagram accountnaam"
     instagram_handle_description: "Als de accountnaam van dit medium is ingevuld, verschijnt het in te voettekst"
+    linkedin_handle: "LinkedIn bedrijfsnaam"
+    linkedin_handle_description: "De URL wordt: linkedin.com/company/{{bedrijfsnaam}}"
     url: "Homepage URL"
     url_description: "De URL van de homepage"
     org_name: "Organisatie"
