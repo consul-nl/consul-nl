@@ -207,3 +207,13 @@ form [type]:not([type="button"],
     }
   }
 }
+
+#header_image {
+  max-height: 300px;
+  display: flex;
+
+  img {
+    object-fit: contain;
+  }
+}
+
