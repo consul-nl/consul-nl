@@ -1,0 +1,9 @@
+fy-NL:
+  views:
+    pagination:
+      current: Do bist op side
+      first: Earste
+      last: Lêste
+      next: Folgjende
+      previous: Foarige
+      truncate: "&hellip;"
