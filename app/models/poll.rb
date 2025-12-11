@@ -34,9 +34,7 @@ class Poll < ApplicationRecord
 
   validates_translation :name, presence: true
   validate :date_range
-  validate :start_date_is_not_past_date, on: :create
   validate :start_date_change, on: :update
-  validate :end_date_is_not_past_date, on: :update
   validate :only_one_active, unless: :public?
 
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
