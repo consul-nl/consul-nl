@@ -91,6 +91,7 @@ fy-NL:
       contact_title: "Nim kontakt mei ús op"
       accessibility: "Tagonklikheid"
       conditions: "Spulregels"
+      copyright: "Consul Democracy ferzje %{version}, %{year}"
     header:
       administration_menu: "Menu"
       available_locales: "Beskikbere talen"
@@ -594,7 +595,14 @@ fy-NL:
       comments_title: "Reaksje"
       reply_button: "Publisearje antwurd"
       reply_link: "Reagearje"
+  comments_helper:
+    comment_button: "Publisearje reaksje"
+    comment_link: "Kommentaar"
+    comments_title: "Reaksje"
+    reply_button: "Publisearje antwurd"
+    reply_link: "Reagearje"
   shared:
+    share: Diel
     back: "Werom"
     required_fields: "Alle fjilden markearre mei (*) binne ferplicht"
     required: "Ferplicht"
