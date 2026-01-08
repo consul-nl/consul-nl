@@ -193,7 +193,7 @@ class Poll < ApplicationRecord
   end
 
   def generate_slug?
-    slug.nil?
+    slug.blank?
   end
 
   def only_one_active
