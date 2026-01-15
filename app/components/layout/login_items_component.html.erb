@@ -14,7 +14,7 @@
                             rel: "nofollow",
                             title: t("shared.go_to_page") +
                                    t("layouts.header.my_account_link") %>
-    <%= link_to account_path, class: "avatar-image" do %>
+    <%= link_to account_path, class: "avatar-image", aria: { hidden: true }, tabindex: -1 do %>
       <%= render Shared::AvatarComponent.new(user, size: 32) %>
     <% end %>
   </li>
