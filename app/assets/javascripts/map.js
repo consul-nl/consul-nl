@@ -62,7 +62,7 @@
         if (marker) {
           marker.setLatLng(e.latlng);
         } else {
-          marker = createMarker(e.latlng.lat, e.latlng.lng, e.markerData.title);
+          marker = createMarker(e.latlng.lat, e.latlng.lng, e.markerData?.title);
         }
         App.Map.updateFormfields(map, marker);
       };
