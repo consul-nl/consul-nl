@@ -28,17 +28,19 @@
         markers = L.layerGroup();
       }
       marker = null;
-      markerIcon = L.divIcon({
-        className: "map-marker",
-        iconSize: [30, 30],
-        iconAnchor: [15, 40],
-        html: '<div class="map-icon"></div>'
-      });
-      createMarker = function(latitude, longitude) {
+      markerIcon = function(alt_text) {
+        return L.divIcon({
+          className: "map-marker",
+          iconSize: [30, 30],
+          iconAnchor: [15, 40],
+          html: $('<div class="map-icon"></div>').attr("aria-label", alt_text)[0].outerHTML
+        });
+      };
+      createMarker = function(latitude, longitude, text) {
         var newMarker, markerLatLng;
         markerLatLng = new L.LatLng(latitude, longitude);
         newMarker = L.marker(markerLatLng, {
-          icon: markerIcon,
+          icon: markerIcon(text),
           draggable: editable
         });
         if (editable) {
@@ -60,7 +62,7 @@
         if (marker) {
           marker.setLatLng(e.latlng);
         } else {
-          marker = createMarker(e.latlng.lat, e.latlng.lng);
+          marker = createMarker(e.latlng.lat, e.latlng.lng, e.markerData.title);
         }
         App.Map.updateFormfields(map, marker);
       };
@@ -81,6 +83,13 @@
           }
         });
         map.on("click", moveOrPlaceMarker);
+        map.on("keydown", function(e) {
+          if (e.originalEvent.code === "Enter" || e.originalEvent.code === "Space") {
+            e.originalEvent.preventDefault();
+            e.latlng = map.getCenter();
+            moveOrPlaceMarker(e);
+          }
+        });
       }
 
       App.Map.addInvestmentsMarkers(investmentsMarkers, createMarker);
@@ -112,7 +121,8 @@
 
       dataCoordinates = {
         lat: $(element).data("marker-latitude"),
-        long: $(element).data("marker-longitude")
+        long: $(element).data("marker-longitude"),
+        title: $(element).data("marker-title")
       };
       formCoordinates = {
         lat: inputs.lat.val(),
@@ -130,6 +140,7 @@
       return {
         lat: latitude,
         long: longitude,
+        title: dataCoordinates.title,
         zoom: formCoordinates.zoom
       };
     },
@@ -185,7 +196,7 @@
           var marker;
 
           if (App.Map.validCoordinates(coordinates)) {
-            marker = createMarker(coordinates.lat, coordinates.long);
+            marker = createMarker(coordinates.lat, coordinates.long, coordinates.title);
             marker.options.id = coordinates.investment_id;
             marker.bindPopup(App.Map.getPopupContent(coordinates));
           }
