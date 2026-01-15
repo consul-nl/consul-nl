@@ -34,10 +34,7 @@ class Poll < ApplicationRecord
 
   validates_translation :name, presence: true
   validate :date_range
-  validate :start_date_is_not_past_date, on: :create
   validate :start_date_change, on: :update
-  validate :end_date_is_not_past_date, on: :update
-  validate :end_date_change, on: :update
   validate :only_one_active, unless: :public?
 
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
@@ -190,19 +187,13 @@ class Poll < ApplicationRecord
     end
   end
 
-  def end_date_change
-    if will_save_change_to_ends_at? && ends_at_in_database < Time.current
-      errors.add(:ends_at, I18n.t("errors.messages.cannot_change_date.poll_ended"))
-    end
-  end
-
   def geozone_restricted_to=(geozones)
     self.geozone_restricted = true
     self.geozones = geozones
   end
 
   def generate_slug?
-    slug.nil?
+    slug.blank?
   end
 
   def only_one_active

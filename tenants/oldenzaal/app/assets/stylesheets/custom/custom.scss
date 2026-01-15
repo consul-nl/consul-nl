@@ -11,6 +11,7 @@
   --subnavigation: #f2f5f7;
 
   --top-bar-title: #{$brand};
+  --current-phase-hover: #2d313b;
 }
 
 body,
@@ -87,7 +88,7 @@ h1 {
     color: #fff;
 
     &::after {
-      border-left-color: $brand-secondary;
+      border-left-color: var(--current-phase-hover, $brand-secondary);
     }
   }
 }

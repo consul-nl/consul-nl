@@ -91,6 +91,7 @@ fy-NL:
       contact_title: "Nim kontakt mei ús op"
       accessibility: "Tagonklikheid"
       conditions: "Spulregels"
+      copyright: "Consul Democracy ferzje %{version}, %{year}"
     header:
       administration_menu: "Menu"
       available_locales: "Beskikbere talen"
@@ -544,6 +545,10 @@ fy-NL:
         title: "Fragen"
         most_voted_answer: "Antwurd mei de measte stimmen:"
       more_info_options: "Mear ynformaasje oer de antwurdmooglikheid en"
+  poll_questions:
+    description:
+      unique: "Do kinst maksimaal 1 antwurd kieze"
+      multiple: "Do kinst maksimaal %{maximum} antwurden kieze"
   comments:
     actions:
       delete: "Wiskje reaksje"
@@ -590,7 +595,14 @@ fy-NL:
       comments_title: "Reaksje"
       reply_button: "Publisearje antwurd"
       reply_link: "Reagearje"
+  comments_helper:
+    comment_button: "Publisearje reaksje"
+    comment_link: "Kommentaar"
+    comments_title: "Reaksje"
+    reply_button: "Publisearje antwurd"
+    reply_link: "Reagearje"
   shared:
+    share: Diel
     back: "Werom"
     required_fields: "Alle fjilden markearre mei (*) binne ferplicht"
     required: "Ferplicht"
