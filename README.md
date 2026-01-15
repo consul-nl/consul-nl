@@ -38,8 +38,8 @@ You can access the main website of the project at [http://consuldemocracy.org](h
 Prerequisites: install git, Ruby 3.2.4, CMake, pkg-config, shared-mime-info, Node.js 18.20.3 and PostgreSQL (>=9.5).
 
 ```bash
-git clone https://github.com/consuldemocracy/consuldemocracy.git
-cd consuldemocracy
+git clone https://github.com/consul-nl/consul-nl.git
+cd consul-nl
 bin/setup
 bin/rake db:dev_seed
 ```
