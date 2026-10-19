@@ -72,10 +72,19 @@ describe SanitizesUserHtml do
 
   it "schoont de beschrijving van een peiling op met de beheerderssanitizer" do
     html = '<p>Intro</p><img src="/foto.png" alt="foto" onerror="alert(1)"><script>alert(1)</script>'
-    poll = create(:poll, description: html)
+    poll = create(:poll)
+    poll.update!(description: html)
 
     expect(poll.reload.description).not_to include("onerror", "<script")
     expect(poll.description).to include("<p>Intro</p>", '<img src="/foto.png" alt="foto">')
+  end
+
+  it "schoont ook op bij opslaan zonder validatie" do
+    investment = create(:budget_investment)
+    investment.description = malicious
+    investment.save!(validate: false)
+
+    expect(investment.reload.description).not_to include("onerror", "javascript:", "<script")
   end
 
   it "raakt velden van beheerders niet" do

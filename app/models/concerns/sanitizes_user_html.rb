@@ -9,17 +9,19 @@
 # AdminWYSIWYGSanitizer wordt gefilterd (zoals Poll#description), geef je
 # dezelfde sanitizer mee: sanitizes_user_html :description, sanitizer: AdminWYSIWYGSanitizer
 #
-# Let op: dit draait in before_validation. Routes die validatie overslaan
-# (update_column, update_all, insert_all, update_attribute,
-# save(validate: false), Globalize set_translations) worden NIET opgeschoond;
-# gebruik die niet voor inwonersinhoud.
+# Let op: dit draait in before_validation en before_save. Routes die callbacks
+# overslaan (update_column, update_all, insert_all, Globalize set_translations)
+# worden NIET opgeschoond; gebruik die niet voor inwonersinhoud.
 module SanitizesUserHtml
   extend ActiveSupport::Concern
 
   included do
     class_attribute :user_html_fields, instance_writer: false, default: []
     class_attribute :user_html_sanitizer, instance_writer: false, default: WYSIWYGSanitizer
+    # Twee keer: voor validatie (zodat validaties de opgeschoonde tekst zien) en voor het
+    # opslaan (zodat ook save(validate: false) wordt afgedekt). Opschonen is idempotent.
     before_validation :sanitize_user_html
+    before_save :sanitize_user_html
   end
 
   class_methods do
