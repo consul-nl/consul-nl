@@ -79,6 +79,22 @@ describe SanitizesUserHtml do
     expect(poll.description).to include("<p>Intro</p>", '<img src="/foto.png" alt="foto">')
   end
 
+  it "maakt een peiling aan zoals het beheerformulier, met tijdvak en SDG-doelen" do
+    poll = Poll.new(
+      author: create(:user),
+      starts_at: 1.week.from_now,
+      ends_at: 2.weeks.from_now,
+      sdg_goals: [SDG::Goal[17]],
+      translations_attributes: [{ locale: :en, name: "Peiling met SDG", summary: "Kort",
+                                  description: "<p>Intro</p><script>alert(1)</script>" }]
+    )
+    poll.save!
+
+    expect(poll.reload.description).to eq "<p>Intro</p>"
+    expect(poll.sdg_goals.map(&:code)).to eq [17]
+    expect(Poll.created_by_admin.find_by(id: poll.id)).to eq poll
+  end
+
   it "schoont een peiling uit het voorsteldashboard streng op" do
     poll = create(:poll, related: create(:proposal))
     html = '<p>Intro</p><img src="/foto.png" alt="foto"><iframe src="https://example.org"></iframe>'
