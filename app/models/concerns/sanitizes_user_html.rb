@@ -5,20 +5,27 @@
 # Velden die beheerders invullen vallen hier bewust buiten; die gebruiken
 # AdminWYSIWYGSanitizer.
 #
+# Standaard met WYSIWYGSanitizer. Een veld dat bij het tonen al met
+# AdminWYSIWYGSanitizer wordt gefilterd (zoals Poll#description), geef je
+# dezelfde sanitizer mee: sanitizes_user_html :description, sanitizer: AdminWYSIWYGSanitizer
+#
 # Let op: dit draait in before_validation. Routes die validatie overslaan
-# (update_column, update_attribute, save(validate: false), Globalize
-# set_translations) worden NIET opgeschoond; gebruik die niet voor inwonersinhoud.
+# (update_column, update_all, insert_all, update_attribute,
+# save(validate: false), Globalize set_translations) worden NIET opgeschoond;
+# gebruik die niet voor inwonersinhoud.
 module SanitizesUserHtml
   extend ActiveSupport::Concern
 
   included do
     class_attribute :user_html_fields, instance_writer: false, default: []
+    class_attribute :user_html_sanitizer, instance_writer: false, default: WYSIWYGSanitizer
     before_validation :sanitize_user_html
   end
 
   class_methods do
-    def sanitizes_user_html(*fields)
+    def sanitizes_user_html(*fields, sanitizer: WYSIWYGSanitizer)
       self.user_html_fields = fields.map(&:to_s)
+      self.user_html_sanitizer = sanitizer
     end
   end
 
@@ -60,6 +67,6 @@ module SanitizesUserHtml
     def clean_user_html(value)
       return value if value.blank?
 
-      WYSIWYGSanitizer.new.sanitize(value)
+      user_html_sanitizer.new.sanitize(value)
     end
 end

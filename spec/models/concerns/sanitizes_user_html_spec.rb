@@ -36,7 +36,7 @@ describe SanitizesUserHtml do
     end
   end
 
-  it "schoont antwoordopties van peilingen op (ook via het voorsteldashboard)" do
+  it "schoont antwoordopties van peilingen op" do
     option = create(:poll_question_option, description: malicious)
 
     expect(option.reload.description).not_to include("onerror", "javascript:", "<script")
@@ -57,6 +57,24 @@ describe SanitizesUserHtml do
 
     spanish = investment.translations.find_by(locale: "es")
     expect(spanish.description).not_to include("onerror", "javascript:", "<script")
+  end
+
+  it "schoont antwoordopties op die via de geneste route van het voorsteldashboard binnenkomen" do
+    option = create(:poll_question_option)
+    question = option.question
+
+    question.poll.update!(questions_attributes: [{ id: question.id,
+                                                   question_options_attributes: [{ id: option.id,
+                                                                                    description: malicious }] }])
+
+    expect(option.reload.description).not_to include("onerror", "javascript:", "<script")
+  end
+
+  it "schoont de beschrijving van een peiling op met de beheerderssanitizer" do
+    poll = create(:poll, description: '<p>Intro</p><img src="/foto.png" alt="foto" onerror="alert(1)"><script>alert(1)</script>')
+
+    expect(poll.reload.description).not_to include("onerror", "<script")
+    expect(poll.description).to include("<p>Intro</p>", '<img src="/foto.png" alt="foto">')
   end
 
   it "raakt velden van beheerders niet" do

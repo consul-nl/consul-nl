@@ -12,6 +12,8 @@ class Poll < ApplicationRecord
   translates :summary,     touch: true
   translates :description, touch: true
   include Globalizable
+  include SanitizesUserHtml
+  sanitizes_user_html :description, sanitizer: AdminWYSIWYGSanitizer
 
   RECOUNT_DURATION = 1.week
 
