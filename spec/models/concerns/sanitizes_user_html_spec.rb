@@ -36,6 +36,29 @@ describe SanitizesUserHtml do
     end
   end
 
+  it "schoont antwoordopties van peilingen op (ook via het voorsteldashboard)" do
+    option = create(:poll_question_option, description: malicious)
+
+    expect(option.reload.description).not_to include("onerror", "javascript:", "<script")
+    expect(option.description).to include("<p>Hallo</p>")
+  end
+
+  it "schoont alle talen op, ook een tweede taal via de setter" do
+    investment = create(:budget_investment)
+    Globalize.with_locale(:es) { investment.update!(title: "Título en español", description: malicious) }
+
+    spanish = investment.translations.find_by(locale: "es")
+    expect(spanish.description).not_to include("onerror", "javascript:", "<script")
+  end
+
+  it "schoont een nieuwe taal via translations_attributes op" do
+    investment = create(:budget_investment)
+    investment.update!(translations_attributes: [{ locale: "es", title: "Título en español", description: malicious }])
+
+    spanish = investment.translations.find_by(locale: "es")
+    expect(spanish.description).not_to include("onerror", "javascript:", "<script")
+  end
+
   it "raakt velden van beheerders niet" do
     phase = create(:budget).phases.first
     phase.update!(description: '<p><img src="/foto.png" alt="foto"></p>')

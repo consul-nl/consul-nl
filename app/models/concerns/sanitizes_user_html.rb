@@ -4,6 +4,10 @@
 #
 # Velden die beheerders invullen vallen hier bewust buiten; die gebruiken
 # AdminWYSIWYGSanitizer.
+#
+# Let op: dit draait in before_validation. Routes die validatie overslaan
+# (update_column, update_attribute, save(validate: false), Globalize
+# set_translations) worden NIET opgeschoond; gebruik die niet voor inwonersinhoud.
 module SanitizesUserHtml
   extend ActiveSupport::Concern
 
