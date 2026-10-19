@@ -79,6 +79,14 @@ describe SanitizesUserHtml do
     expect(poll.description).to include("<p>Intro</p>", '<img src="/foto.png" alt="foto">')
   end
 
+  it "schoont een peiling uit het voorsteldashboard streng op" do
+    poll = create(:poll, related: create(:proposal))
+    html = '<p>Intro</p><img src="/foto.png" alt="foto"><iframe src="https://example.org"></iframe>'
+    poll.update!(description: html)
+
+    expect(poll.reload.description).to eq "<p>Intro</p>"
+  end
+
   it "schoont ook op bij opslaan zonder validatie" do
     investment = create(:budget_investment)
     investment.description = malicious

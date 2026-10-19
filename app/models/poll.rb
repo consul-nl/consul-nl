@@ -15,6 +15,12 @@ class Poll < ApplicationRecord
   include SanitizesUserHtml
   sanitizes_user_html :description, sanitizer: AdminWYSIWYGSanitizer
 
+  # Peilingen uit het voorsteldashboard (related_type gezet) worden door inwoners
+  # ingevuld: streng opschonen. Peilingen van beheerders houden afbeeldingen en tabellen.
+  def user_html_sanitizer
+    related_type.present? ? WYSIWYGSanitizer : AdminWYSIWYGSanitizer
+  end
+
   RECOUNT_DURATION = 1.week
 
   has_many :booth_assignments, class_name: "Poll::BoothAssignment"

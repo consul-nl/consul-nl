@@ -1,5 +1,6 @@
 module SanitizeUserHtmlTask
-  # [model of vertaalklasse, sanitizer] — dezelfde sanitizer als het model bij opslaan gebruikt.
+  # [model of vertaalklasse, sanitizer of lambda(record)]:
+  # dezelfde sanitizer als het model bij opslaan gebruikt.
   TARGETS = lambda do
     [
       [Budget::Investment.translation_class, WYSIWYGSanitizer],
@@ -7,7 +8,10 @@ module SanitizeUserHtmlTask
       [Debate.translation_class, WYSIWYGSanitizer],
       [Legislation::Proposal, WYSIWYGSanitizer],
       [Poll::Question::Option.translation_class, WYSIWYGSanitizer],
-      [Poll.translation_class, AdminWYSIWYGSanitizer]
+      [Poll.translation_class, lambda do |translation|
+        poll = Poll.unscoped.find_by(id: translation.poll_id)
+        poll && poll.related_type.blank? ? AdminWYSIWYGSanitizer : WYSIWYGSanitizer
+      end]
     ]
   end
 end
@@ -21,11 +25,11 @@ namespace :sanitize_user_html do
     backup_path = Rails.root.join("tmp", "sanitize_user_html-#{Time.current.strftime("%Y%m%d-%H%M%S")}.jsonl")
     changes = []
 
-    SanitizeUserHtmlTask::TARGETS.call.each do |klass, sanitizer_class|
-      sanitizer = sanitizer_class.new
+    SanitizeUserHtmlTask::TARGETS.call.each do |klass, sanitizer_spec|
       ids = []
       klass.unscoped.where.not(description: [nil, ""]).find_each do |record|
-        clean = sanitizer.sanitize(record.description)
+        sanitizer_class = sanitizer_spec.respond_to?(:call) ? sanitizer_spec.call(record) : sanitizer_spec
+        clean = sanitizer_class.new.sanitize(record.description)
         next if clean == record.description
 
         ids << record.id
