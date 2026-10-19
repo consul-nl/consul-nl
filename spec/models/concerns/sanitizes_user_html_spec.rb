@@ -53,7 +53,8 @@ describe SanitizesUserHtml do
 
   it "schoont een nieuwe taal via translations_attributes op" do
     investment = create(:budget_investment)
-    investment.update!(translations_attributes: [{ locale: "es", title: "Título en español", description: malicious }])
+    new_translation = { locale: "es", title: "Título en español", description: malicious }
+    investment.update!(translations_attributes: [new_translation])
 
     spanish = investment.translations.find_by(locale: "es")
     expect(spanish.description).not_to include("onerror", "javascript:", "<script")
@@ -63,15 +64,15 @@ describe SanitizesUserHtml do
     option = create(:poll_question_option)
     question = option.question
 
-    question.poll.update!(questions_attributes: [{ id: question.id,
-                                                   question_options_attributes: [{ id: option.id,
-                                                                                    description: malicious }] }])
+    options = [{ id: option.id, description: malicious }]
+    question.poll.update!(questions_attributes: [{ id: question.id, question_options_attributes: options }])
 
     expect(option.reload.description).not_to include("onerror", "javascript:", "<script")
   end
 
   it "schoont de beschrijving van een peiling op met de beheerderssanitizer" do
-    poll = create(:poll, description: '<p>Intro</p><img src="/foto.png" alt="foto" onerror="alert(1)"><script>alert(1)</script>')
+    html = '<p>Intro</p><img src="/foto.png" alt="foto" onerror="alert(1)"><script>alert(1)</script>'
+    poll = create(:poll, description: html)
 
     expect(poll.reload.description).not_to include("onerror", "<script")
     expect(poll.description).to include("<p>Intro</p>", '<img src="/foto.png" alt="foto">')

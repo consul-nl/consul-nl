@@ -32,7 +32,8 @@ namespace :sanitize_user_html do
         changes << { klass: klass.name, id: record.id, old: record.description, new: clean }
       end
 
-      puts "#{klass.name}: #{ids.size} #{write ? "op te schonen" : "zouden veranderen"} #{ids.first(50).inspect}"
+      status = write ? "op te schonen" : "zouden veranderen"
+      puts "#{klass.name}: #{ids.size} #{status} #{ids.first(50).inspect}"
     end
 
     next unless write && changes.any?
@@ -52,7 +53,8 @@ namespace :sanitize_user_html do
     puts "#{updated} teksten opgeschoond, #{changes.size - updated} overgeslagen (tussentijds gewijzigd)"
   end
 
-  desc "Zet oude waarden terug uit een backupbestand van :existing (FILE=pad); alleen teksten die sindsdien niet zijn gewijzigd"
+  desc "Zet oude waarden terug uit een backupbestand van :existing (FILE=pad); " \
+       "alleen teksten die sindsdien niet zijn gewijzigd"
   task restore: :environment do
     path = ENV.fetch("FILE")
     rows = File.readlines(path).map { |line| JSON.parse(line) }
@@ -64,6 +66,7 @@ namespace :sanitize_user_html do
                                 .update_all(description: row["old"])
       end
     end
-    puts "#{restored} teksten teruggezet uit #{path}, #{rows.size - restored} overgeslagen (sindsdien gewijzigd)"
+    skipped = rows.size - restored
+    puts "#{restored} teksten teruggezet uit #{path}, #{skipped} overgeslagen (sindsdien gewijzigd)"
   end
 end
