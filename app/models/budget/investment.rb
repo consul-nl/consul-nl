@@ -28,6 +28,8 @@ class Budget
     translates :title, touch: true
     translates :description, touch: true
     include Globalizable
+    include SanitizesUserHtml
+    sanitizes_user_html :description
 
     audited on: [:update, :destroy]
     has_associated_audits

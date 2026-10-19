@@ -12,6 +12,14 @@ class Poll < ApplicationRecord
   translates :summary,     touch: true
   translates :description, touch: true
   include Globalizable
+  include SanitizesUserHtml
+  sanitizes_user_html :description, sanitizer: AdminWYSIWYGSanitizer
+
+  # Peilingen uit het voorsteldashboard (related_type gezet) worden door inwoners
+  # ingevuld: streng opschonen. Peilingen van beheerders houden afbeeldingen en tabellen.
+  def user_html_sanitizer
+    related_type.present? ? WYSIWYGSanitizer : AdminWYSIWYGSanitizer
+  end
 
   RECOUNT_DURATION = 1.week
 

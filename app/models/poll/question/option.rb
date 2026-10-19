@@ -7,6 +7,8 @@ class Poll::Question::Option < ApplicationRecord
   translates :title,       touch: true
   translates :description, touch: true
   include Globalizable
+  include SanitizesUserHtml
+  sanitizes_user_html :description
 
   accepts_nested_attributes_for :documents, allow_destroy: true
 

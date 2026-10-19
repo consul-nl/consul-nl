@@ -13,6 +13,8 @@ class Legislation::Proposal < ApplicationRecord
   include Notifiable
   include Imageable
   include Randomizable
+  include SanitizesUserHtml
+  sanitizes_user_html :description
   include SDG::Relatable
 
   accepts_nested_attributes_for :documents, allow_destroy: true
