@@ -85,12 +85,17 @@ describe SanitizesUserHtml do
       starts_at: 1.week.from_now,
       ends_at: 2.weeks.from_now,
       sdg_goals: [SDG::Goal[17]],
-      translations_attributes: [{ locale: :en, name: "Peiling met SDG", summary: "Kort",
-                                  description: "<p>Intro</p><script>alert(1)</script>" }]
+      translations_attributes: [{
+        locale: :en,
+        name: "Peiling met SDG",
+        summary: "Kort",
+        description: '<p>Intro</p><img src="/foto.png" onerror="alert(1)"><script>alert(1)</script>'
+      }]
     )
     poll.save!
 
-    expect(poll.reload.description).to eq "<p>Intro</p>"
+    expect(poll.reload.description).not_to include("onerror", "<script")
+    expect(poll.description).to include("<p>Intro</p>", '<img src="/foto.png">')
     expect(poll.sdg_goals.map(&:code)).to eq [17]
     expect(Poll.created_by_admin.find_by(id: poll.id)).to eq poll
   end
